@@ -136,7 +136,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                                     <Text
                                         position={[0, position[1], 0.1] as Vector3}
                                         fillOpacity={0.7}
-                                        font='/fonts/Audiowide-Regular.ttf'
+                                        font='./fonts/Audiowide-Regular.ttf'
                                         fontSize={width / 16}
                                         material-toneMapped={false}
                                         anchorX='center'
@@ -150,7 +150,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                                         strokeOpacity={window.innerWidth < 480 ? 0.7 : 0.4}
                                         strokeColor='#ffffff'
                                         fillOpacity={0}
-                                        font='/fonts/Audiowide-Regular.ttf'
+                                        font='./fonts/Audiowide-Regular.ttf'
                                         fontSize={width / 8}
                                         material-toneMapped={false}
                                         anchorX={`${position[0] === 0.1 ? 'right' : 'left'}` as any}
