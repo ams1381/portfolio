@@ -1,5 +1,5 @@
 export const Loader = () => {
-    return <div className={'fixed w-full h-full z-50 bg-[black]'}>
+    return <div className={'fixed w-full h-full z-50 bg-[var(--prevLoader-bg)]'}>
         <div className="diamondCon">
             <ul className="diamond">
                 <li></li>

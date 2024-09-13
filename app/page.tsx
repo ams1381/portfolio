@@ -21,7 +21,7 @@ const HomePage = () => {
 
           <div className={'relative w-full overflow-hidden h-[calc(100svh-49px)] md:h-[calc(100svh-65px)]'}>
               <div className={'w-full flex justify-center py-3 flex-col gap-2 items-center'}>
-                  <h1 className={'text-xl px-1 md:px-0 md:text-3xl relative text-center transition-all z-[1] mt-16 hover:text-[white] font-[audio] text-[#b5b5b5]'}>
+                  <h1 className={'text-xl px-1 md:px-0 md:text-3xl relative text-center transition-all z-[1] mt-16 hover:text-[var(--header-text-hover)] font-[audio] text-[#b5b5b5]'}>
                       Front End Developer /  Web Designer
                   </h1>
                   <div className={`flex gap-2 items-center  relative transition-opacity z-[1]`}>

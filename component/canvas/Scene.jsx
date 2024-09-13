@@ -32,6 +32,7 @@ import {Lights} from "@/component/canvas/lights";
 // }
 
 const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     return <Canvas
         colorManagement
         gl={{antialias: false, alpha: true}}
@@ -50,11 +51,11 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
         {/*/>*/}
         <Suspense>
         <CanvasLoader setReadyToLoad={setReadyToLoad} />
-        <color attach='background' args={['#050505']} />
+        <color attach='background' args={isDarkTheme ? ['#050505'] : ['#d5d5d5']} />
         <fog attach='fog' args={[0x050505, 0, 28]} />
         {/*<pointLight position={[0, 1.8, 1.8]} intensity={1}  distance={20} color={'rgba(255,255,255,0.56)'} castShadow={true}  />*/}
         {/*<pointLight position={[-1, 2, 4.8]} intensity={3}  distance={10} color={'rgba(255,0,0,0.71)'}  />*/}
-        {/*<pointLight position={[1, 1, 2.5]} intensity={2} distance={20} color={'rgb(255,255,255)'} />*/}
+        <pointLight position={[1, 1, 4]} intensity={10} distance={20} color={'rgb(255,255,255)'} />
         {/*    { pageStatus === 'projects' && <pointLight position={[1, 1, 2.9]} intensity={3} distance={20} color={'rgba(241,243,255,0.83)'} />}*/}
             {/*<Environment files="env.hdr"/>*/}
             <DiamondModel pageStatus={pageStatus} />

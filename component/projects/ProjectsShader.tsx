@@ -30,7 +30,7 @@ function CanvasLoader({ setReadyToLoad } : any) {
 
 const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
     const posY = -0.5
-
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const images = [
         {
             title: 'Hoda',
@@ -92,7 +92,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                 horizontal={false}
                 infinite={false}
             >
-                <color attach='background' args={['#000007']} />
+                <color attach='background' args={[isDarkTheme ? '#000007' : '#f7f7fd']} />
                 <fog attach='fog' color={'rgba(223,223,223,0.7)'} args={[0x050505, 0, 6]} />
                 <Scroll>
                     {/*<Noise opacity={0.40} />*/}
@@ -136,6 +136,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                                     <Text
                                         position={[0, position[1], 0.1] as Vector3}
                                         fillOpacity={0.7}
+                                        color={isDarkTheme ? '#f7f7fd' : '#000025'}
                                         font='./fonts/Audiowide-Regular.ttf'
                                         fontSize={width / 16}
                                         material-toneMapped={false}
@@ -148,7 +149,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                                         position={[-position[0], position[1], 0.4] as Vector3}
                                         strokeWidth={window.innerWidth < 480 ? '0.6%' : '0.3%'}
                                         strokeOpacity={window.innerWidth < 480 ? 0.7 : 0.4}
-                                        strokeColor='#ffffff'
+                                        strokeColor={isDarkTheme ? '#ffffff' : '#2c2c2c'}
                                         fillOpacity={0}
                                         font='./fonts/Audiowide-Regular.ttf'
                                         fontSize={width / 8}
@@ -170,6 +171,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                             fontSize={width / 3}
                             material-toneMapped={false}
                             anchorX='center'
+                            color={isDarkTheme ? '#f7f7fd' : '#0000ff'}
                             anchorY='middle'
                         >
                             Projects

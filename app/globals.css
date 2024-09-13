@@ -1,4 +1,5 @@
 @import "fonts.css";
+@import "prevLoader.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -25,9 +26,12 @@ html::-webkit-scrollbar {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;
   --background-end-rgb: 255, 255, 255;
-
+  --header-text : #282828;
+  --header-text-hover: #101010;
   --mouse-x : 0;
   --mouse-y : 0;
+  --prevLoader-bg : white;
+  --footer-color : #191919;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -35,6 +39,10 @@ html::-webkit-scrollbar {
     --foreground-rgb: 255, 255, 255;
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
+    --header-text : #d1d1d1;
+    --header-text-hover: white;
+    --prevLoader-bg : black;
+    --footer-color : white;
   }
 }
 
@@ -48,219 +56,6 @@ body {
     rgb(var(--background-start-rgb));
 }
 
-/*@layer utilities {*/
-/*  .text-balance {*/
-/*    text-wrap: balance;*/
-/*  }*/
-/*}*/
-.shit {
-  background: linear-gradient(186deg, #000123, #1c0008);
-}
-.reversed-shit {
-  background: linear-gradient(177deg, #1c0008, #000000);
-}
-.diamondCon {
-  width: 100%;
-  height: 100%;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  position: absolute;
-  margin: auto;
-  /*background: linear-gradient(45deg, #250000, #0c004166);*/
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
-
-.diamond {
-  display: block;
-  width: 200px;
-  position: relative;
-  transform: scale(2);
-  height: 85px;
-  background: none;
-}
-
-.diamond li {
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  opacity: 0;
-  z-index: 100;
-  transition: 400ms ease;
-}
-
-.diamond li:nth-child(1) {
-  border-width: 20px 20px 0 20px;
-  border-color: white transparent transparent transparent;
-  left: 0;
-  right: 0;
-  margin: auto;
-  animation: traingle1 200ms 2.2s ease, opacity 2s 2.4s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(2) {
-  border-width: 0 20px 20px 20px;
-  border-color: transparent transparent white;
-  left: 59px;
-  animation: traingle2 200ms 1.8s ease, opacity 2s 2.4s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(3) {
-  border-width: 0 20px 20px 20px;
-  border-color: transparent transparent white;
-  right: 59px;
-  animation: traingle3 200ms 2s ease, opacity 2s 2.4s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(4) {
-  border-width: 20px 20px 0 20px;
-  border-color: white transparent transparent transparent;
-  animation: traingle4 200ms 1.6s ease, opacity 2s 2.6s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(5) {
-  border-width: 20px 20px 0 20px;
-  border-color: white transparent transparent transparent;
-  animation: traingle5 200ms 1.4s ease, opacity 2s 2.6s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(6) {
-  border-width: 0 20px 20px 20px;
-  border-color: transparent transparent white;
-  left: 0;
-  right: 0;
-  margin: auto;
-  animation: traingle6 200ms 1.2s ease, opacity 2s 2.6s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.diamond li:nth-child(7) {
-  border-width: 20px 20px 0 20px;
-  border-color: white transparent transparent transparent;
-  left: 0;
-  right: 0;
-  margin: auto;
-  animation: traingle7 200ms 1s ease, opacity 2s 2.8s ease infinite;
-  animation-fill-mode: forwards;
-}
-
-.textCon {
-  width: 200px;
-  height: 50px;
-  position: absolute;
-  top: 0;
-  text-align: center;
-  line-height: 50px;
-  font-size: 30px;
-  font-family: Dancing Script;
-  color: #fff;
-  opacity: 0;
-  animation: text 500ms 2.4s ease;
-  animation-fill-mode: forwards;
-}
-
-@keyframes traingle1 {
-  0% {
-    top: -50px;
-    opacity: 0;
-  }
-  100% {
-    top: 0;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle2 {
-  0% {
-    top: -50px;
-    opacity: 0;
-  }
-  100% {
-    top: 1px;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle3 {
-  0% {
-    top: -50px;
-    opacity: 0;
-  }
-  100% {
-    top: 1px;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle4 {
-  0% {
-    right: 59px;
-    top: -33px;
-    opacity: 0;
-  }
-  100% {
-    right: 59px;
-    top: 22px;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle5 {
-  0% {
-    left: 59px;
-    top: -33px;
-    opacity: 0;
-  }
-  100% {
-    left: 59px;
-    top: 22px;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle6 {
-  0% {
-    top: -33px;
-    opacity: 0;
-  }
-  100% {
-    top: 23px;
-    opacity: 1;
-  }
-}
-
-@keyframes traingle7 {
-  0% {
-    top: -10px;
-    opacity: 0;
-  }
-  100% {
-    top: 44px;
-    opacity: 1;
-  }
-}
-
-@keyframes opacity {
-  0% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.3;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 @keyframes text {
   0% {
@@ -321,10 +116,6 @@ body {
   );
   z-index:3;
 
-}
-
-.skillItem:hover svg {
-  fill: red;
 }
 
 @keyframes showUp {

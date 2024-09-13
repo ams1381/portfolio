@@ -84,6 +84,7 @@ const Shader: React.FC<ShaderProps> = ({
                     if (pointer) document.body.style.cursor = 'auto'
                     else return
                 }}
+
                 onClick={() => url && openInNewTab(url)}
                 rotation={planeRotation}
                 position={position}

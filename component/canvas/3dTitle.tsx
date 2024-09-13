@@ -6,7 +6,7 @@ import {Vector3} from "three";
 export const Title = ({ children , pageStatus } : any) => {
     const { width } = useThree((state) => state.viewport);
     const textRef : any = useRef();
-
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 
     useFrame(() => {
         if (textRef.current) {
@@ -33,7 +33,7 @@ export const Title = ({ children , pageStatus } : any) => {
             anchorY='middle'
         >
             {children}
-            <meshBasicMaterial color='#c4c4c4' />
+            <meshBasicMaterial color={ isDarkTheme ?  '#c4c4c4' : '#ff2323'} />
         </Text>
     )
 
@@ -41,8 +41,7 @@ export const Title = ({ children , pageStatus } : any) => {
 export const TitleL = ({ children , pageStatus } : any) => {
     const { width } = useThree((state) => state.viewport);
     const textRef : any = useRef();
-    // const targetPosition = new Vector3( 0 ,  pageStatus === 'home' ? 0.1 : 4, -2);
-
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     useFrame(() => {
         if (textRef.current) {
             let targetPosition;
@@ -67,7 +66,7 @@ export const TitleL = ({ children , pageStatus } : any) => {
             anchorY='middle'
         >
             {children}
-            <meshStandardMaterial roughness={1} metalness={0.5} color='#474747' />
+            <meshStandardMaterial roughness={1} metalness={0.5} color={isDarkTheme ? '#474747' : 'red'} />
         </Text>
     )
 }

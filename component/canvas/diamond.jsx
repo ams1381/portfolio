@@ -13,7 +13,7 @@ import {useFrame} from '@react-three/fiber'
 import {
     useGLTF,
     // Caustics,
-    CubeCamera,
+    CubeCamera, MeshRefractionMaterial, Caustics,
     // MeshRefractionMaterial, OrbitControls,
 } from '@react-three/drei'
 
@@ -25,7 +25,8 @@ export function Diamond(props) {
     const { nodes }  = useGLTF('diamond1.gltf');
     const [envMap, setEnvMap] = useState(null);
     const [resolution, setResolution] = useState(64);
-
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const ref = useRef();
     // Load the initial HDR environment texture
     useEffect(() => {
         new RGBELoader().load('env.hdr', (texture) => {
@@ -74,19 +75,33 @@ export function Diamond(props) {
                 {/*        roughness={0} metalness={0.5} color='#474747'/>*/}
                 {/*</mesh>*/}
                 { envMap && <CubeCamera resolution={resolution} frames={1} envMap={envMap}>
-                    {(texture) => (<mesh receiveShadow castShadow geometry={nodes.Cylinder.geometry} {...props}>
-                        <meshStandardMaterial
-                            envMap={texture}
-
-                            bounces={1}
-                            aberrationStrength={0.2}
-                            roughness={0}
-                            fresnel={0}
-                            metalness={0}
-                            color={props.pageStatus === 'home' ? '#434343' : '#434343'}/>
-                    </mesh>)}
+                    {(texture) => (<Caustics worldRadius={0.1} intensity={0}>
+                        <mesh receiveShadow castShadow geometry={nodes.Cylinder.geometry} {...props}>
+                            <meshStandardMaterial
+                                envMap={texture}
+                                bounces={1}
+                                aberrationStrength={0.2}
+                                roughness={0}
+                                fresnel={0}
+                                metalness={0}
+                                color={isDarkTheme ? '#434343' : 'red'}/>
+                        </mesh>
+                    </Caustics>)}
                 </CubeCamera>}
             </group>
         </group>
     )
 }
+// : <Caustics worldRadius={0.1} intensity={0}>
+//     <mesh receiveShadow castShadow={false} ref={ref} geometry={nodes.Cylinder.geometry} {...props}>
+//         <MeshRefractionMaterial
+//             color={'red'}
+//             aberrationStrength={7.1}
+//             bounces={1}
+//             fresnel={0}
+//             fastChroma={true}
+//             envMap={texture}
+//             toneMapped={false}
+//         />
+//     </mesh>
+// </Caustics>
