@@ -21,7 +21,7 @@ const HomePage = () => {
 
           <div className={'relative w-full overflow-hidden h-[calc(100vh-49px)] md:h-[calc(100svh-65px)]'}>
               <div className={'w-full flex justify-center py-3 flex-col gap-2 items-center'}>
-                  <h1 className={'text-xl px-1 md:px-0 md:text-3xl relative text-center transition-all z-[1] mt-16 hover:text-[var(--header-text-hover)] font-[audio] text-[#b5b5b5]'}>
+                  <h1 className={'text-xl text-[var(--goose-color2)] px-1 md:px-0 md:text-3xl relative text-center transition-all z-[1] mt-16 hover:text-[var(--header-text-hover)] font-[audio] '}>
                       Front End Developer /  Web Designer
                   </h1>
                   <div className={`flex gap-2 items-center  relative transition-opacity z-[1]`}>
@@ -32,7 +32,7 @@ const HomePage = () => {
                   </div>
               </div>
               <h2 className={'absolute bottom-36 font-[audio] text-xl whitespace-nowrap' +
-                  ' md:hidden left-1/2 -translate-x-1/2 z-[4] text-[white]'}>Amir Mohammad Solgi</h2>
+                  ' md:hidden left-1/2 -translate-x-1/2 z-[4] text-[var(--header-text-hover)]'}>Amir Mohammad Solgi</h2>
               <TestComponent pageStatus={pageStatus} setReadyToLoad={setReadyToLoad } />
           </div>
 

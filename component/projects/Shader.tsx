@@ -7,7 +7,8 @@ import {shaderMaterial, Text} from '@react-three/drei'
 import vertex from '@/component/projects/glsl/shader.vert'
 // @ts-ignore
 import fragment from '@/component/projects/glsl/shader.frag'
-
+// @ts-ignore
+import lightModeFragment from '@/component/projects/glsl/lighShader.frag'
 import { DoubleSide } from 'three'
 
 extend({ PlaneGeometry: THREE.PlaneGeometry })
@@ -36,13 +37,14 @@ const Shader: React.FC<ShaderProps> = ({
                                            planeRotation,
                                        }) => {
     const meshRef = useRef(null);
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const ColorShiftMaterial = shaderMaterial(
         {
             uTime: 1,
             uTexture: new THREE.TextureLoader().load(image),
         },
         vertex,
-        fragment
+        isDarkTheme ?  fragment : lightModeFragment
     )
     // This is the 🔑 that HMR will renew if this file is edited
     // It works for THREE.ShaderMaterial as well as for drei/shaderMaterial

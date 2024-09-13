@@ -1,3 +1,4 @@
+'use client'
 import Image from "next/image";
 import {SkillsList} from "@/data/skills";
 import dynamic from "next/dynamic";
@@ -7,6 +8,7 @@ const BackScene : any = dynamic(() => import('@/component/about/backScene'), {
 })
 
 const AboutMePage = () => {
+    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     return <div className={'w-full h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
         <BackScene />
         <div style={{ animation : 'showUp 0.5s ease-out' , animationFillMode : 'forwards' }} className={'flex flex-col gap-2 items-center'}>
@@ -15,8 +17,8 @@ const AboutMePage = () => {
                    width={200} height={200}
                    className={'rounded-full'} />
             <h1 className={'text-xl font-bold'}>Amir Mohammad Solgi</h1>
-            <span className={'text-[#afafaf] text-sm'}>Frond End Developer</span>
-            <p className={'text-[#d9d9d9]'}>
+            <span className={'text-[var(--header-text)] text-sm'}>Frond End Developer</span>
+            <p className={'text-[var(--goose-color)]'}>
                 passionated and experienced front end developer with almost 3 years of proficiency
                 in developing websites
             </p>
@@ -25,7 +27,10 @@ const AboutMePage = () => {
                 {
                     SkillsList.map((Item,index) =>
                         <div key={index} className={'flex items-center gap-2 group  '}>
-                            <Image src={Item.icon} alt={Item.title} width={30} height={30} className={'z-[1]'} />
+                            <Image src={Item.icon} alt={Item.title}
+                                   width={30}
+                                   height={30}
+                                   className={`z-[1] ${isDarkTheme ? '' : 'invert'}`} />
                             {/*<p className={'-ms-48 duration-300 transition-all group-hover:ms-0'}>{Item.title}</p>*/}
                         </div>)
                 }

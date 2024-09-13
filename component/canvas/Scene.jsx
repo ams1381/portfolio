@@ -61,17 +61,19 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
             <DiamondModel pageStatus={pageStatus} />
             { window.innerWidth > 480 && <Title pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</Title>}
             { window.innerWidth > 480 && <TitleL pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</TitleL>}
-            <Sparkles count={200} scale={[20, 20, 10 , 40 , 60 , 6]} size={1} speed={2} color={'#cbcbff'} />
+            <Sparkles count={200} scale={[20, 20, 10 , 40 , 60 , 6]}
+                      size={isDarkTheme ? 1 : 3} speed={2}
+                      color={isDarkTheme ? '#cbcbff' : '#1a0000'} />
 
         <EffectComposer multisampling={0} disableNormalPass={true}>
-            <Bloom
+            { isDarkTheme ? <Bloom
                 luminanceThreshold={0}
                 luminanceSmoothing={1.9}
                 height={300}
                 opacity={2}
-            />
-            <Noise opacity={0.020} />
-            <Vignette eskil={false} offset={0.1} darkness={0.05} />
+            /> : <></>}
+            { isDarkTheme ? <Noise opacity={0.020}/> : <></>}
+            <Vignette  eskil={false} offset={0.1} darkness={0.05} />
         </EffectComposer>
         { pageStatus === 'home' && <Rig/>}
         <Lights />

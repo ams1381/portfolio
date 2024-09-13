@@ -23,7 +23,7 @@ export default function RootLayout({
     return (
         <html lang="en">
         <body className={inter.className}>
-        <NextTopLoader color={'white'} showSpinner={false}/>
+        <NextTopLoader color={'var(--footer-color)'} showSpinner={false}/>
         <Header/>
         {children}
         </body>
