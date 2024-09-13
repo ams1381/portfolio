@@ -1,0 +1,49 @@
+
+/*900*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-ExtraBold.ttf");
+    font-family: PeydaExtraBlack;
+}
+
+/*800*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-ExtraBold.ttf");
+    font-family: PeydaExtraBold;
+}
+
+/*700*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-Bold.ttf");
+    font-family: PeydaBold;
+}
+
+/*600*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-SemiBold.ttf");
+    font-family: PeydaSemiBold;
+}
+/*500*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-Medium.ttf");
+    font-family: PeydaMedium;
+}
+/*400*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-Regular.ttf");
+    font-family: PeydaRegular;
+}
+/*300*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-Light.ttf");
+    font-family: PeydaLight;
+}
+/*200*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-ExtraLight.ttf");
+    font-family: PeydaExtraLight;
+}
+/*100*/
+@font-face {
+    src: url("../public/fonts/PeydaFaNum-Thin.ttf");
+    font-family: PeydaThin;
+}
