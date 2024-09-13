@@ -110,7 +110,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                     <Suspense>
                         <CanvasLoader setReadyToLoad={setReadyToLoad} />
                         <Shader
-                            image={'/images/texture.webp'}
+                            image={'./images/texture.webp'}
                             planeArgs={[6, 4, window.innerWidth < 480 ? 64 : 64, window.innerWidth < 480 ? 64 : 64]}
                             planeRotation={[-Math.PI / 2.3, 0, 0]}
                             wireframe={true}
