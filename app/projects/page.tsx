@@ -11,7 +11,7 @@ const ProjectsPage = () => {
     const [ readyToLoad , setReadyToLoad ] = useState(false);
     return <>
         { !readyToLoad &&  <Loader/>}
-        <div style={{ height : 'calc(100svh - 65px)' }}>
+        <div style={{ height : 'calc(100vh - 65px)' }}>
             <Canvas className={'w-full !h-full'} >
                 <ProjectsShader setReadyToLoad={setReadyToLoad} />
             </Canvas>
