@@ -2,6 +2,7 @@
 
 
 const nextConfig = {
+    output : 'export' ,
     webpack: (config, { isServer }) => {
         config.module.rules.push({
             test: /\.(glsl|vs|fs|vert|frag)$/,
