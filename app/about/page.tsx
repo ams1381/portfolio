@@ -10,7 +10,7 @@ const AboutMePage = () => {
     return <div className={'w-full h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
         <BackScene />
         <div style={{ animation : 'showUp 0.5s ease-out' , animationFillMode : 'forwards' }} className={'flex flex-col gap-2 items-center'}>
-            <Image src={'/images/aboutMePicture.jpg'}
+            <Image src={'./images/aboutMePicture.jpg'}
                    alt={'Amir Mohammad Solgi'}
                    width={200} height={200}
                    className={'rounded-full'} />
