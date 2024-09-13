@@ -26,7 +26,7 @@ export const Title = ({ children , pageStatus } : any) => {
             ref={textRef}
             // position={window.innerWidth < 480 ? [0, -2, -4] : [0, 0.1, -2]}
             lineHeight={1.3}
-            font='/fonts/Audiowide-Regular.ttf'
+            font='./fonts/Audiowide-Regular.ttf'
             fontSize={window.innerWidth < 480 ? 0.23 : (width/90 +  0.5)}
             material-toneMapped={false}
             anchorX='center'
@@ -60,7 +60,7 @@ export const TitleL = ({ children , pageStatus } : any) => {
             // position={window.innerWidth < 480 ? [0, -2, -4] : [0, 0.1, -2]}
             lineHeight={1.3}
             ref={textRef}
-            font='/fonts/Audiowide-Regular.ttf'
+            font='./fonts/Audiowide-Regular.ttf'
             fontSize={window.innerWidth < 480 ? 0.23 : (width/90 +  0.5)}
             material-toneMapped={false}
             anchorX='center'
