@@ -1,4 +1,4 @@
-'use client'
+"use client"
 
 
 import {Telegram} from "@/component/socialIcons/Telegram";
@@ -8,8 +8,8 @@ import Link from "next/link";
 import {useEffect} from "react";
 
 export const Footer = () => {
-
     useEffect(() => {
+
         document.querySelectorAll("footer ul li").forEach((b : any) => {
             b.onmouseleave = (e : any) => {
                 b.style.background = "none";
@@ -18,7 +18,7 @@ export const Footer = () => {
 
             b.addEventListener("mousemove", (e : any) => {
                 const rect = e.target.getBoundingClientRect();
-                const x = e.clientX - rect.left; //x position within the element.
+                const x = e.clientX - rect.left;
                 const y = e.clientY - rect.top; //y position within the element.
                 b.style.background = `radial-gradient(circle at ${x}px ${y}px , rgba(255,255,255,0.2),rgba(255,255,255,0) )`;
                 b.style.borderImage = `radial-gradient(20% 75% at ${x}px ${y}px ,rgba(255,255,255,0.7),rgba(255,255,255,0.1) ) 1 / 1px / 0px stretch `;
