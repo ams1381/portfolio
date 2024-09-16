@@ -86,12 +86,13 @@ export function Diamond(props) {
                             {
                                 isDarkTheme ? <meshStandardMaterial
                                         envMap={texture}
-                                        bounces={1}
-                                        aberrationStrength={0.2}
+                                        bounces={0.5}
+                                        aberrationStrength={2.2}
                                         roughness={0}
-                                        fresnel={1.4}
-                                        metalness={0}
-                                        color={isDarkTheme ? '#434343' : '#a7a7ff'}/> :
+                                        fresnel={0.4}
+                                        metalness={0.2}
+                                        envMapIntensity={1.5}
+                                        color={'#484848'}/> :
                                     <MeshRefractionMaterial
                                         color={'#ffffff'}
                                         aberrationStrength={0.01}
