@@ -171,7 +171,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                             fontSize={width / 3}
                             material-toneMapped={false}
                             anchorX='center'
-                            color={isDarkTheme ? '#f7f7fd' : '#0000ff'}
+                            color={isDarkTheme ? '#f7f7fd' : '#ff0000'}
                             anchorY='middle'
                         >
                             Projects

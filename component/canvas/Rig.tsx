@@ -7,14 +7,14 @@ export const Rig = ({ v = new THREE.Vector3() }) => {
     const isLerping = useRef(true); // Initialize ref to keep track of lerping state
 
     useFrame(() => {
-        if (isLerping.current) {
+        // if (isLerping.current) {
             camera.position.lerp(v.set(-mouse.x / 2, mouse.y / 2, 10), 0.05);
 
             // Check if the camera position is close enough to the target to consider the lerp complete
-            if (camera.position.distanceTo(v) < 0.01) {
-                isLerping.current = false; // Stop lerping
-            }
-        }
+            // if (camera.position.distanceTo(v) < 0.01) {
+            //     isLerping.current = false; // Stop lerping
+            // }
+        // }
     });
 
     return null;

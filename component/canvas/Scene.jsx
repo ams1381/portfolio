@@ -3,7 +3,7 @@
 import * as THREE from 'three'
 import {Canvas, useFrame} from '@react-three/fiber'
 
-import {Sparkles} from '@react-three/drei'
+import {Environment, Sparkles} from '@react-three/drei'
 
 import {EffectComposer, Bloom, Noise, Vignette} from '@react-three/postprocessing'
 
@@ -41,23 +41,15 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
         className={'!w-full !absolute top-0 h-full'}
     >
         <CameraComponent  pageStatus={pageStatus} />
-        {/*<PerspectiveCamera*/}
-        {/*    makeDefault*/}
-        {/*    ref={cameraRef}*/}
-        {/*    // position={pageStatus === 'home' ? [0, 13, 14] : pageStatus === 'projects' ? [10, 40, 10] : [0 , 0, 0]}*/}
-        {/*    fov={25}*/}
-        {/*    near={0.1}*/}
-        {/*    far={80}*/}
-        {/*/>*/}
         <Suspense>
         <CanvasLoader setReadyToLoad={setReadyToLoad} />
-        <color attach='background' args={isDarkTheme ? ['#050505'] : ['#d5d5d5']} />
+        <color attach='background' args={isDarkTheme ? ['#050505'] : ['#f3f3f3']} />
         <fog attach='fog' args={[0x050505, 0, 28]} />
         {/*<pointLight position={[0, 1.8, 1.8]} intensity={1}  distance={20} color={'rgba(255,255,255,0.56)'} castShadow={true}  />*/}
         {/*<pointLight position={[-1, 2, 4.8]} intensity={3}  distance={10} color={'rgba(255,0,0,0.71)'}  />*/}
         {/*<pointLight position={[1, 1, 4]} intensity={10} distance={20} color={'rgb(255,255,255)'} />*/}
         {/*    { pageStatus === 'projects' && <pointLight position={[1, 1, 2.9]} intensity={3} distance={20} color={'rgba(241,243,255,0.83)'} />}*/}
-            {/*<Environment files="env.hdr"/>*/}
+            <Environment files="env.hdr"/>
             <DiamondModel pageStatus={pageStatus} />
             { window.innerWidth > 480 && <Title pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</Title>}
             { window.innerWidth > 480 && <TitleL pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</TitleL>}
@@ -76,7 +68,7 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
             <Vignette  eskil={false} offset={0.1} darkness={0.05} />
         </EffectComposer>
         { pageStatus === 'home' && <Rig/>}
-        <Lights />
+        {/*<Lights />*/}
         </Suspense>
     </Canvas>
 
