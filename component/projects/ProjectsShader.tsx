@@ -14,6 +14,7 @@ import Shader from "@/component/projects/Shader";
 import {Bloom, EffectComposer, Noise, Vignette} from "@react-three/postprocessing";
 import {ImageLoader} from "@/component/ImageLoder";
 import HodaIcon from '@/public/icons/hoda.svg'
+import {ProjectItem} from "@/component/projects/ProjectItem";
 
 function CanvasLoader({ setReadyToLoad } : any) {
     const {active, progress , loaded} = useProgress();
@@ -122,44 +123,13 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                             const { position, src, title, url } = image
 
                             return (
-                                <group key={url}>
-                                    <Shader
-                                                image={src}
-                                                position={position as Vector3}
-                                                planeArgs={[0.2, 0.2, 8, 8]}
-                                                planeRotation={[0, 0, 0]}
-                                                wireframe={false}
-                                                pointer={true}
-                                                url={url}
-                                    />
-
-                                    <Text
-                                        position={[0, position[1], 0.1] as Vector3}
-                                        fillOpacity={0.7}
-                                        color={isDarkTheme ? '#f7f7fd' : '#000025'}
-                                        font='./fonts/Audiowide-Regular.ttf'
-                                        fontSize={width / 16}
-                                        material-toneMapped={false}
-                                        anchorX='center'
-                                        anchorY='middle'
-                                    >
-                                        {title}
-                                    </Text>
-                                    <Text
-                                        position={[-position[0], position[1], 0.4] as Vector3}
-                                        strokeWidth={window.innerWidth < 480 ? '0.6%' : '0.3%'}
-                                        strokeOpacity={window.innerWidth < 480 ? 0.7 : 0.4}
-                                        strokeColor={isDarkTheme ? '#ffffff' : '#2c2c2c'}
-                                        fillOpacity={0}
-                                        font='./fonts/Audiowide-Regular.ttf'
-                                        fontSize={width / 8}
-                                        material-toneMapped={false}
-                                        anchorX={`${position[0] === 0.1 ? 'right' : 'left'}` as any}
-                                        anchorY='middle'
-                                    >
-                                        {i + 1}
-                                    </Text>
-                                </group>
+                                <ProjectItem url={url}
+                                             position={position}
+                                             isDarkTheme={isDarkTheme}
+                                             title={title}
+                                             index={i}
+                                             key={i}
+                                             src={src} />
                             )
                         })}
                         <Text

@@ -36,6 +36,9 @@ html::-webkit-scrollbar {
   --goose-color2: #292929;
   --image-invert : invert(1);
   --navigation-indicator : #750000;
+  --about-me-bg : white;
+  --about-me-border : none;
+  --about-me-border-width : 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -51,6 +54,9 @@ html::-webkit-scrollbar {
     --goose-color2: #b5b5b5;
     --image-invert : none;
     --navigation-indicator : white;
+    --about-me-bg : linear-gradient(45deg, #1a1a1a, #080808);
+    --about-me-border : linear-gradient(277deg, #adadad, #797979) 1 / 0.7;
+    --about-me-border-width : 3px;
   }
 }
 
@@ -135,4 +141,10 @@ body {
 }
 .skillImage {
   filter: var(--image-invert);
+}
+
+.aboutMeCard {
+  background: var(--about-me-bg);
+  border-image: var(--about-me-border);
+  border-width: var(--about-me-border-width);
 }

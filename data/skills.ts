@@ -27,4 +27,12 @@ export const SkillsList = [
         title : 'next js' ,
         icon : './icons/skills/nextjs.svg',
     },
+    {
+        title : 'tailwind css' ,
+        icon : './icons/skills/tailwind.svg',
+    },
+    {
+        title : 'node js' ,
+        icon : './icons/skills/nodejs.svg',
+    },
 ]

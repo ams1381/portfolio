@@ -5,7 +5,7 @@ import React, {
     // useMemo,
     useRef,
     useState,
-    useEffect
+    useEffect, useMemo
 } from 'react'
 
 import {useFrame} from '@react-three/fiber'
@@ -14,6 +14,7 @@ import {
     useGLTF,
     // Caustics,
     CubeCamera, MeshRefractionMaterial, Caustics,
+    MeshReflectorMaterial, Stats
     // MeshRefractionMaterial, OrbitControls,
 } from '@react-three/drei'
 
@@ -24,9 +25,13 @@ export function Diamond(props) {
     const group = useRef()
     const {nodes} = useGLTF('diamond1.gltf');
     const [envMap, setEnvMap] = useState(null);
-    const [resolution, setResolution] = useState(64);
-    let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const ref = useRef();
+    const resolution = useMemo(() => 64, [])
+    // let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const [isDarkTheme, setIsDarkTheme] = useState(false)
+    useEffect(() => {
+        const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
+        setIsDarkTheme(darkTheme)
+    }, [])
     // Load the initial HDR environment texture
     // useEffect(() => {
     //     new RGBELoader().load('env.hdr', (texture) => {
@@ -59,7 +64,6 @@ export function Diamond(props) {
     })
 
     useFrame(({pointer}) => {
-
         group.current.rotation.y = THREE.MathUtils.lerp(
             group.current.rotation.y,
             pointer.x * (Math.PI / 16),
@@ -78,11 +82,11 @@ export function Diamond(props) {
                 {/*    <meshStandardMaterial*/}
                 {/*        roughness={0} metalness={0.5} color='#474747'/>*/}
                 {/*</mesh>*/}
-                {envMap && <CubeCamera  resolution={resolution} frames={1} envMap={envMap}>
+                {envMap && <CubeCamera  resolution={32} frames={1} envMap={envMap}>
                     {(texture) => (<Caustics worldRadius={0.1}
                                              causticsOnly={false}
                                              intensity={0} backside>
-                        <mesh receiveShadow castShadow={false} geometry={nodes.Cylinder.geometry} {...props}>
+                        <mesh  geometry={nodes.Cylinder.geometry} {...props}>
                             {
                                 isDarkTheme ? <meshStandardMaterial
                                         envMap={texture}
@@ -96,18 +100,19 @@ export function Diamond(props) {
                                     <MeshRefractionMaterial
                                         color={'#ffffff'}
                                         aberrationStrength={0.01}
-                                        bounces={2}
+                                        bounces={1}
                                         fresnel={0.2}
-                                        envMapIntensity={9.1}
+                                        envMapIntensity={1}
                                         fastChroma={true}
                                         envMap={texture}
-                                        toneMapped={true}
+                                        toneMapped={false}
                                     />
                             }
                         </mesh>
                     </Caustics>)}
                 </CubeCamera>}
             </group>
+
         </group>
     )
 }

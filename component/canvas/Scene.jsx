@@ -67,8 +67,8 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
             { isDarkTheme ? <Noise opacity={0.020}/> : <></>}
             <Vignette  eskil={false} offset={0.1} darkness={0.05} />
         </EffectComposer>
-        { pageStatus === 'home' && <Rig/>}
-        <Lights />
+        {  <Rig/>}
+        { isDarkTheme && <Lights/>}
         </Suspense>
     </Canvas>
 
