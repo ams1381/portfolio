@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     openGraph : {
         siteName : 'AMS WebSite',
         url : 'https://amosoli.com/',
-        description : 'Best front end developer ever' و
+        description : 'Best front end developer ever' ,
         type : 'website' ,
     },
     creator : 'amir mohammad solgi',
