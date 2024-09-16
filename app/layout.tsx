@@ -6,6 +6,7 @@ import {Header} from "@/component/Header";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";
 import favicon from '@/public/favicon.svg'
+import Script from "next/script";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -33,6 +34,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+        <Script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=G-HR4MD1EKJV"
+            strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+            {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-HR4MD1EKJV');
+          `}
+        </Script>
         <body className={inter.className}>
         <NextTopLoader color={'var(--navigation-indicator)'} showSpinner={false}/>
         <Header/>
