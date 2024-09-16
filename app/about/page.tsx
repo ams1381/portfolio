@@ -20,7 +20,7 @@ const AboutMePage = () => {
                    alt={'Amir Mohammad Solgi'}
                    width={200} height={200}
                    className={'rounded-full relative z-[2]'} />
-            <div className={'flex flex-col gap-2 items-center aboutMeCard translate-y-[-20px] p-3 pt-[30px]  rounded-md'}>
+            <div className={'w-[90%] md:w-auto flex flex-col gap-2 items-center aboutMeCard translate-y-[-20px] p-3 pt-[30px]  rounded-md'}>
                 <h1 className={'text-xl font-bold'}>Amir Mohammad Solgi</h1>
                 <span className={'text-[var(--header-text)] text-sm'}>Frond End Developer</span>
                 <p className={'text-[var(--goose-color)]'}>
