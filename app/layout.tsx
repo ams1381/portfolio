@@ -34,19 +34,23 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
-        <Script
-            async
-            src="https://www.googletagmanager.com/gtag/js?id=G-HR4MD1EKJV"
-            strategy="afterInteractive"
-        />
-        <Script id="google-analytics" strategy="afterInteractive">
-            {`
+        <head>
+            <meta name="google-site-verification" content="Ofd4IAcJsae58SQ7ZRai_Qg47SR8KmhF152V3S1vEdg"/>
+            <Script
+                async
+                src="https://www.googletagmanager.com/gtag/js?id=G-HR4MD1EKJV"
+                strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+                {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-HR4MD1EKJV');
           `}
-        </Script>
+            </Script>
+        </head>
+
         <body className={inter.className}>
         <NextTopLoader color={'var(--navigation-indicator)'} showSpinner={false}/>
         <Header/>
