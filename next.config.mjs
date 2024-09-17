@@ -19,6 +19,14 @@ const nextConfig = {
         extend: {},
     },
     darkMode: "class",
+    async rewrites() {
+        return [
+            {
+                source: '/sitemap.xml',
+                destination: '/sitemap.xml',
+            },
+        ];
+    },
 };
 
 export default nextConfig;
