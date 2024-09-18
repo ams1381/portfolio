@@ -27,7 +27,11 @@ export const metadata: Metadata = {
         url : 'https://amosoli.com/',
         description : 'Best front end developer ever' ,
         type : 'website' ,
+        title : 'AMS WebSite',
+
     },
+    keywords : ['AMS','amr mohammad solgi','امیر محمد سلگی'],
+    publisher : 'amir mohammad solgi',
     creator : 'amir mohammad solgi',
     authors : [{
         name : 'Amir Mohammad Solgi' ,
