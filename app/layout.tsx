@@ -56,8 +56,9 @@ export default function RootLayout({
     return (
         <html lang="en">
         <head>
+            <link rel="icon" href={favicon.src} type="image/svg"/>
             <meta name="google-site-verification" content="Ofd4IAcJsae58SQ7ZRai_Qg47SR8KmhF152V3S1vEdg"/>
-            <Script dangerouslySetInnerHTML={{ __html: structuredData }} />
+            <Script dangerouslySetInnerHTML={{__html: structuredData}}/>
             <Script
                 async
                 src="https://www.googletagmanager.com/gtag/js?id=G-HR4MD1EKJV"
