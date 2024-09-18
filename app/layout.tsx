@@ -51,6 +51,7 @@ export default function RootLayout({
         "@type": "WebSite",
         "name": "AMS WebSite",
         "url": "https://amosoli.com/",
+        "logo": favicon.src
     };
     return (
         <html lang="en">
