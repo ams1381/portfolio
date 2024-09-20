@@ -13,7 +13,11 @@
     src: url("../public/fonts/Audiowide-Regular.ttf");
   }
 }
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 /*@font-face {*/
 /*  font-family: audio;*/
 /*  src: url("../public/fonts/Audiowide-Regular.ttf");*/
@@ -22,6 +26,7 @@
 html::-webkit-scrollbar {
   width: 0;
 }
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-start-rgb: 214, 219, 220;

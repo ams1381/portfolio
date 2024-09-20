@@ -38,7 +38,7 @@ const TestComponent = memo(({ setReadyToLoad , pageStatus }) => {
         gl={{antialias: false, alpha: true}}
         // frameloop="demand"
         // camera={{position: [-5, 12, 5], fov: 40}}
-        className={'!w-full !absolute top-0 h-full'}
+        className={'!w-full !absolute top-0 !h-[100dvh]'}
     >
         <CameraComponent  pageStatus={pageStatus} />
         <Suspense>

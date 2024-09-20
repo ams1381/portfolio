@@ -1,7 +1,7 @@
 import Shader from "@/component/projects/Shader";
 import {useThree, Vector3} from "@react-three/fiber";
 import {Text} from "@react-three/drei";
-import React, {useState} from "react";
+import React, {SetStateAction, useRef, useState} from "react";
 
 interface IProjectItem {
     url : string ,
@@ -9,12 +9,15 @@ interface IProjectItem {
     isDarkTheme : boolean ,
     title : string ,
     index : number,
-    src : string
+    src : string ,
+    setActiveProject : React.Dispatch<SetStateAction<number | null>>
 }
 
-export const ProjectItem = ({ url , src , position , isDarkTheme , title , index } : IProjectItem) => {
+export const ProjectItem = ({ url , src , position , isDarkTheme , title , activeProject , setActiveProject , index } : IProjectItem) => {
     const { width } = useThree((state) => state.viewport)
     const [ textOpacity , setTextOpacity ] = useState(0.7);
+    let [ x , y , z ] = position;
+    const titleRef = useRef<any>();
     const openInNewTab = (href: string) => {
         let LinkElement = document.createElement('a');
         LinkElement.className = 'hover:text-[red] transition-all'
@@ -34,11 +37,14 @@ export const ProjectItem = ({ url , src , position , isDarkTheme , title , index
             document.body.style.cursor = 'auto'
             setTextOpacity(0.7);
         }}
-        onClick={() => url && openInNewTab(url)}
+        onClick={() => {
+            // openInNewTab(url);
+            setActiveProject(index)
+        }}
         key={url} >
         <Shader
             image={src}
-            position={position as Vector3}
+            position={[x,y,z] as Vector3}
             planeArgs={[0.2, 0.2, 8, 8]}
             planeRotation={[0, 0, 0]}
             wireframe={false}
@@ -47,7 +53,7 @@ export const ProjectItem = ({ url , src , position , isDarkTheme , title , index
         />
 
         <Text
-            position={[0, position[1], 0.1] as Vector3}
+            position={[0, y, 0.1] as Vector3}
             fillOpacity={textOpacity}
             color={isDarkTheme ? '#f7f7fd' : '#000025'}
             font='./fonts/Audiowide-Regular.ttf'
@@ -55,6 +61,7 @@ export const ProjectItem = ({ url , src , position , isDarkTheme , title , index
             material-toneMapped={false}
             anchorX='center'
             anchorY='middle'
+            ref={titleRef}
         >
             {title}
         </Text>

@@ -1,6 +1,6 @@
 'use client'
-import React, {Suspense, useEffect} from 'react'
-import { useThree, Vector3 } from '@react-three/fiber'
+import React, {Suspense, useEffect, useRef, useState} from 'react'
+import {useFrame, useThree, Vector3} from '@react-three/fiber'
 import {
     Html,
     Loader,
@@ -11,10 +11,8 @@ import {
     Text, useProgress,
 } from '@react-three/drei'
 import Shader from "@/component/projects/Shader";
-import {Bloom, EffectComposer, Noise, Vignette} from "@react-three/postprocessing";
-import {ImageLoader} from "@/component/ImageLoder";
-import HodaIcon from '@/public/icons/hoda.svg'
 import {ProjectItem} from "@/component/projects/ProjectItem";
+import {projectsList} from "@/data/projects";
 
 function CanvasLoader({ setReadyToLoad } : any) {
     const {active, progress , loaded} = useProgress();
@@ -30,51 +28,23 @@ function CanvasLoader({ setReadyToLoad } : any) {
 }
 
 const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
-    const posY = -0.5
+    const [ activeProject , setActiveProject ] = useState<number | null>(null);
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const images = [
-        {
-            title: 'Hoda',
-            position: [-0.1, -1 + posY, -0.09],
-            src: HodaIcon.src,
-            url: 'http://panel.hudagold.ir/',
-        },
-
-        {
-            title: 'Iran Counter',
-            position: [0.1, -2 + posY, -0.09],
-            src: './icons/irancounter.svg',
-            url: 'http://irancounter.com/',
-        },
-
-        {
-            title: 'Monada',
-            position: [-0.1, -3 + posY, -0.09],
-            src: './icons/monada.svg',
-            url: 'https://monadacenter.ir/',
-        },
-
-        {
-            title: 'Pedar Bozorg',
-            position: [0.1, -4 + posY, -0.09],
-            src: './icons/pbz.svg',
-            url: 'https://pedarbozorg.shop/',
-        },
-        {
-            title: 'Safe Broker',
-            position: [-0.1, -5 + posY, -0.09],
-            src: './icons/safe-logo.svg',
-            url: 'http://safebroker.org/',
-        },
-        {
-            title: 'Metric',
-            position: [-0.1, -6 + posY, -0.09],
-            src: './icons/metriq.svg',
-            url: 'http://panel.metriq.ir/',
-        },
-    ]
-
+    const cameraRef = useRef<any>();
     const { width } = useThree((state) => state.viewport)
+    // const targetPosition = [0, 0, 0.4];
+    // useFrame(() => {
+    //     if(activeProject !== null && cameraRef.current) {
+    //         // cameraRef.current.
+    //         const currentPos = cameraRef.current.position;
+    //
+    //         // Linear interpolation (lerp) towards target position
+    //         currentPos.lerp(
+    //             { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2] },
+    //             0.1 // Lerp factor, adjust for speed of movement (0.1 for slower, 1 for instant)
+    //         );
+    //     }
+    // })
 
     return (
         <>
@@ -84,6 +54,7 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                 fov={55}
                 near={0.1}
                 far={100}
+                ref={cameraRef}
             />
 
             <ScrollControls
@@ -112,22 +83,24 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                         <CanvasLoader setReadyToLoad={setReadyToLoad} />
                         <Shader
                             image={'./images/texture.webp'}
-                            planeArgs={[6, 4, window.innerWidth < 480 ? 64 : 64, window.innerWidth < 480 ? 64 : 64]}
+                            planeArgs={[6, 4, 64 , 64]}
                             planeRotation={[-Math.PI / 2.3, 0, 0]}
                             wireframe={true}
                             pointer={false}
                             position={[0, -0.2, -1]}
                         />
 
-                        {images.map((image, i) => {
+                        {projectsList.map((image, i) => {
                             const { position, src, title, url } = image
 
                             return (
                                 <ProjectItem url={url}
+                                             setActiveProject={setActiveProject}
                                              position={position}
                                              isDarkTheme={isDarkTheme}
                                              title={title}
                                              index={i}
+                                             activeProject={activeProject}
                                              key={i}
                                              src={src} />
                             )

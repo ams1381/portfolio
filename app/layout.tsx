@@ -48,9 +48,9 @@ export default function RootLayout({
           `}
         </Script>
         <body className={inter.className}>
-        <NextTopLoader color={'var(--navigation-indicator)'} showSpinner={false}/>
-        <Header/>
-        {children}
+            <NextTopLoader color={'var(--navigation-indicator)'} showSpinner={false}/>
+            <Header/>
+            {children}
         </body>
         </html>
     );
