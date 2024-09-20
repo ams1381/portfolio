@@ -100,7 +100,6 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                                              isDarkTheme={isDarkTheme}
                                              title={title}
                                              index={i}
-                                             activeProject={activeProject}
                                              key={i}
                                              src={src} />
                             )

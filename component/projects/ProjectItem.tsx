@@ -13,7 +13,7 @@ interface IProjectItem {
     setActiveProject : React.Dispatch<SetStateAction<number | null>>
 }
 
-export const ProjectItem = ({ url , src , position , isDarkTheme , title , activeProject , setActiveProject , index } : IProjectItem) => {
+export const ProjectItem = ({ url , src , position , isDarkTheme , title , setActiveProject , index } : IProjectItem) => {
     const { width } = useThree((state) => state.viewport)
     const [ textOpacity , setTextOpacity ] = useState(0.7);
     let [ x , y , z ] = position;
@@ -38,8 +38,8 @@ export const ProjectItem = ({ url , src , position , isDarkTheme , title , activ
             setTextOpacity(0.7);
         }}
         onClick={() => {
-            // openInNewTab(url);
-            setActiveProject(index)
+            openInNewTab(url);
+            // setActiveProject(index)
         }}
         key={url} >
         <Shader

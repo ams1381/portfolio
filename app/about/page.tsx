@@ -16,7 +16,7 @@ const AboutMePage = () => {
         </Suspense>
 
         <div style={{ animation : 'showUp 0.5s ease-out' , animationFillMode : 'forwards' }} className={'flex flex-col gap-2 items-center'}>
-            <Image src={'./images/aboutMePicture.jpg'}
+            <Image src={'/images/aboutMePicture.jpg'}
                    alt={'Amir Mohammad Solgi'}
                    width={200} height={200}
                    className={'rounded-full relative z-[2]'} />
