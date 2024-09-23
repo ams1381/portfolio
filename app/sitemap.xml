@@ -1,0 +1,14 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+    <url>
+        <loc>https://amosoli.com/</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://amosoli.com/about</loc>
+        <changefreq>daily</changefreq>
+    </url>
+    <url>
+        <loc>https://amosoli.com/projects</loc>
+        <changefreq>daily</changefreq>
+    </url>
+</urlset>
