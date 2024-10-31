@@ -14,7 +14,7 @@ import {
     useGLTF,
     // Caustics,
     CubeCamera, MeshRefractionMaterial, Caustics,
-    MeshReflectorMaterial, Stats
+    MeshReflectorMaterial, Stats, OrbitControls
     // MeshRefractionMaterial, OrbitControls,
 } from '@react-three/drei'
 
@@ -76,44 +76,47 @@ export function Diamond(props) {
         )
     })
     return (
-        <group>
-            <group ref={group} receiveShadow castShadow position={props.position}>
-                {/*<mesh receiveShadow castShadow geometry={nodes.Cylinder.geometry} {...props}>*/}
-                {/*    <meshStandardMaterial*/}
-                {/*        roughness={0} metalness={0.5} color='#474747'/>*/}
-                {/*</mesh>*/}
-                {envMap && <CubeCamera  resolution={32} frames={1} envMap={envMap}>
-                    {(texture) => (<Caustics worldRadius={0.1}
-                                             causticsOnly={false}
-                                             intensity={0} backside>
-                        <mesh  geometry={nodes.Cylinder.geometry} {...props}>
-                            {
-                                isDarkTheme ? <meshStandardMaterial
-                                        envMap={texture}
-                                        bounces={0.5}
-                                        aberrationStrength={2.2}
-                                        roughness={0}
-                                        fresnel={0.4}
-                                        metalness={0.2}
-                                        envMapIntensity={1.5}
-                                        color={'#484848'}/> :
-                                    <MeshRefractionMaterial
-                                        color={'#ffffff'}
-                                        aberrationStrength={0.01}
-                                        bounces={1}
-                                        fresnel={0.2}
-                                        envMapIntensity={1}
-                                        fastChroma={true}
-                                        envMap={texture}
-                                        toneMapped={false}
-                                    />
-                            }
-                        </mesh>
-                    </Caustics>)}
-                </CubeCamera>}
-            </group>
+        <>
+            <group>
+                <group ref={group} receiveShadow castShadow position={props.position}>
+                    {/*<mesh receiveShadow castShadow geometry={nodes.Cylinder.geometry} {...props}>*/}
+                    {/*    <meshStandardMaterial*/}
+                    {/*        roughness={0} metalness={0.5} color='#474747'/>*/}
+                    {/*</mesh>*/}
+                    {envMap && <CubeCamera resolution={32} frames={1} envMap={envMap}>
+                        {(texture) => (<Caustics worldRadius={0.1}
+                                                 causticsOnly={false}
+                                                 intensity={0} backside>
+                            <mesh geometry={nodes.Cylinder.geometry} {...props}>
+                                {
+                                    isDarkTheme ? <meshStandardMaterial
+                                            envMap={texture}
+                                            bounces={0.5}
+                                            aberrationStrength={2.2}
+                                            roughness={0}
+                                            fresnel={0.4}
+                                            metalness={0.2}
+                                            envMapIntensity={1.5}
+                                            color={'#484848'}/> :
+                                        <MeshRefractionMaterial
+                                            color={'#ffffff'}
+                                            aberrationStrength={0.01}
+                                            bounces={1}
+                                            fresnel={0.2}
+                                            envMapIntensity={1}
+                                            fastChroma={true}
+                                            envMap={texture}
+                                            toneMapped={false}
+                                        />
+                                }
+                            </mesh>
+                        </Caustics>)}
+                    </CubeCamera>}
+                </group>
 
-        </group>
+            </group>
+        </>
+
     )
 }
 

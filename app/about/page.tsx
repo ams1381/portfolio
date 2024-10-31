@@ -10,7 +10,7 @@ const BackScene : any = dynamic(() => import('@/component/about/backScene'), {
 })
 
 const AboutMePage = () => {
-    return <div className={'w-full h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
+    return <div className={'w-full bg-[#ededed] dark:bg-[transparent] h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
         <Suspense fallback={<h2>Loading bitch</h2>}>
             <BackScene />
         </Suspense>
@@ -41,8 +41,8 @@ const AboutMePage = () => {
                     }
                 </div>
                 <h2 className={'text-xl mt-2'}>Contact</h2>
-                <Link target={'_blank'} className={'transition-all hover:font-bold'} href={'mailto:amirmohammadsolg1381@gmail.com'}>
-                    amirmohammadsolg1381@gmail.com
+                <Link target={'_blank'} className={'transition-all hover:font-bold'} href={'mailto:amirmohammadsolgi1381@gmail.com'}>
+                    amirmohammadsolgi1381@gmail.com
                 </Link>
             </div>
         </div>
