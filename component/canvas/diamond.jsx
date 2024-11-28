@@ -89,25 +89,35 @@ export function Diamond(props) {
                                                  intensity={0} backside>
                             <mesh geometry={nodes.Cylinder.geometry} {...props}>
                                 {
-                                    isDarkTheme ? <meshStandardMaterial
-                                            envMap={texture}
-                                            bounces={0.5}
-                                            aberrationStrength={2.2}
-                                            roughness={0}
-                                            fresnel={0.4}
-                                            metalness={0.2}
-                                            envMapIntensity={1.5}
-                                            color={'#484848'}/> :
-                                        <MeshRefractionMaterial
-                                            color={'#ffffff'}
-                                            aberrationStrength={0.01}
-                                            bounces={1}
-                                            fresnel={0.2}
-                                            envMapIntensity={1}
-                                            fastChroma={true}
-                                            envMap={texture}
-                                            toneMapped={false}
-                                        />
+                                    <MeshRefractionMaterial
+                                        color={isDarkTheme ? '#575757' : '#ffffff'}
+                                        aberrationStrength={0.01}
+                                        bounces={1}
+                                        fresnel={0.2}
+                                        envMapIntensity={1}
+                                        fastChroma={true}
+                                        envMap={texture}
+                                        toneMapped={false}
+                                    />
+                                    // isDarkTheme ? <meshStandardMaterial
+                                    //         envMap={texture}
+                                    //         bounces={0.5}
+                                    //         aberrationStrength={2.2}
+                                    //         roughness={0}
+                                    //         fresnel={0.4}
+                                    //         metalness={0.2}
+                                    //         envMapIntensity={1.5}
+                                    //         color={'#484848'}/> :
+                                    //     <MeshRefractionMaterial
+                                    //         color={'#ffffff'}
+                                    //         aberrationStrength={0.01}
+                                    //         bounces={1}
+                                    //         fresnel={0.2}
+                                    //         envMapIntensity={1}
+                                    //         fastChroma={true}
+                                    //         envMap={texture}
+                                    //         toneMapped={false}
+                                    //     />
                                 }
                             </mesh>
                         </Caustics>)}
