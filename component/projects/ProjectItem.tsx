@@ -1,24 +1,45 @@
 import Shader from "@/component/projects/Shader";
-import {useThree, Vector3} from "@react-three/fiber";
-import {Text} from "@react-three/drei";
+import {Vector3} from "@react-three/fiber";
 import React, {SetStateAction, useRef, useState} from "react";
+import * as THREE from "three";
+import {ProjectTitle} from "@/component/projects/projectItem/projectTitle";
+import {ProjectIndex} from "@/component/projects/projectItem/ProjectIndex";
 
-interface IProjectItem {
+interface IProjectItemProps {
     url : string ,
     position : any ,
     isDarkTheme : boolean ,
     title : string ,
     index : number,
     src : string ,
-    setActiveProject : React.Dispatch<SetStateAction<number | null>>
+    setActiveProject : React.Dispatch<SetStateAction<number | null>>,
+    setScrollEnabled : React.Dispatch<SetStateAction<boolean>>,
 }
 
-export const ProjectItem = ({ url , src , position , isDarkTheme , title , setActiveProject , index } : IProjectItem) => {
-    const { width } = useThree((state) => state.viewport)
-    const [ textOpacity , setTextOpacity ] = useState(0.7);
-    let [ x , y , z ] = position;
+export const ProjectItem = (props : IProjectItemProps) => {
+    const [ textOpacity , setTextOpacity ] = useState(0.5);
+    let [ x , y , z ] = props.position;
     const titleRef = useRef<any>();
-    const openInNewTab = (href: string) => {
+    const [targetPos, setTargetPos] = useState(new THREE.Vector3(...props.position));
+    const groupRef = useRef<any>();
+    const [selected, setSelected] = useState<boolean>(false);
+    const [hovered, setHovered] = useState<boolean>(true);
+
+    const onClickHandler = (href : string) => {
+        // setSelected(prevState => !prevState);
+        // props.setScrollEnabled(prevState => !prevState);
+        // if(selected) {
+        //     setTextOpacity(0.7)
+        // } else
+        //     setTextOpacity(1);
+        // setSelected(prevState => !prevState);
+
+        // props.setScrollEnabled(prevState => !prevState);
+        // setTargetPos(new THREE.Vector3(
+        //     props.position[0] + 1,       // keep original x
+        //     props.position[1] + 1,   // move up
+        //     props.position[2] - 2    // go deeper (negative z)
+        // ));
         let LinkElement = document.createElement('a');
         LinkElement.className = 'hover:text-[red] transition-all'
         Object.assign(LinkElement, {
@@ -29,55 +50,36 @@ export const ProjectItem = ({ url , src , position , isDarkTheme , title , setAc
     }
 
     return <group
+        ref={groupRef}
         onPointerEnter={(e) => {
             document.body.style.cursor = 'pointer'
+            setHovered(true);
             setTextOpacity(1);
         }}
         onPointerLeave={(e) => {
             document.body.style.cursor = 'auto'
+            setHovered(false);
             setTextOpacity(0.7);
         }}
-        onClick={() => {
-            openInNewTab(url);
-            // setActiveProject(index)
-        }}
-        key={url} >
+        onClick={() => onClickHandler(props.url)} key={props.url}>
         <Shader
-            image={src}
+            image={props.src}
             position={[x,y,z] as Vector3}
             planeArgs={[0.2, 0.2, 8, 8]}
             planeRotation={[0, 0, 0]}
             wireframe={false}
             pointer={false}
-            url={url}
+            url={props.url}
         />
-
-        <Text
-            position={[0, y, 0.1] as Vector3}
-            fillOpacity={textOpacity}
-            color={isDarkTheme ? '#f7f7fd' : '#000025'}
-            font='./fonts/Audiowide-Regular.ttf'
-            fontSize={width / 16}
-            material-toneMapped={false}
-            anchorX='center'
-            anchorY='middle'
-            ref={titleRef}
-        >
-            {title}
-        </Text>
-        <Text
-            position={[-position[0], position[1], 0.4] as Vector3}
-            strokeWidth={window.innerWidth < 480 ? '0.6%' : '0.3%'}
-            strokeOpacity={window.innerWidth < 480 ? 0.7 : 0.4}
-            strokeColor={isDarkTheme ? '#ffffff' : '#2c2c2c'}
-            fillOpacity={0}
-            font='./fonts/Audiowide-Regular.ttf'
-            fontSize={width / 8}
-            material-toneMapped={false}
-            anchorX={`${position[0] === 0.1 ? 'right' : 'left'}` as any}
-            anchorY='middle'
-        >
-            {index + 1}
-        </Text>
+        <ProjectTitle title={props.title}
+                      position={props.position}
+                      selected={selected}
+                      textOpacity={textOpacity}
+                      isDarkTheme={props.isDarkTheme} />
+        <ProjectIndex index={props.index}
+                      hovered={hovered}
+                      isDarkTheme={props.isDarkTheme}
+                      selected={selected}
+                      position={props.position} />
     </group>
 }

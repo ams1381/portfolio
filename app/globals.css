@@ -153,3 +153,7 @@ body {
   border-image: var(--about-me-border);
   border-width: var(--about-me-border-width);
 }
+.front-end-text {
+  -webkit-text-fill-color: #00000000;
+  -webkit-background-clip: text;
+}

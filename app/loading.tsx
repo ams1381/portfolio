@@ -1,5 +1,5 @@
-import {Loader} from "@/component/loader";
+import {PreLoader} from "@/component/layout/PreLoader";
 
 export default function PageLoading() {
-    return <Loader />
+    return <PreLoader />
 }

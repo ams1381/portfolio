@@ -1,50 +1,71 @@
 'use client'
+
 import React, {Suspense, useEffect, useRef, useState} from 'react'
-import {useFrame, useThree, Vector3} from '@react-three/fiber'
+import {useThree} from '@react-three/fiber'
 import {
     Html,
-    Loader,
     PerspectiveCamera,
     Scroll,
     ScrollControls,
     Sparkles,
-    Text, useProgress,
+    Text, useProgress, useScroll,
 } from '@react-three/drei'
 import Shader from "@/component/projects/Shader";
 import {ProjectItem} from "@/component/projects/ProjectItem";
 import {projectsList} from "@/data/projects";
+import * as THREE from 'three'
+// import scrollSound from '@/public/sounds/underwater.mp3'
 
-function CanvasLoader({ setReadyToLoad } : any) {
-    const {active, progress , loaded} = useProgress();
+function CanvasLoader({setReadyToLoad}: any) {
+    const {active, progress, loaded} = useProgress();
 
     useEffect(() => {
-        if(progress === 100)
+        if (progress === 100)
             setTimeout(() => {
                 setReadyToLoad(true)
-            },500)
+            }, 500)
     }, [progress]);
 
     return <Html center> </Html>
 }
 
-const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
-    const [ activeProject , setActiveProject ] = useState<number | null>(null);
+const ProjectsShader: any = ({setReadyToLoad}: { setReadyToLoad: any  }) => {
+    const [activeProject, setActiveProject] = useState<number | null>(null);
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const cameraRef = useRef<any>();
-    const { width } = useThree((state) => state.viewport)
-    // const targetPosition = [0, 0, 0.4];
-    // useFrame(() => {
-    //     if(activeProject !== null && cameraRef.current) {
-    //         // cameraRef.current.
-    //         const currentPos = cameraRef.current.position;
-    //
-    //         // Linear interpolation (lerp) towards target position
-    //         currentPos.lerp(
-    //             { x: targetPosition[0], y: targetPosition[1], z: targetPosition[2] },
-    //             0.1 // Lerp factor, adjust for speed of movement (0.1 for slower, 1 for instant)
-    //         );
-    //     }
-    // })
+    const [scrollEnabled, setScrollEnabled] = useState(true);
+    const {width} = useThree((state) => state.viewport);
+    const scrollData = useScroll()
+
+    const prevOffset = useRef(0);
+
+    // useEffect(() => {
+    //     audioRef.current = new Audio()
+    //     audioRef.current.src = '/sounds/underwater.mp3'
+    //     audioRef.current.title = 'ocean wave'
+    //     audioRef.current.volume = 0.56
+    //     audioRef.current.play().then();
+    // }, [width])
+
+
+    const gradientTexture = React.useMemo(() => {
+        const size = 512
+        const canvas = document.createElement('canvas')
+        canvas.width = size
+        canvas.height = size
+        const ctx = canvas.getContext('2d')
+        if (!ctx) return;
+        const gradient = ctx.createLinearGradient(0, 0, size, 0) // horizontal
+        gradient.addColorStop(0, '#06d2ff')
+        gradient.addColorStop(1, '#e02aff')
+
+        ctx.fillStyle = gradient
+        ctx.fillRect(0, 0, size, size)
+
+        const texture = new THREE.CanvasTexture(canvas)
+        texture.needsUpdate = true
+        return texture
+    }, [])
 
     return (
         <>
@@ -60,12 +81,14 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
             <ScrollControls
                 pages={7.3}
                 distance={1}
-                damping={1}
+                damping={0.3}
+
                 horizontal={false}
+                enabled={scrollEnabled}
                 infinite={false}
             >
-                <color attach='background' args={[isDarkTheme ? '#000007' : '#f7f7fd']} />
-                <fog attach='fog' color={'rgba(223,223,223,0.7)'} args={[0x050505, 0, 6]} />
+                <color attach='background' args={[isDarkTheme ? '#020009' : '#f7f7fd']}/>
+                {/*<fog attach='fog' color={'rgba(223,223,223,0.7)'} args={[0x050505, 0, 6]} />*/}
                 <Scroll>
                     {/*<Noise opacity={0.40} />*/}
                     {/*<EffectComposer multisampling={1} disableNormalPass={true}>*/}
@@ -80,10 +103,10 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                         speed={2}
                     />
                     <Suspense>
-                        <CanvasLoader setReadyToLoad={setReadyToLoad} />
+                        <CanvasLoader setReadyToLoad={setReadyToLoad}/>
                         <Shader
                             image={'./images/texture.webp'}
-                            planeArgs={[6, 4, 64 , 64]}
+                            planeArgs={[6, 4, 128, 128]}
                             planeRotation={[-Math.PI / 2.3, 0, 0]}
                             wireframe={true}
                             pointer={false}
@@ -91,18 +114,17 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                         />
 
                         {projectsList.map((image, i) => {
-                            const { position, src, title, url } = image
+                            const {position, src, title, url} = image
 
-                            return (
-                                <ProjectItem url={url}
-                                             setActiveProject={setActiveProject}
-                                             position={position}
-                                             isDarkTheme={isDarkTheme}
-                                             title={title}
-                                             index={i}
-                                             key={i}
-                                             src={src} />
-                            )
+                            return (<ProjectItem url={url}
+                                                 setActiveProject={setActiveProject}
+                                                 position={position}
+                                                 isDarkTheme={isDarkTheme}
+                                                 title={title}
+                                                 setScrollEnabled={setScrollEnabled}
+                                                 index={i}
+                                                 key={i}
+                                                 src={src}/>)
                         })}
                         <Text
                             position={[0, 0.8, -3]}
@@ -113,9 +135,9 @@ const ProjectsShader: any = ({ setReadyToLoad } : { setReadyToLoad : any }) => {
                             fontSize={width / 3}
                             material-toneMapped={false}
                             anchorX='center'
-                            color={isDarkTheme ? '#f7f7fd' : '#ff0000'}
-                            anchorY='middle'
-                        >
+                            // color={isDarkTheme ? '#f7f7fd' : '#ff0000'}
+                            anchorY='middle'>
+                            <meshBasicMaterial map={gradientTexture} toneMapped={false}/>
                             Projects
                         </Text>
                     </Suspense>

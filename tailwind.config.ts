@@ -7,6 +7,8 @@ module.exports = {
 
   theme: {
     colors: {
+      'header-text' : 'var(--header-text)',
+      'header-text-hover' : 'var(--header-text-hover)',
       'blue': '#1fb6ff',
       'purple': '#7e5bef',
       'pink': '#ff49db',
@@ -20,6 +22,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
+        "primary-gradient" : 'linear-gradient(278deg,#00bce6,#e445ff)',
         "gradient-conic":
             "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },

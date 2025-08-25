@@ -1,8 +1,7 @@
 import type {Metadata} from "next";
 import {Inter} from "next/font/google";
 import "./globals.css";
-import {LightOne} from "@/component/backSceneLights/LightOne";
-import {Header} from "@/component/Header";
+import {Header} from "@/component/layout/Header";
 import React from "react";
 import NextTopLoader from "nextjs-toploader";
 import favicon from '@/public/favicon.svg'

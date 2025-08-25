@@ -2,14 +2,14 @@
 import * as THREE from 'three'
 import { useFrame, extend, Vector3, Euler } from '@react-three/fiber'
 import React, { useRef } from 'react'
-import {shaderMaterial, Text} from '@react-three/drei'
+import {shaderMaterial, Text, useHelper} from '@react-three/drei'
 // @ts-ignore
 import vertex from '@/component/projects/glsl/shader.vert'
 // @ts-ignore
 import fragment from '@/component/projects/glsl/shader.frag'
 // @ts-ignore
 import lightModeFragment from '@/component/projects/glsl/lighShader.frag'
-import { DoubleSide } from 'three'
+import {DirectionalLightHelper, DoubleSide} from 'three'
 
 extend({ PlaneGeometry: THREE.PlaneGeometry })
 interface ShaderProps {
@@ -38,6 +38,8 @@ const Shader: React.FC<ShaderProps> = ({
                                        }) => {
     const meshRef = useRef(null);
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const lightRef = useRef<any>();
+    useHelper(lightRef, DirectionalLightHelper, 1, 'hotpink')
     const ColorShiftMaterial = shaderMaterial(
         {
             uTime: 1,
@@ -78,18 +80,16 @@ const Shader: React.FC<ShaderProps> = ({
         <>
             <mesh
                 ref={meshRef}
-                onPointerEnter={(e) => {
+                onPointerEnter={() => {
                     if (pointer) document.body.style.cursor = 'pointer'
                     else return
                 }}
-                onPointerLeave={(e) => {
+                onPointerLeave={() => {
                     if (pointer) document.body.style.cursor = 'auto'
                     else return
                 }}
-                // onClick={() => url && openInNewTab(url)}
                 rotation={planeRotation}
-                position={position}
-            >
+                position={position}>
                 <planeGeometry args={planeArgs} />
                 {/* @ts-ignore */}
                 <colorShiftMaterial

@@ -11,5 +11,9 @@ export const CanvasLoader = ({ setReadyToLoad } : { setReadyToLoad : React.Dispa
             },500)
     }, [progress]);
 
-    return <Html center> </Html>
+    return <Html center>
+        {/*<div color={'text-[white]'}>*/}
+        {/*    /!*{progress}*!/*/}
+        {/*</div>*/}
+    </Html>
 }
