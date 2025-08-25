@@ -6,7 +6,6 @@ import {RectAreaLightHelper} from "three-stdlib";
 import {useControls} from "leva";
 
 export function GarageCeilingLight(props: any) {
-    const { nodes, materials } = useGLTF('/models/ceiling-light/scene-transformed.glb');
     const lightRef = useRef<any>();
     useHelper(lightRef,PointLightHelper,10,props.helperLightColor);
     const spotLightOptions = useControls('spotLight' + props.helperLightColor,{
@@ -50,4 +49,3 @@ export function GarageCeilingLight(props: any) {
     )
 }
 
-useGLTF.preload('/models/ceiling-light/scene-transformed.glb')
