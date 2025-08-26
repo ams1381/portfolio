@@ -2,11 +2,8 @@
 
 import * as THREE from 'three'
 import {Canvas, useFrame} from '@react-three/fiber'
-
 import {Environment, Sparkles} from '@react-three/drei'
-
 import {EffectComposer, Bloom, Noise, Vignette} from '@react-three/postprocessing'
-
 import {Html, useProgress} from '@react-three/drei'
 import React, {memo, Suspense, useEffect} from "react";
 import {Title, TitleL} from "./3dTitle";
@@ -15,7 +12,7 @@ import {CameraComponent} from "./perspectiveCamera";
 import {CanvasLoader} from "@/component/CanvasLoader";
 import {Rig} from "./Rig";
 import {Lights} from "./lights";
-
+import {useMediaQuery} from "react-responsive";
 
 // function CanvasLoader({ setReadyToLoad }) {
 //     const {active , loaded , progress} = useProgress();
@@ -31,11 +28,10 @@ import {Lights} from "./lights";
 //     return <Html center> </Html>
 // }
 
-const TestComponent = memo(({setReadyToLoad, pageStatus}) => {
+const LandingScene = memo(({setReadyToLoad, pageStatus}) => {
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-    return <Canvas colorManagement gl={{antialias: false, alpha: true}}
-        // frameloop="demand"
-        // camera={{position: [-5, 12, 5], fov: 40}}
+    return <Canvas dpr={isMobile ? 1 :[1, 1.5]} colorManagement gl={{antialias: false, alpha: true,toneMapping: THREE.ACESFilmicToneMapping}}
                    className={'!w-full !absolute top-0 !h-[100dvh]'}>
         <CameraComponent pageStatus={pageStatus}/>
         <Suspense>
@@ -74,4 +70,4 @@ const TestComponent = memo(({setReadyToLoad, pageStatus}) => {
 })
 
 
-export default TestComponent;
+export default LandingScene;

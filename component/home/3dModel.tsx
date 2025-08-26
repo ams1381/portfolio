@@ -5,6 +5,7 @@ import {useFrame, useThree} from "@react-three/fiber";
 import {TPageStatus} from "@/app/page";
 import { Vector3 } from 'three';
 import {OrbitControls} from "@react-three/drei";
+import {DiamondModelTest} from "@/component/home/DiamondModel.jsx";
 
 
 
@@ -28,6 +29,7 @@ export const DiamondModel = ({ pageStatus } : { pageStatus : TPageStatus }) => {
 
     return <mesh ref={diamondRef as any} rotation={[0, -0.2, 0]}
                  scale={window.innerWidth < 480 ? [0.9, 0.6, 1] as any : baseScale.map(value => value / scaleFactor) as any}>
+        {/*<DiamondModelTest  />*/}
         <Diamond pageStatus={pageStatus} />
         {/*<OrbitControls enableZoom={true}*/}
         {/*               // autoRotate={true}*/}

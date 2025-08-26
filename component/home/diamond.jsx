@@ -9,7 +9,7 @@ import React, {
 } from 'react'
 
 import {useFrame} from '@react-three/fiber'
-
+import { useMediaQuery } from 'react-responsive';
 import {
     useGLTF,
     // Caustics,
@@ -23,25 +23,29 @@ import {RGBELoader} from 'three-stdlib'
 
 export function Diamond(props) {
     const group = useRef()
-    const {nodes} = useGLTF('/models/diamond/diamond1.gltf');
+    const {nodes,materials} = useGLTF('/models/diamond/diamond1.gltf');
     const [envMap, setEnvMap] = useState(null);
-    const resolution = useMemo(() => 64, [])
-    // let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     const [isDarkTheme, setIsDarkTheme] = useState(false)
     useEffect(() => {
         const darkTheme = window.matchMedia('(prefers-color-scheme: dark)').matches
         setIsDarkTheme(darkTheme)
     }, [])
-    // Load the initial HDR environment texture
-    // useEffect(() => {
-    //     new RGBELoader().load('env.hdr', (texture) => {
-    //         texture.mapping = THREE.EquirectangularReflectionMapping;
-    //         setEnvMap(texture);
-    //     });
-    // }, []);
-
+    console.log(isMobile)
+    const optimizedTexture = useMemo(() => {
+        const texture = new THREE.TextureLoader().load('/images/diamondTexture.jpg');
+        texture.generateMipmaps = false;
+        texture.minFilter =  THREE.LinearFilter;
+        texture.magFilter = THREE.LinearFilter;
+        // texture.generateMipmaps = !isMobile;
+        // texture.minFilter =  THREE.LinearMipmapLinearFilter;
+        // texture.magFilter = THREE.LinearFilter;
+        // texture.resolution =512
+        return texture;
+    }, [isMobile]);
     // Example of changing the HDR texture based on some condition
     useEffect(() => {
+
         const newTexture = new RGBELoader().load('/models/diamond/env.hdr', (texture) => {
             texture.mapping = THREE.EquirectangularReflectionMapping;
             texture.encoding = THREE.sRGBEncoding; // Adjusts color output to match sRGB color space
@@ -74,56 +78,80 @@ export function Diamond(props) {
             pointer.y * -(Math.PI / 16),
             0.005
         )
-    })
+    });
+
+    useEffect(() => {
+        return () => {
+            // cleanup materials and textures
+            materials.DiamondOutside?.dispose();
+            nodes.Cylinder.geometry?.dispose();
+        };
+    }, []);
+
     return (
         <>
+
             <group>
+                {!isMobile && <>
+                    <pointLight position={[3, 2, 1]} intensity={1.5} color={'#00c9c9'} />
+                    <pointLight position={[-2, -1, 2]} intensity={1} color={'#af00af'} />
+                </>}
                 <group ref={group} receiveShadow castShadow position={props.position}>
-                    {/*<mesh receiveShadow castShadow geometry={nodes.Cylinder.geometry} {...props}>*/}
-                    {/*    <meshStandardMaterial*/}
-                    {/*        roughness={0} metalness={0.5} color='#474747'/>*/}
-                    {/*</mesh>*/}
-                    {envMap && <CubeCamera resolution={32} frames={1} envMap={envMap}>
+                    {envMap && <CubeCamera resolution={isMobile ? 16 : 32} frames={1} envMap={envMap}>
                         {(texture) => (<Caustics worldRadius={0.1}
                                                  causticsOnly={false}
                                                  intensity={0} backside>
-                            <mesh geometry={nodes.Cylinder.geometry} {...props}>
+                            <mesh material={materials.DiamondOutside} geometry={nodes.Cylinder.geometry} {...props}>
                                 {
                                     <MeshRefractionMaterial
-                                        color={isDarkTheme ? '#567fff' : '#ffffff'}
-                                        aberrationStrength={0.05}
-                                        bounces={50}
-                                        fresnel={0.2}
-                                        envMapIntensity={0}
+                                        color={isDarkTheme ? '#5780ff' : '#ffffff'}
+                                        aberrationStrength={isMobile ? 0.1 : 0.25}
+                                        bounces={isMobile ? 2 : 6}
+                                        fresnel={isMobile? 0.4 :0.7}
+                                        envMapIntensity={isMobile ? 1 : 2}
                                         fastChroma={true}
                                         envMap={texture}
                                         toneMapped={true}
                                     />
-                                    // isDarkTheme ? <meshStandardMaterial
-                                    //         envMap={texture}
-                                    //         bounces={0.5}
-                                    //         aberrationStrength={2.2}
-                                    //         roughness={0}
-                                    //         fresnel={0.4}
-                                    //         metalness={0.2}
-                                    //         envMapIntensity={1.5}
-                                    //         color={'#484848'}/> :
-                                    //     <MeshRefractionMaterial
-                                    //         color={'#ffffff'}
-                                    //         aberrationStrength={0.01}
-                                    //         bounces={1}
-                                    //         fresnel={0.2}
-                                    //         envMapIntensity={1}
-                                    //         fastChroma={true}
-                                    //         envMap={texture}
-                                    //         toneMapped={false}
-                                    //     />
                                 }
                             </mesh>
                         </Caustics>)}
                     </CubeCamera>}
                 </group>
-
+                {/*{ (isMobile && envMap) ? <group  ref={group} receiveShadow castShadow position={props.position}>*/}
+                {/*    <mesh  geometry={nodes.Cylinder.geometry} {...props}>*/}
+                {/*        <meshStandardMaterial*/}
+                {/*            // color={'#ff0000'}*/}
+                {/*            envMapIntensity={1.5}*/}
+                {/*            // color={isDarkTheme ? '#5780ff' : '#ffffff'}*/}
+                {/*            metalness={0.9}*/}
+                {/*            roughness={0.1}*/}
+                {/*            envMap={envMap}*/}
+                {/*            map={optimizedTexture}*/}
+                {/*        />*/}
+                {/*    </mesh>*/}
+                {/*</group>: <group ref={group} receiveShadow castShadow position={props.position}>*/}
+                {/*    {envMap && <CubeCamera resolution={isMobile ? 16 : 32} frames={1} envMap={envMap}>*/}
+                {/*        {(texture) => (<Caustics worldRadius={0.1}*/}
+                {/*                                 causticsOnly={false}*/}
+                {/*                                 intensity={0} backside>*/}
+                {/*            <mesh material={materials.DiamondOutside} geometry={nodes.Cylinder.geometry} {...props}>*/}
+                {/*                {*/}
+                {/*                    <MeshRefractionMaterial*/}
+                {/*                        color={isDarkTheme ? '#5780ff' : '#ffffff'}*/}
+                {/*                        aberrationStrength={isMobile ? 0.1 : 0.25}*/}
+                {/*                        bounces={6}*/}
+                {/*                        fresnel={0.7}*/}
+                {/*                        envMapIntensity={isMobile ? 1 : 2}*/}
+                {/*                        fastChroma={true}*/}
+                {/*                        envMap={texture}*/}
+                {/*                        toneMapped={true}*/}
+                {/*                    />*/}
+                {/*                }*/}
+                {/*            </mesh>*/}
+                {/*        </Caustics>)}*/}
+                {/*    </CubeCamera>}*/}
+                {/*</group>}*/}
             </group>
         </>
 
