@@ -13,24 +13,12 @@ import {CanvasLoader} from "@/component/CanvasLoader";
 import {Rig} from "./Rig";
 import {Lights} from "./lights";
 import {useMediaQuery} from "react-responsive";
-
-// function CanvasLoader({ setReadyToLoad }) {
-//     const {active , loaded , progress} = useProgress();
-//
-//
-//     useEffect(() => {
-//         if(progress === 100)
-//             setTimeout(() => {
-//                 setReadyToLoad(true)
-//             },500)
-//     }, [progress]);
-//
-//     return <Html center> </Html>
-// }
+import {getDeviceCapability} from "@/utils/functions";
 
 const LandingScene = memo(({setReadyToLoad, pageStatus}) => {
     const isMobile = useMediaQuery({ query: '(max-width: 768px)' });
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+
     return <Canvas dpr={isMobile ? 1 :[1, 1.5]} colorManagement gl={{antialias: false, alpha: true,toneMapping: THREE.ACESFilmicToneMapping}}
                    className={'!w-full !absolute top-0 !h-[100dvh]'}>
         <CameraComponent pageStatus={pageStatus}/>
@@ -44,8 +32,8 @@ const LandingScene = memo(({setReadyToLoad, pageStatus}) => {
             {/*    { pageStatus === 'projects' && <pointLight position={[1, 1, 2.9]} intensity={3} distance={20} color={'rgba(241,243,255,0.83)'} />}*/}
             <Environment files={'/models/diamond/env.hdr'} />
             <DiamondModel pageStatus={pageStatus}/>
-            {window.innerWidth > 480 && <Title pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</Title>}
-            {window.innerWidth > 480 && <TitleL pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</TitleL>}
+            {!isMobile && <Title pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</Title>}
+            {!isMobile && <TitleL pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</TitleL>}
             <Sparkles count={500} scale={[20, 20, 10, 40, 60, 6]}
                       size={isDarkTheme ? 1 : 3} speed={2}
                       color={isDarkTheme ? '#cbcbff' : '#1a0000'}/>
