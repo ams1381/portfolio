@@ -10,7 +10,7 @@ import {CameraInitializer} from "@/component/about/CameraInitilizer";
 import {CanvasLoader} from "@/component/CanvasLoader";
 import {useControls} from "leva";
 import {MyText3D} from "@/component/about/3dText";
-import {Bloom} from "@react-three/postprocessing";
+import {Bloom, EffectComposer, Noise, Vignette} from "@react-three/postprocessing";
 import {CarModelTest} from "@/component/about/car/TestCar";
 
 // scale={72} position={[-500,0,-150]} rotation={[0,100,0]}
@@ -21,8 +21,7 @@ export default function AmirPortfolioScene({setReadyToLoad} : {setReadyToLoad : 
         <>
             {/*<View3D src={"/models/garage/scene-transformed.glb"}*/}
             {/*        poster="/images/damaged_concrete_floor_diff_2k" />*/}
-            <Canvas frameloop="demand"
-                    shadows={true}
+            <Canvas shadows={'soft'}
                     camera={{ position: [-370, 70, -770], fov: 60 ,near : 0.1 , far : 8000}}
                      className={'h-full '} style={{height: 900}} >
                 {/*<PerformanceMonitor*/}
@@ -52,11 +51,16 @@ export default function AmirPortfolioScene({setReadyToLoad} : {setReadyToLoad : 
                     {/*          // receiveShadow={true} castShadow={true}*/}
                     {/*          start={start} setStart={setStart} />*/}
                 </Suspense>
-                {/*<Bloom*/}
-                {/*    intensity={1.8}       // strength of bloom*/}
-                {/*    luminanceThreshold={0.2} // only glow emissive/bright materials*/}
-                {/*    mipmapBlur             // smoother glow*/}
-                {/*/>*/}
+                <EffectComposer multisampling={0} disableNormalPass={true}>
+                    <Bloom
+                        intensity={2.8}       // strength of bloom
+                        luminanceThreshold={0.2} // only glow emissive/bright materials
+                        mipmapBlur             // smoother glow
+                    />
+                    <Noise opacity={0.025}/>
+                    <Vignette eskil={false} offset={0.1} darkness={0.07}/>
+                </EffectComposer>
+
                 <OrbitControls enablePan={true}
                     // maxDistance={6}
                     // maxZoom={7}
@@ -86,11 +90,11 @@ const LightsComponent = () => {
     const light2Ref = useRef<any>();
     const targetRef = useRef<any>();
     const { ambientIntensity,castShadow, ambientColor } = useControls('abient light',{
-        ambientIntensity: { value: 1.79, min: 0, max: 2 },
+        ambientIntensity: { value: 0.57, min: 0, max: 2 },
         castShadow : true ,
         ambientColor: '#ffffff'
     });
-    useHelper(lightRef, DirectionalLightHelper, 0.5, 'blue')
+    useHelper(lightRef, DirectionalLightHelper, 50, 'blue')
     useHelper(light2Ref, DirectionalLightHelper, 1, 'red');
 
     useEffect(() => {
@@ -103,11 +107,11 @@ const LightsComponent = () => {
         <ambientLight intensity={ambientIntensity}
                       position={[0,900,0]}
                       color={ambientColor} />
-        <directionalLight ref={lightRef} position={[8, 3,5]}
-                          castShadow={true}
-                          intensity={0.93}
-                          color={'rgba(255,255,255,0.34)'} >
-            <object3D ref={targetRef} position={[-10,-1.8,-7]} />
+        <directionalLight ref={lightRef} position={[8, 90,5]}
+                          // castShadow={true}
+                          intensity={1.43}
+                          color={'rgb(255,255,255)'} >
+            <object3D ref={targetRef} position={[-300,20,-500]} />
         </directionalLight>
         {/*<directionalLight ref={light2Ref} position={[6, 2, 1]}*/}
         {/*                  castShadow={true}*/}

@@ -45,7 +45,7 @@ export function CarModelTest(props) {
     }, []);
 
     return (
-        <group {...props} castShadow={true} onClick={() => setEngineOn(true)} position={position} ref={carRef} dispose={null}>
+        <group {...props} castShadow={true} receiveShadow={true} onClick={() => setEngineOn(true)} position={position} ref={carRef} dispose={null}>
             <mesh geometry={nodes.Object_2.geometry}
                   // material={shitMaterial}
                   material={materials.PaletteMaterial001}
