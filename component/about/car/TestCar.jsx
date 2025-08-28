@@ -11,6 +11,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import { useGLTF } from '@react-three/drei'
 import {useControls} from "leva";
 import {useFrame} from "@react-three/fiber";
+import {MeshStandardMaterial} from "three";
 
 export function CarModelTest(props) {
     const { nodes, materials } = useGLTF('/models/dodge/model-opt.glb');
@@ -19,7 +20,13 @@ export function CarModelTest(props) {
     const {position} = useControls('Card Settings',{
         position : props.position,
     });
+    const shitMaterial = new MeshStandardMaterial({
+        color: '#e70000',
+        metalness: 0.3,
+        roughness: 0.15,
+        emissiveIntensity : 0.1,
 
+    });
     useFrame((state) => {
         if (!carRef.current || !engineOn) return
 
@@ -38,8 +45,11 @@ export function CarModelTest(props) {
     }, []);
 
     return (
-        <group {...props}  onClick={() => setEngineOn(true)} position={position} ref={carRef} dispose={null}>
-            <mesh geometry={nodes.Object_2.geometry} material={materials.PaletteMaterial001} position={[-263.682, -71.486, 340.623]} rotation={[-Math.PI / 2, 0, 0]} scale={266.429} />
+        <group {...props} castShadow={true} onClick={() => setEngineOn(true)} position={position} ref={carRef} dispose={null}>
+            <mesh geometry={nodes.Object_2.geometry}
+                  // material={shitMaterial}
+                  material={materials.PaletteMaterial001}
+                  position={[-263.682, -71.486, 340.623]} rotation={[-Math.PI / 2, 0, 0]} scale={266.429} />
             <mesh geometry={nodes.Object_3.geometry} material={materials.PaletteMaterial002} position={[-263.68, -58.187, 95.281]} rotation={[-Math.PI / 2, 0, 0]} scale={89.786} />
             <mesh geometry={nodes.Object_4.geometry} material={materials.Material__304} position={[-263.686, -58.189, 91.422]} rotation={[-Math.PI / 2, 0, 0]} scale={89.742} />
             <mesh geometry={nodes.Object_5.geometry} material={materials.PaletteMaterial003} position={[-271.921, -154.757, 333.788]} rotation={[-Math.PI / 2, 0, 0]} scale={333.697} />

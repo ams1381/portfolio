@@ -22,7 +22,8 @@ export default function AmirPortfolioScene({setReadyToLoad} : {setReadyToLoad : 
             {/*<View3D src={"/models/garage/scene-transformed.glb"}*/}
             {/*        poster="/images/damaged_concrete_floor_diff_2k" />*/}
             <Canvas frameloop="demand"
-                    camera={{ position: [-370, 70, -770], fov: 60 }}
+                    shadows={true}
+                    camera={{ position: [-370, 70, -770], fov: 60 ,near : 0.1 , far : 8000}}
                      className={'h-full '} style={{height: 900}} >
                 {/*<PerformanceMonitor*/}
                 {/*    onIncline={() => console.log("FPS improving, maybe raise quality")}*/}
@@ -103,7 +104,7 @@ const LightsComponent = () => {
                       position={[0,900,0]}
                       color={ambientColor} />
         <directionalLight ref={lightRef} position={[8, 3,5]}
-                          // castShadow={true}
+                          castShadow={true}
                           intensity={0.93}
                           color={'rgba(255,255,255,0.34)'} >
             <object3D ref={targetRef} position={[-10,-1.8,-7]} />

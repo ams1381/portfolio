@@ -93,7 +93,7 @@ export function GarageModel(props) {
             <mesh geometry={nodes.Object_5.geometry} material={materials.Tavan} position={[-243.799, 309.567, -509.772]}
                   rotation={[-Math.PI / 2, 0, 0]} scale={859.581}/>
             <mesh geometry={nodes.Object_6.geometry} material={materials.Zemin} position={[-243.801, -0.009, -519.772]}
-                  rotation={[-Math.PI / 2, 0, 0]} scale={849.581}/>
+                  rotation={[-Math.PI / 2, 0, 0]} receiveShadow={true} scale={849.581}/>
             <mesh geometry={nodes.Object_7.geometry} material={materials.ipler} position={[-173.768, 297.512, -615.26]}
                   rotation={[-Math.PI / 2, 0, 0]} scale={705.772}/>
             {/*<mesh receiveShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]}/>*/}
