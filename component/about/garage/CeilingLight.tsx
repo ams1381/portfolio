@@ -29,7 +29,7 @@ export function GarageCeilingLight(props: any) {
     //     }
     // }, [props.start]);
     return (
-        <group {...props} dispose={null}>
+        <group {...props} >
             <spotLight
                 angle={spotLightOptions.angle} // 60 degrees
                 penumbra={spotLightOptions.penumbra}
@@ -43,9 +43,7 @@ export function GarageCeilingLight(props: any) {
                 ref={lightRef}
                 decay={pointLightOptions.decay}
                 color={pointLightOptions.color}
-                castShadow
             />
         </group>
     )
 }
-

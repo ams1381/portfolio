@@ -22,7 +22,7 @@ export const CarLights = ({nodes,materials,engineOn} : any) => {
         leftLightMatRef.current.intensity = intensity;
         backLightRef.current.opacity = opacity;
     })
-
+    const emissiveIntensity = engineOn ? 3.5 : 0
     return <>
         <group receiveShadow>
             {/* Original mesh */}
@@ -42,8 +42,8 @@ export const CarLights = ({nodes,materials,engineOn} : any) => {
                 <meshStandardMaterial
                     color={'#330000'}
                     ref={backLightRef}
+                    emissiveIntensity={emissiveIntensity}
                     emissive={'#ef0000'}
-                    emissiveIntensity={1.0}
                     transparent
                     opacity={0.0}
                     depthWrite={false} // helps avoid z-fighting
@@ -79,6 +79,9 @@ export const CarLights = ({nodes,materials,engineOn} : any) => {
                 intensity={0}
                 distance={15}
                 ref={leftLightMatRef}
+                shadow-mapSize-width={512}
+                shadow-mapSize-height={512}
+                shadow-bias={-0.0001}
                 decay={1.5}
             />
             {/* Fake glow mesh (slightly offset/duplicate) */}

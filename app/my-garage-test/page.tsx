@@ -13,9 +13,9 @@ const AmirPortfolioScene: any = dynamic(() => import('@/component/about/AmirPort
 const MyGarageTest = () => {
     const [readyToLoad, setReadyToLoad] = useState(false);
     return  <div>
-        <Suspense fallback={<PreLoader/>}>
+        {/*<Suspense fallback={<PreLoader/>}>*/}
             {<AmirPortfolioScene setReadyToLoad={setReadyToLoad}/>}
-        </Suspense>
+        {/*</Suspense>*/}
     </div>
 }
 
