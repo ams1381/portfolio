@@ -59,7 +59,7 @@ export function MyText3D({text,position} : {text: string,position : number[]}) {
                 targetPosition.current.copy(initialPosition.current);
             }
             // console.log(targetPosition.current)
-            textRef.current.position.lerp(targetPosition.current, 0.1);
+            textRef.current.position.lerp(targetPosition.current, 0.2);
             // textRef.current.fillOpacity = next
         }
     })

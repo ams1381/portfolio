@@ -5,7 +5,7 @@ import {RGBELoader} from "three-stdlib";
 import * as THREE from "three";
 import {DodgeCar} from "@/component/about/car/Car";
 import {DirectionalLightHelper} from "three";
-import {GarageModel} from "@/component/about/TestGarage";
+import {GarageModel} from "@/component/about/Garage";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
 import {CanvasLoader} from "@/component/CanvasLoader";
 import {useControls} from "leva";
@@ -21,19 +21,18 @@ export default function AmirPortfolioScene({setReadyToLoad} : {setReadyToLoad : 
         <>
             {/*<View3D src={"/models/garage/scene-transformed.glb"}*/}
             {/*        poster="/images/damaged_concrete_floor_diff_2k" />*/}
-            <Canvas gl={{antialias : false,alpha : true}}
-                    frameloop="demand"
-                    camera={{ position: [-7, 3, -15], fov: 60 }}
+            <Canvas frameloop="demand"
+                    camera={{ position: [-370, 70, -770], fov: 60 }}
                      className={'h-full '} style={{height: 900}} >
-                <PerformanceMonitor
-                    onIncline={() => console.log("FPS improving, maybe raise quality")}
-                    onDecline={() => console.log("FPS dropping, maybe reduce quality")}
-                />
+                {/*<PerformanceMonitor*/}
+                {/*    onIncline={() => console.log("FPS improving, maybe raise quality")}*/}
+                {/*    onDecline={() => console.log("FPS dropping, maybe reduce quality")}*/}
+                {/*/>*/}
 
-                <AdaptiveDpr pixelated />
-                {/* lowers resolution when FPS drops, smooths back up when stable */}
+                {/*<AdaptiveDpr pixelated />*/}
+                {/*/!* lowers resolution when FPS drops, smooths back up when stable *!/*/}
 
-                <AdaptiveEvents />
+                {/*<AdaptiveEvents />*/}
                 {/* disables pointer events when idle (saves CPU) */}
                 <CanvasLoader setReadyToLoad={setReadyToLoad} />
                 {/*<CameraInitializer />*/}
@@ -47,7 +46,7 @@ export default function AmirPortfolioScene({setReadyToLoad} : {setReadyToLoad : 
                 {/*{ start ? <LightsComponent/> : ''}*/}
                 <CameraMover />
                 <Suspense fallback={<></>}>
-                    <CarModelTest position={[-240,105,-777]} scale={0.7} />
+                    <CarModelTest rotation={[0,-0.2,0]} position={[-221,105,-704]} scale={0.7} />
                     {/*<DodgeCar scale={1.7} position={[-7,0,-7]}*/}
                     {/*          // receiveShadow={true} castShadow={true}*/}
                     {/*          start={start} setStart={setStart} />*/}
@@ -86,7 +85,7 @@ const LightsComponent = () => {
     const light2Ref = useRef<any>();
     const targetRef = useRef<any>();
     const { ambientIntensity,castShadow, ambientColor } = useControls('abient light',{
-        ambientIntensity: { value: 1.15, min: 0, max: 2 },
+        ambientIntensity: { value: 1.79, min: 0, max: 2 },
         castShadow : true ,
         ambientColor: '#ffffff'
     });
