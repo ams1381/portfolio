@@ -12,15 +12,16 @@ import {SmokeParticles} from "@/component/about/car/ExhaustSmoke";
 import {EngineSound} from "@/component/about/car/EngineSound";
 
 export function DodgeCar(props) {
-    const {nodes, materials} = useGLTF('/models/dodge/scene-transformed.glb');
+    const {nodes, materials} = useGLTF('/models/dodge/dodge.glb');
     const carRef = useRef();
     const [engineOn, setEngineOn] = useState(false)
-    const {position} = useControls('Card Settings',{
+    const {position,rotation} = useControls('Card Settings',{
         position : props.position,
+
     });
     // useHelper(backLightRef ,RectAreaLightHelper,'red')
     const shitMaterial = new MeshStandardMaterial({
-        color: '#3b3b3b',
+        color: '#ea0000',
         metalness: 0.3,
         roughness: 0.15,
         emissive : '#000000',
@@ -41,34 +42,34 @@ export function DodgeCar(props) {
         <mesh castShadow={true} geometry={nodes.Object_1765.geometry} position={[0, 0.109, -0.113]} scale={0.939} material={shitMaterial} />
     ), [nodes, materials]);
 
-    useEffect(() => {
-        return () => {
-            materials.DiamondOutside?.dispose();
-            nodes.Cylinder.geometry?.dispose();
-        };
-    }, []);
     return (
         <group {...props} onClick={() => setEngineOn(true)}
                ref={carRef}
+
+
                position={position}>
             {/*{ engineOn && <SmokeParticles engineOn={engineOn}/>}*/}
             {/*<EngineSound engineOn={engineOn} />*/}
             <mesh geometry={nodes.Object_12.geometry}
+                  // receiveShadow={true} castShadow={true}
                   material={materials.dDodge_ChallengerSRTHellcat_2015_Wheel1A_3D_3DWheel1A_Material1}
                   position={[0.751, 0.323, 1.304]} rotation={[0, 0, 0.026]} scale={0.939}/>
             <mesh geometry={nodes.Object_1447.geometry}
+                  receiveShadow={true} castShadow={true}
                   material={materials.PaletteMaterial001} position={[0.83, 0.32, 1.155]}
                   rotation={[-Math.PI / 2, -0.026, 0]} scale={0.624}/>
-            {/*<mesh geometry={nodes.Object_1450.geometry}*/}
-            {/*      material={materials.PaletteMaterial002} position={[0.759, 0.318, 1.155]} rotation={[0, 0, 0.026]}*/}
-            {/*      scale={[0.892, 0.939, 0.939]}/>*/}
+            <mesh geometry={nodes.Object_1450.geometry}
+                  material={materials.PaletteMaterial002} position={[0.759, 0.318, 1.155]} rotation={[0, 0, 0.026]}
+                  scale={[0.892, 0.939, 0.939]}/>
             <mesh geometry={nodes.Object_1453.geometry}
+                  receiveShadow={true} castShadow={true}
                   material={materials.dDodge_ChallengerSRTHellcat_2015CalliperGloss_Material1}
                   position={[0.759, 0.318, 1.155]} rotation={[0, 0, 0.026]} scale={[0.892, 0.939, 0.939]}/>
             {/*<mesh geometry={nodes.Object_1756.geometry}*/}
             {/*      material={materials.dDodge_ChallengerSRTHellcat_2015EngineA_Material1} position={[0, 0.109, -0.113]}*/}
             {/*      scale={0.939}/>*/}
             <mesh geometry={nodes.Object_1759.geometry}
+                  receiveShadow={true} castShadow={true}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Grille4A_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
             {/*<mesh geometry={nodes.Object_1762.geometry} castShadow={true}*/}
@@ -82,34 +83,35 @@ export function DodgeCar(props) {
             <mesh geometry={nodes.Object_1770.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Grille1A_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            {/*<mesh geometry={nodes.Object_1773.geometry}*/}
-            {/*      material={materials.dDodge_ChallengerSRTHellcat_2015InteriorA_Material1} position={[0, 0.109, -0.113]}*/}
-            {/*      scale={0.939}/>*/}
+            <mesh geometry={nodes.Object_1773.geometry}
+                  material={materials.dDodge_ChallengerSRTHellcat_2015InteriorA_Material1} position={[0, 0.109, -0.113]}
+                  scale={0.939}/>
             <mesh geometry={nodes.Object_1775.geometry}
+                  receiveShadow={true} castShadow={true}
                   material={materials.emis} position={[0, 0.109, -0.113]} scale={0.939}/>
             <mesh geometry={nodes.Object_1778.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Coloured_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            <mesh geometry={nodes.Object_1781.geometry}
+            <mesh  geometry={nodes.Object_1781.geometry}
                   material={materials.PaletteMaterial006} position={[0, 0.109, -0.113]} scale={0.939}/>
-            <mesh geometry={nodes.Object_1783.geometry}
+            <mesh  geometry={nodes.Object_1783.geometry}
                   material={materials.PaletteMaterial007} position={[0, 0.109, -0.113]} scale={0.939}/>
-            <mesh geometry={nodes.Object_1788.geometry}
+            <mesh  geometry={nodes.Object_1788.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Grille2A_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            <mesh geometry={nodes.Object_1791.geometry}
+            <mesh  geometry={nodes.Object_1791.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015InteriorTillingA_Material1}
                   position={[0, 0.109, -0.113]} scale={0.939}/>
-            <mesh geometry={nodes.Object_1797.geometry}
+            <mesh  geometry={nodes.Object_1797.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Carbon2_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            <mesh geometry={nodes.Object_1800.geometry}
+            <mesh  geometry={nodes.Object_1800.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015Grille3A_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            <mesh geometry={nodes.Object_1803.geometry}
+            <mesh  geometry={nodes.Object_1803.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015BadgeA_Material1} position={[0, 0.109, -0.113]}
                   scale={0.939}/>
-            <mesh geometry={nodes.Object_1806.geometry}
+            <mesh  geometry={nodes.Object_1806.geometry}
                   material={materials.dDodge_ChallengerSRTHellcat_2015ManufacturerPlateA_Material1}
                   position={[0, 0.109, -0.113]} scale={0.939}/>
             <CarLights materials={materials} nodes={nodes} engineOn={engineOn} />
@@ -117,4 +119,4 @@ export function DodgeCar(props) {
     )
 }
 
-useGLTF.preload('/models/dodge/scene-transformed.glb')
+useGLTF.preload('/models/dodge/dodge.glb')

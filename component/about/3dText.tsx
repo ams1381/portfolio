@@ -2,7 +2,7 @@ import { Text3D } from '@react-three/drei'
 import {useControls} from "leva";
 import {useFrame} from "@react-three/fiber";
 import {useEffect, useRef, useState} from "react";
-import {Box3, Vector3} from "three";
+import {Box3, MeshStandardMaterial, Vector3} from "three";
 import * as THREE from "three";
 
 // {"position":[177,166.2,-358]}
@@ -22,6 +22,7 @@ export function MyText3D({text,position} : {text: string,position : number[]}) {
         curveSegments : 12,
         rotation : [0,3.55,0]
     });
+
     useEffect(() => {
         if (textRef.current) {
             // باکس هندسه رو حساب می‌کنیم
@@ -82,9 +83,8 @@ export function MyText3D({text,position} : {text: string,position : number[]}) {
                 bevelOffset={0}
                 bevelSegments={5}>
                 {text}
-                <meshStandardMaterial  transparent={true}
-                                       attach="material"
-                                       opacity={1} color={'#ffffff'} />
+                {/*<meshStandardMaterial attach="material"*/}
+                {/*                       opacity={1} color={'#ffffff'} />*/}
             </Text3D>
             {box && (
                 <mesh

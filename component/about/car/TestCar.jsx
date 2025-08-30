@@ -27,34 +27,37 @@ export function CarModelTest(props) {
         emissiveIntensity : 0.1,
 
     });
-    useFrame((state) => {
-        if (!carRef.current || !engineOn) return
-
-        const t = state.clock.getElapsedTime()
-
-        // tiny vibration using sin/cos
-        carRef.current.position.y = position[1] + Math.sin(t * 20) * 0.0013
-        carRef.current.rotation.z = Math.sin(t * 10) * 0.00002
-        carRef.current.rotation.x = Math.cos(t * 12) * 0.00002
-    })
-    useEffect(() => {
-        return () => {
-            materials.DiamondOutside?.dispose();
-            nodes.Cylinder.geometry?.dispose();
-        };
-    }, []);
+    // useFrame((state) => {
+    //     if (!carRef.current || !engineOn) return
+    //
+    //     const t = state.clock.getElapsedTime()
+    //
+    //     // tiny vibration using sin/cos
+    //     carRef.current.position.y = position[1] + Math.sin(t * 20) * 0.0013
+    //     carRef.current.rotation.z = Math.sin(t * 10) * 0.00002
+    //     carRef.current.rotation.x = Math.cos(t * 12) * 0.00002
+    // })
 
     return (
-        <group {...props} castShadow={true} receiveShadow={true} onClick={() => setEngineOn(true)} position={position} ref={carRef} dispose={null}>
+        <group {...props} castShadow={true} onClick={() => setEngineOn(true)} position={position} ref={carRef} >
             <mesh geometry={nodes.Object_2.geometry}
-                  // material={shitMaterial}
+
+                  castShadow={true}
                   material={materials.PaletteMaterial001}
                   position={[-263.682, -71.486, 340.623]} rotation={[-Math.PI / 2, 0, 0]} scale={266.429} />
-            <mesh geometry={nodes.Object_3.geometry} material={materials.PaletteMaterial002} position={[-263.68, -58.187, 95.281]} rotation={[-Math.PI / 2, 0, 0]} scale={89.786} />
-            <mesh geometry={nodes.Object_4.geometry} material={materials.Material__304} position={[-263.686, -58.189, 91.422]} rotation={[-Math.PI / 2, 0, 0]} scale={89.742} />
-            <mesh geometry={nodes.Object_5.geometry} material={materials.PaletteMaterial003} position={[-271.921, -154.757, 333.788]} rotation={[-Math.PI / 2, 0, 0]} scale={333.697} />
-            <mesh geometry={nodes.Object_13.geometry} material={materials.PaletteMaterial004} position={[-263.687, -61.384, 328.179]} rotation={[-Math.PI / 2, 0, 0]} scale={251.515} />
-            <mesh geometry={nodes.Object_39.geometry} material={materials.PaletteMaterial005} position={[-263.686, -86.605, 576.616]} rotation={[-Math.PI / 2, 0, 0]} scale={89.672} />
+            <mesh castShadow={true}
+                  geometry={nodes.Object_3.geometry}
+                  // material={shitMaterial}
+                  material={materials.PaletteMaterial002}
+                  position={[-263.68, -58.187, 95.281]} rotation={[-Math.PI / 2, 0, 0]} scale={89.786} />
+            <mesh castShadow={true}
+                  geometry={nodes.Object_4.geometry} material={materials.Material__304} position={[-263.686, -58.189, 91.422]} rotation={[-Math.PI / 2, 0, 0]} scale={89.742} />
+            <mesh castShadow={true}
+                  geometry={nodes.Object_5.geometry} material={materials.PaletteMaterial003} position={[-271.921, -154.757, 333.788]} rotation={[-Math.PI / 2, 0, 0]} scale={333.697} />
+            <mesh castShadow={true}
+                  geometry={nodes.Object_13.geometry} material={materials.PaletteMaterial004} position={[-263.687, -61.384, 328.179]} rotation={[-Math.PI / 2, 0, 0]} scale={251.515} />
+            <mesh castShadow={true}
+                  geometry={nodes.Object_39.geometry} material={materials.PaletteMaterial005} position={[-263.686, -86.605, 576.616]} rotation={[-Math.PI / 2, 0, 0]} scale={89.672} />
         </group>
     )
 }

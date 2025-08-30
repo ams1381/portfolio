@@ -1,6 +1,6 @@
 import React, {useEffect, useMemo, useRef} from 'react'
 import {Text, useGLTF, useHelper} from '@react-three/drei'
-import {SpotLightHelper, Object3D, Vector3} from "three";
+import {SpotLightHelper, Object3D, Vector3, MeshStandardMaterial} from "three";
 import {GarageCeilingLight} from "@/component/about/garage/CeilingLight";
 import { useControls } from 'leva';
 // import {useFrame, useThree} from "@react-three/fiber";
@@ -12,7 +12,7 @@ export function GarageModel(props) {
     const textRef = useRef();
     // const {width} = useThree();
 
-    const {position,distance,penumbra,rotation,color,intensity,angle , target} = useControls({
+    const {position,distance,penumbra,rotation,color,intensity,angle , target} = useControls('Texts Lights',{
         position : [-28,143,-604],
         rotation : [0,0,0],
         color : "#f2f5ff" ,
@@ -20,10 +20,17 @@ export function GarageModel(props) {
         penumbra : 0.5 ,
         distance : 27,
         angle : 1.01 ,
-        target : Object3D
+        // target : Object3D
     })
     useHelper(lightRef, SpotLightHelper,  'white');
+    const shitMaterial = new MeshStandardMaterial({
+        color: '#ec0000',
+        metalness: 0.3,
+        roughness: 0.15,
+        // emissive : '#808080',
+        // emissiveIntensity : 0.1,
 
+    });
     // useFrame(() => {
     //     if (textRef.current) {
     //         let targetPosition;
@@ -60,42 +67,43 @@ export function GarageModel(props) {
             <MyText3D text={'Education'} position={[50,166.2,-471.0]} />
             <MyText3D text={'Work Experience'} position={[50,120,-471.0]} />
             <MyText3D text={'Skills'} position={[50,73.8,-471.0]} />
-            <pointLight position={[5,0,0]}
-                        distance={10}
-                        intensity={0.9}
-                        color={'#fff'} />
-            <spotLight
-                color={color}
-                ref={lightRef}
-                rotation={rotation}
-                position={position}
-                // shadow-mapSize-width={512}
-                // shadow-mapSize-height={512}
-                // shadow-bias={-0.0001}
-                target={target}
-                castShadow={true}
-                penumbra={penumbra}
-                angle={angle}
-                intensity={intensity}
-                distance={distance}
-            />
-            <GarageCeilingLight key={1} helperLightColor={'red'} position={[-472, 220, -125]}/>
-            {/*<GarageCeilingLight key={2} helperLightColor={'blue'} position={[-472, 0, 90]}/>*/}
-            {/*<GarageCeilingLight key={3} helperLightColor={'green'} position={[-472, 0, -335]}/>*/}
-            {/*<GarageCeilingLight key={4} helperLightColor={'brown'} position={[-472, 0, -590]}/>*/}
-            {/*<GarageCeilingLight key={5} helperLightColor={'yellow'} position={[-472, 0, -780]}/>*/}
+
+            {/*<spotLight*/}
+            {/*    color={color}*/}
+            {/*    ref={lightRef}*/}
+            {/*    rotation={rotation}*/}
+            {/*    position={position}*/}
+            {/*    // shadow-mapSize-width={512}*/}
+            {/*    // shadow-mapSize-height={512}*/}
+            {/*    // shadow-bias={-0.0001}*/}
+            {/*    // target={target}*/}
+            {/*    castShadow={true}*/}
+            {/*    penumbra={penumbra}*/}
+            {/*    angle={angle}*/}
+            {/*    intensity={intensity}*/}
+            {/*    distance={distance}*/}
+            {/*/>*/}
+            <GarageCeilingLight key={1} helperLightColor={'red'} position={[-472, 225, -125]}/>
+            <GarageCeilingLight key={2} helperLightColor={'blue'} position={[-472, 225, 90]}/>
+            <GarageCeilingLight key={3} helperLightColor={'green'} position={[-472, 225, -335]}/>
+            <GarageCeilingLight key={4} helperLightColor={'brown'} position={[-472, 220, -590]}/>
+            <GarageCeilingLight key={5} helperLightColor={'yellow'} position={[-472, 235, -780]}/>
             <mesh geometry={nodes.Object_2.geometry} material={materials.Demirler}
-                  position={[-382.305, 131.053, -643.022]} castShadow={true} receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]} scale={747.94}/>
-            <mesh geometry={nodes.Object_3.geometry} receiveShadow={true} material={materials.Duvarlar}
-                  position={[-249.907, 146.582, -509.772]} castShadow={true} receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]} scale={859.581}/>
+                  position={[-382.305, 131.053, -643.022]} receiveShadow castShadow  rotation={[-Math.PI / 2, 0, 0]} scale={747.94} />
+            <mesh geometry={nodes.Object_3.geometry} receiveShadow castShadow material={materials.Duvarlar}
+                  position={[-249.907, 146.582, -509.772]} rotation={[-Math.PI / 2, 0, 0]} scale={859.581}/>
             <mesh geometry={nodes.Object_4.geometry} material={materials.Odunlar}
-                  position={[-343.265, 199.488, -523.717]} castShadow={true} receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]} scale={850.925}/>
+                  position={[-343.265, 199.488, -523.717]} rotation={[-Math.PI / 2, 0, 0]} scale={850.925}/>
             <mesh geometry={nodes.Object_5.geometry} material={materials.Tavan} position={[-243.799, 309.567, -509.772]}
-                  castShadow={true} receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]} scale={859.581}/>
-            <mesh geometry={nodes.Object_6.geometry} material={materials.Zemin} position={[-243.801, -0.009, -519.772]}
-                   rotation={[-Math.PI / 2, 0, 0]}  scale={849.581}/>
+                  rotation={[-Math.PI / 2, 0, 0]} receiveShadow castShadow  scale={859.581}/>
+            <mesh geometry={nodes.Object_6.geometry} receiveShadow
+                  material={materials.Zemin}
+                  position={[-243.801, -0.009, -519.772]}
+                  rotation={[-Math.PI / 2, 0, 0]}
+                  scale={849.581}
+            />
             <mesh geometry={nodes.Object_7.geometry} material={materials.ipler} position={[-173.768, 297.512, -615.26]}
-                  castShadow={true} receiveShadow={true} rotation={[-Math.PI / 2, 0, 0]}  scale={705.772}/>
+                   rotation={[-Math.PI / 2, 0, 0]} receiveShadow castShadow  scale={705.772}/>
             {/*<mesh receiveShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]}/>*/}
             {/*{Wall}*/}
             {/*/!*<mesh receiveShadow castShadow geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]}/>*!/*/}
