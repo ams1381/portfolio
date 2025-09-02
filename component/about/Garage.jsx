@@ -7,7 +7,7 @@ import { useControls } from 'leva';
 import {MyText3D} from "@/component/about/3dText";
 
 export function GarageModel(props) {
-    const {nodes, materials} = useGLTF('/models/garage/model-opt.glb');
+    const {nodes, materials} = useGLTF('/models/garage/scene-transformed.glb');
     let lightRef = useRef();
     const textRef = useRef();
     // const {width} = useThree();
@@ -50,23 +50,19 @@ export function GarageModel(props) {
         <mesh receiveShadow geometry={nodes.Object_6.geometry} material={materials.Zemin}
               rotation={[-Math.PI / 2, 0, 0]}/>
     ), [nodes, materials])
-    useEffect(() => {
-        return () => {
-            materials.Demirler?.dispose();
-            materials.Tavan?.dispose();
-            materials.Zemin?.dispose();
-            nodes.Object_4.geometry?.dispose();
-            nodes.Object_5.geometry?.dispose();
-            nodes.Object_6.geometry?.dispose();
-            nodes.Object_2.geometry?.dispose();
-        };
-    }, []);
+
 
     return (
-        <group {...props} >
-            <MyText3D text={'Education'} position={[50,166.2,-471.0]} />
-            <MyText3D text={'Work Experience'} position={[50,120,-471.0]} />
-            <MyText3D text={'Skills'} position={[50,73.8,-471.0]} />
+        <group {...props} castShadow={true}>
+            <MyText3D onClick={() => props.setActiveView('education')}
+                      text={'Education'}
+                      position={[50,166.2,-471.0]} />
+            <MyText3D onClick={() => props.setActiveView('workExperience')}
+                      text={'Work Experience'}
+                      position={[50,120,-471.0]} />
+            <MyText3D onClick={() => props.setActiveView('skills')}
+                      text={'Skills'}
+                      position={[50,73.8,-471.0]} />
 
             {/*<spotLight*/}
             {/*    color={color}*/}
@@ -88,22 +84,12 @@ export function GarageModel(props) {
             <GarageCeilingLight key={3} helperLightColor={'green'} position={[-472, 225, -335]}/>
             <GarageCeilingLight key={4} helperLightColor={'brown'} position={[-472, 220, -590]}/>
             <GarageCeilingLight key={5} helperLightColor={'yellow'} position={[-472, 235, -780]}/>
-            <mesh geometry={nodes.Object_2.geometry} material={materials.Demirler}
-                  position={[-382.305, 131.053, -643.022]} receiveShadow castShadow  rotation={[-Math.PI / 2, 0, 0]} scale={747.94} />
-            <mesh geometry={nodes.Object_3.geometry} receiveShadow castShadow material={materials.Duvarlar}
-                  position={[-249.907, 146.582, -509.772]} rotation={[-Math.PI / 2, 0, 0]} scale={859.581}/>
-            <mesh geometry={nodes.Object_4.geometry} material={materials.Odunlar}
-                  position={[-343.265, 199.488, -523.717]} rotation={[-Math.PI / 2, 0, 0]} scale={850.925}/>
-            <mesh geometry={nodes.Object_5.geometry} material={materials.Tavan} position={[-243.799, 309.567, -509.772]}
-                  rotation={[-Math.PI / 2, 0, 0]} receiveShadow castShadow  scale={859.581}/>
-            <mesh geometry={nodes.Object_6.geometry} receiveShadow
-                  material={materials.Zemin}
-                  position={[-243.801, -0.009, -519.772]}
-                  rotation={[-Math.PI / 2, 0, 0]}
-                  scale={849.581}
-            />
-            <mesh geometry={nodes.Object_7.geometry} material={materials.ipler} position={[-173.768, 297.512, -615.26]}
-                   rotation={[-Math.PI / 2, 0, 0]} receiveShadow castShadow  scale={705.772}/>
+            <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh castShadow geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.Odunlar} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh castShadow geometry={nodes.Object_5.geometry} material={materials.Tavan} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh receiveShadow geometry={nodes.Object_6.geometry} material={materials.Zemin} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.ipler} rotation={[-Math.PI / 2, 0, 0]} />
             {/*<mesh receiveShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]}/>*/}
             {/*{Wall}*/}
             {/*/!*<mesh receiveShadow castShadow geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]}/>*!/*/}
@@ -114,4 +100,4 @@ export function GarageModel(props) {
     )
 }
 
-useGLTF.preload('/models/garage/model-opt.glb')
+useGLTF.preload('/models/garage/scene-transformed.glb')

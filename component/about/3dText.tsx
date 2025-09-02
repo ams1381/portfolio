@@ -7,7 +7,7 @@ import * as THREE from "three";
 
 // {"position":[177,166.2,-358]}
 // {"rotation":[0,3.4,0]}
-export function MyText3D({text,position} : {text: string,position : number[]}) {
+export function MyText3D({text,position,onClick} : {text: string,position : number[],onClick : () => void}) {
     const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>();
     const [box, setBox] = useState<{ size: number[]; center: number[] } | null>(null);
@@ -66,7 +66,7 @@ export function MyText3D({text,position} : {text: string,position : number[]}) {
     })
 
     return (
-        <group>
+        <group onClick={onClick}>
             <Text3D
                 font="/fonts/Audiowide-Regular.json" // Path to font file
                 size={size}

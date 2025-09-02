@@ -1,0 +1,1 @@
+export type TAboutMeActiveView = 'education' | 'workExperience' | 'skills' | 'initial'
