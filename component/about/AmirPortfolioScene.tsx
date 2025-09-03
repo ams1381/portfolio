@@ -1,6 +1,6 @@
 'use client'
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment, OrbitControls, useHelper} from "@react-three/drei";
+import {Environment, OrbitControls, PerspectiveCamera, useHelper} from "@react-three/drei";
 import React, {Suspense, useEffect, useRef, useState} from "react";
 import * as THREE from "three";
 import {DodgeCar} from "@/component/about/car/Car";
@@ -25,7 +25,6 @@ export default function AmirPortfolioScene({setReadyToLoad}: { setReadyToLoad: a
             <Canvas shadows={'soft'}
                     camera={{position: [-90, 30, -400], fov: 60, near: 0.1, far: 8000}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
-
                 <Environment files={'/models/diamond/env.hdr'}/>
                 {/*<AdaptiveDpr pixelated />*/}
                 {/*/!* lowers resolution when FPS drops, smooths back up when stable *!/*/}
@@ -41,6 +40,7 @@ export default function AmirPortfolioScene({setReadyToLoad}: { setReadyToLoad: a
                     <GarageModel
                         setActiveView={setActiveView}
                         scale={0.5}
+                        activeView={activeView}
                         // scale={0.1}
                         position={[0, 0, 0]}/>
                 </Suspense>
@@ -96,11 +96,11 @@ const CameraMover = () => {
     const { camera, mouse } = useThree();
     const isLerping = useRef(true); // Initialize ref to keep track of lerping state
     let v = new THREE.Vector3()
-    useFrame(() => {
-        if (isLerping.current) {
-            camera.position.lerp(v.set(camera.position.x + mouse.x , camera.position.y - mouse.y / 3, camera.position.z + 0.09), 0.09);
-        }
-    });
+    // useFrame(() => {
+    //     if (isLerping.current) {
+    //         camera.position.lerp(v.set(camera.position.x + mouse.x , camera.position.y - mouse.y / 3, camera.position.z + 0.09), 0.09);
+    //     }
+    // });
 
     return null;
 }
