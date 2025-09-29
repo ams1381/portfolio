@@ -8,7 +8,7 @@ import {PreLoader} from "@/component/layout/PreLoader";
 const BackScene : any = dynamic(() => import('@/component/about/BackScene'), {
     ssr: false,
 })
-// const AmirPortfolioScene: any = dynamic(() => import('@/component/about/AmirPortfolioScene'), {
+// const GarageScene: any = dynamic(() => import('@/component/about/GarageScene'), {
 //     ssr: false,
 // })
 const AboutMePage = () => {

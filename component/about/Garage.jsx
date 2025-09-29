@@ -1,95 +1,52 @@
-import React, {useEffect, useMemo, useRef} from 'react'
-import {Text, useGLTF, useHelper} from '@react-three/drei'
-import {SpotLightHelper, Object3D, Vector3, MeshStandardMaterial} from "three";
+import React, {Suspense} from 'react'
+import {useGLTF} from '@react-three/drei'
 import {GarageCeilingLight} from "@/component/about/garage/CeilingLight";
-import { useControls } from 'leva';
-// import {useFrame, useThree} from "@react-three/fiber";
 import {MyText3D} from "@/component/about/3dText";
+import {CarM1} from "@/component/about/car/CarM1";
+import {SceneController} from "@/component/about/SceneController";
 
-export function GarageModel(props) {
-    const {nodes, materials} = useGLTF('/models/garage/scene-transformed.glb');
-    let lightRef = useRef();
-    const textRef = useRef();
-    // const {width} = useThree();
-
-    const {position,distance,penumbra,rotation,color,intensity,angle , target} = useControls('Texts Lights',{
-        position : [-28,143,-604],
-        rotation : [0,0,0],
-        color : "#f2f5ff" ,
-        intensity : 10,
-        penumbra : 0.5 ,
-        distance : 27,
-        angle : 1.01 ,
-        // target : Object3D
-    })
-    useHelper(lightRef, SpotLightHelper,  'white');
-    const shitMaterial = new MeshStandardMaterial({
-        color: '#ec0000',
-        metalness: 0.3,
-        roughness: 0.15,
-        // emissive : '#808080',
-        // emissiveIntensity : 0.1,
-
-    });
-    // useFrame(() => {
-    //     if (textRef.current) {
-    //         let targetPosition;
-    //         // Interpolate the current position towards the target position
-    //         // if(window.innerWidth < 480)
-    //         //     targetPosition = new Vector3(0, -0.6, -2);
-    //         // else
-    //             targetPosition = new Vector3(2, 3.1, 5);
-    //         textRef.current.position.lerp(targetPosition, 0.1); // 0.1 is the interpolation factor
-    //         // diamondRef.current.rotation.y += 1;
-    //     }
-    // });
-    const Wall = useMemo(() => (
-        <mesh geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI/2, 0, 0]} />
-    ), [nodes, materials]);
-    const Floor = useMemo(() => (
-        <mesh receiveShadow geometry={nodes.Object_6.geometry} material={materials.Zemin}
-              rotation={[-Math.PI / 2, 0, 0]}/>
-    ), [nodes, materials])
-
+export default function GarageModel(props) {
+    const {nodes, materials} = useGLTF('/models/garage/scene-transformed.glb',true,true);
 
     return (
-        <group {...props} castShadow={true}>
-            <MyText3D onClick={() => props.setActiveView('education')}
-                      text={'Education'}
-                      position={[50,166.2,-471.0]} />
-            <MyText3D onClick={() => props.setActiveView('workExperience')}
-                      text={'Work Experience'}
-                      position={[50,120,-471.0]} />
-            <MyText3D onClick={() => props.setActiveView('skills')}
-                      text={'Skills'}
-                      position={[50,73.8,-471.0]} />
+        <group {...props} >
+            <Suspense fallback={<></>}>
+                <CarM1
+                    scale={25.9}
+                    position={[-440, 0, -420]}
+                />
+            </Suspense>
+            <SceneController activeView={props.activeView} setActiveView={props.setActiveView} />
 
-            {/*<spotLight*/}
-            {/*    color={color}*/}
-            {/*    ref={lightRef}*/}
-            {/*    rotation={rotation}*/}
-            {/*    position={position}*/}
-            {/*    // shadow-mapSize-width={512}*/}
-            {/*    // shadow-mapSize-height={512}*/}
-            {/*    // shadow-bias={-0.0001}*/}
-            {/*    // target={target}*/}
-            {/*    castShadow={true}*/}
-            {/*    penumbra={penumbra}*/}
-            {/*    angle={angle}*/}
-            {/*    intensity={intensity}*/}
-            {/*    distance={distance}*/}
-            {/*/>*/}
-            <GarageCeilingLight key={1} helperLightColor={'red'} position={[-472, 225, -125]}/>
-            <GarageCeilingLight key={2} helperLightColor={'blue'} position={[-472, 225, 90]}/>
-            <GarageCeilingLight key={3} helperLightColor={'green'} position={[-472, 225, -335]}/>
-            <GarageCeilingLight key={4} helperLightColor={'brown'} position={[-472, 220, -590]}/>
-            <GarageCeilingLight key={5} helperLightColor={'yellow'} position={[-472, 235, -780]}/>
-            <mesh castShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]} />
-            <mesh castShadow geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]} />
-            <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.Odunlar} rotation={[-Math.PI / 2, 0, 0]} />
-            <mesh castShadow geometry={nodes.Object_5.geometry} material={materials.Tavan} rotation={[-Math.PI / 2, 0, 0]} />
+            <GarageCeilingLight key={1}
+                                helperLightColor={'red'}
+                                pointLightDecay={1}
+                                position={[-472, 225, -125]}/>
+            <GarageCeilingLight key={2}
+                                helperLightColor={'blue'}
+                                pointLightDecay={1}
+                                position={[-472, 228, 90]}/>
+            <GarageCeilingLight key={3}
+                                helperLightColor={'green'}
+                                pointLightDecay={1}
+                                position={[-472, 224, -335]}/>
+            {/*<GarageCeilingLight key={4}*/}
+            {/*                    helperLightColor={'brown'}*/}
+            {/*                    pointLightDecay={1}*/}
+            {/*                    position={[-472, 220, -590]}/>*/}
+            {/*<GarageCeilingLight key={5}*/}
+            {/*                    helperLightColor={'yellow'}*/}
+            {/*                    pointLightIntensity={50}*/}
+            {/*                    pointLightScale={3}*/}
+            {/*                    pointLightDecay={0.8}*/}
+            {/*                    pointLightDistance={40}*/}
+            {/*                    position={[-472, 235, -780]}/>*/}
+            <mesh  geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh  geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh  geometry={nodes.Object_4.geometry} material={materials.Odunlar} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh  geometry={nodes.Object_5.geometry} material={materials.Tavan} rotation={[-Math.PI / 2, 0, 0]} />
             <mesh receiveShadow geometry={nodes.Object_6.geometry} material={materials.Zemin} rotation={[-Math.PI / 2, 0, 0]} />
-            <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.ipler} rotation={[-Math.PI / 2, 0, 0]} />
+            <mesh geometry={nodes.Object_7.geometry} material={materials.ipler} rotation={[-Math.PI / 2, 0, 0]} />
             {/*<mesh receiveShadow geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]}/>*/}
             {/*{Wall}*/}
             {/*/!*<mesh receiveShadow castShadow geometry={nodes.Object_3.geometry} material={materials.Duvarlar} rotation={[-Math.PI / 2, 0, 0]}/>*!/*/}
@@ -100,4 +57,4 @@ export function GarageModel(props) {
     )
 }
 
-useGLTF.preload('/models/garage/scene-transformed.glb')
+useGLTF.preload('/models/garage/scene-transformed.glb',true,true)

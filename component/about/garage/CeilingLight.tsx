@@ -1,35 +1,11 @@
 import React, {useEffect, useRef} from 'react'
-import {useGLTF, useHelper} from '@react-three/drei'
-import {animated, useSpring} from "@react-spring/three";
-import {DirectionalLightHelper, PointLightHelper, SpotLightHelper} from "three";
-import {RectAreaLightHelper} from "three-stdlib";
-import {useControls} from "leva";
 
 export function GarageCeilingLight(props: any) {
     const lightRef = useRef<any>();
-    const targetDirectionalRef = useRef();
     const directionalLightRef = useRef<any>();
-    useHelper(lightRef,PointLightHelper,10,props.helperLightColor);
-    useHelper(directionalLightRef, DirectionalLightHelper, 10, props.helperLightColor)
-    const spotLightOptions = useControls('spotLight' + props.helperLightColor,{
-        angle : Math.PI / 3,
-        penumbra : 0.5,
-        distance : 25,
-        intensity : 1,
+    // useHelper(lightRef,PointLightHelper,10,props.helperLightColor);
 
-    });
-    const pointLightOptions = useControls('pointLight' + props.helperLightColor,{
-        scale : 1.5,
-        decay : 1.5,
-        intensity : 2,
-        color : "#ffffff",
-        distance :  10
-    });
-    useEffect(() => {
-        if (directionalLightRef.current && targetDirectionalRef.current) {
-            directionalLightRef.current.target = targetDirectionalRef.current;
-        }
-    }, []);
+
 
     return (
         <group {...props} >
@@ -42,27 +18,21 @@ export function GarageCeilingLight(props: any) {
                 />
             </mesh>
             <spotLight
-                angle={spotLightOptions.angle} // 60 degrees
-                penumbra={spotLightOptions.penumbra}
-                intensity={spotLightOptions.intensity}
-                distance={spotLightOptions.distance}
+                angle={Math.PI / 3} // 60 degrees
+                penumbra={props.spotLightPenumbrav ?? 0.5}
+                intensity={1}
+                distance={25}
                 // castShadow
             />
             <pointLight
-                intensity={pointLightOptions.intensity}
-                scale={pointLightOptions.scale}
+                intensity={props.pointLightIntensity ?? 40}
+                scale={props.pointLightScale ?? 1.5}
                 ref={lightRef}
-                decay={pointLightOptions.decay}
-                color={pointLightOptions.color}
-                castShadow={true}
+                decay={props.pointLightDecay ?? 1.5}
+                color={ "#ffffff"}
+                // castShadow={true}
 
             />
-            {/*<directionalLight ref={directionalLightRef} position={[0,props.position[1] -150.5,0]}*/}
-            {/*                  castShadow={true}*/}
-            {/*                  intensity={0.4}*/}
-            {/*                  color={'rgb(255,255,255)'} >*/}
-            {/*    <object3D ref={targetDirectionalRef} castShadow={true} position={[-10,-1.8,-7]} />*/}
-            {/*</directionalLight>*/}
         </group>
 
     )

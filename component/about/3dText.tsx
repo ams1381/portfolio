@@ -1,27 +1,24 @@
 import { Text3D } from '@react-three/drei'
-import {useControls} from "leva";
 import {useFrame} from "@react-three/fiber";
 import {useEffect, useRef, useState} from "react";
 import {Box3, MeshStandardMaterial, Vector3} from "three";
 import * as THREE from "three";
 
-// {"position":[177,166.2,-358]}
-// {"rotation":[0,3.4,0]}
-export function MyText3D({text,position,onClick} : {text: string,position : number[],onClick : () => void}) {
+type TMyText3DProps = {
+    text: string,
+    position : number[],
+    onClick : () => void,
+    size? : number,
+    rotation? : any[]
+}
+
+export function MyText3D(props : TMyText3DProps) {
     const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>();
     const [box, setBox] = useState<{ size: number[]; center: number[] } | null>(null);
-    const initialPosition = useRef(new Vector3(position[0], position[1], position[2]));
-    const targetPosition = useRef(new Vector3(position[0], position[1], position[2]));
-    const {size,height,bevelSize,bevelThickness,curveSegments,rotation} = useControls({
-        // Testposition :op
-        size :25 ,
-        height : 0.2,
-        bevelSize : 0.02 ,
-        bevelThickness : 0.02,
-        curveSegments : 12,
-        rotation : [0,3.55,0]
-    });
+    const initialPosition = useRef(new Vector3(props.position[0], props.position[1], props.position[2]));
+    const targetPosition = useRef(new Vector3(props.position[0], props.position[1], props.position[2]));
+
 
     useEffect(() => {
         if (textRef.current) {
@@ -41,7 +38,7 @@ export function MyText3D({text,position,onClick} : {text: string,position : numb
                 });
             }
         }
-    }, [text]);
+    }, [props.text]);
 
     useFrame(() => {
         if(textRef.current) {
@@ -66,30 +63,30 @@ export function MyText3D({text,position,onClick} : {text: string,position : numb
     })
 
     return (
-        <group onClick={onClick}>
+        <group onClick={props.onClick}>
             <Text3D
                 font="/fonts/Audiowide-Regular.json" // Path to font file
-                size={size}
-                position={position as any}
+                size={props.size ?? 25}
+                position={props.position as any}
                 ref={textRef}
-                height={height} // Thickness
-                curveSegments={curveSegments}
+                height={0.2} // Thickness
+                curveSegments={12}
                 bevelEnabled
                 receiveShadow={true}
-                bevelThickness={bevelThickness}
-                rotation={rotation}
+                bevelThickness={0.02}
+                rotation={props.rotation as any ?? [0,3.55,0] as any}
                 frustumCulled={false}
-                bevelSize={bevelSize}
+                bevelSize={ 0.02}
                 bevelOffset={0}
                 bevelSegments={5}>
-                {text}
+                {props.text}
                 {/*<meshStandardMaterial attach="material"*/}
                 {/*                       opacity={1} color={'#ffffff'} />*/}
             </Text3D>
             {box && (
                 <mesh
-                    position={box.center.map((c, i) => position[i] - c) as any}
-                    rotation={rotation}
+                    position={box.center.map((c, i) => props.position[i] - c) as any}
+                    rotation={props.rotation as any ?? [0,3.55,0] as any}
                     onPointerOver={() => setHovered(true)}
                     onPointerOut={() => setHovered(false)}
                 >
