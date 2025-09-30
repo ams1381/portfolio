@@ -14,15 +14,21 @@ export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView
     const v = new THREE.Vector3();
     const { progress } = useProgress();
     useFrame(() => {
-        if(progress !== 100)
-            return
-        // return
+
         switch (activeView) {
             case 'education' :
-                v.set(-397.6, 4.74, -144.5);
-                targetQuat.current.setFromEuler(
-                    new THREE.Euler(-0.006, 0.33, 0.002, "XYZ")
-                );
+                if(isMobile) {
+                    v.set(-327.5, 9.82, -65.51);
+                    targetQuat.current.setFromEuler(
+                        new THREE.Euler(0.026, 0.399,  -0.010, "XYZ")
+                    );
+                } else {
+                    v.set(-397.6, 4.74, -144.5);
+                    targetQuat.current.setFromEuler(
+                        new THREE.Euler(-0.006, 0.33, 0.002, "XYZ")
+                    );
+                }
+
                 camera.quaternion.slerp(targetQuat.current, 0.1);
                 camera.position.lerp(v, 0.1);
                 break;

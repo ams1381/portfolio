@@ -15,9 +15,7 @@ const MyGarageTest = () => {
     const [readyToLoad, setReadyToLoad] = useState(false);
     return  <div className={'relative'}>
         {/*<Suspense fallback={<PreLoader/>}>*/}
-            {<Suspense fallback={<PreLoader />}>
-                <GarageScene setReadyToLoad={setReadyToLoad}/>
-            </Suspense>}
+        <GarageScene setReadyToLoad={setReadyToLoad}/>
         {/*</Suspense>*/}
     </div>
 }

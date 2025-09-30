@@ -25,36 +25,32 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     return (
         <>
-            <Canvas shadows={isMobile ?  undefined :'basic'} resize={{ debounce: 200 }} dpr={[1, 1.5]}
+            <Canvas shadows={isMobile ?  undefined :'basic'}
+                    resize={{ debounce: 200 }}
+                    dpr={[1, 1.5]}
                     gl={{ antialias: false, powerPreference: "high-performance" }}
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 2000}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
                 <Environment files={'/models/dodge/envi.hdr'}/>
-                <Suspense fallback={<></>}>
-                    <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
-                </Suspense>
-                <Suspense fallback={<></>}>
-                    <EducationSection activeView={activeView} setActiveView={setActiveView}/>
-                </Suspense>
-                <CanvasLoader setReadyToLoad={setReadyToLoad}/>
+                <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
+                <EducationSection activeView={activeView} setActiveView={setActiveView}/>
+                {/*<CanvasLoader setReadyToLoad={setReadyToLoad}/>*/}
                 <CameraInitializer activeView={activeView} />
-                <Suspense fallback={<></>}>
-                    <GarageModel
-                        setActiveView={setActiveView}
-                        activeView={activeView}
-                        position={[0, -46, 0]}/>
-                </Suspense>
+                <GarageModel
+                    setActiveView={setActiveView}
+                    activeView={activeView}
+                    position={[0, -46, 0]}/>
                 <LightsComponent/>
-                <CameraMover/>
+                {/*<CameraMover/>*/}
 
-                <EffectComposer >
-                    { !isMobile ? <DepthOfField
-                        focusDistance={activeView === 'education' ? 0.01 : 10}
-                        focalLength={0.02}    // طول لنز (هرچی بیشتر باشه، عمق میدان کمتر میشه)
-                        bokehScale={activeView === 'education' ? 1 : 0}        // شدت بوکه (نقاط تار پشت صحنه)
-                        height={480}          // کیفیت
-                    /> : <></>}
+                <EffectComposer multisampling={isMobile ? 0 : undefined}>
+                    {/*{ !isMobile ? <DepthOfField*/}
+                    {/*    focusDistance={activeView === 'education' ? 0.01 : 10}*/}
+                    {/*    focalLength={0.52}    // طول لنز (هرچی بیشتر باشه، عمق میدان کمتر میشه)*/}
+                    {/*    bokehScale={activeView === 'education' ? 0.2 : 0}        // شدت بوکه (نقاط تار پشت صحنه)*/}
+                    {/*    height={480}          // کیفیت*/}
+                    {/*/> : <></>}*/}
                     <Bloom intensity={isMobile ? 0.1 : 0.2}      // strength of bloom
                         luminanceThreshold={0.2} // only glow emissive/bright materials
                         mipmapBlur={!isMobile}             // smoother glow
@@ -69,7 +65,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                 {/*    // minPolarAngle={Math.PI / 5}        // lowest angle (0 = straight up)*/}
                 {/*    // maxPolarAngle={Math.PI / 2.5}*/}
                 {/*               enableZoom={true}*/}
-                {/*               enableRotate={true}/>*/}
+                {/*               enableRotate={true} />*/}
             </Canvas>
         </>
 

@@ -3,6 +3,7 @@ import {useFrame} from "@react-three/fiber";
 import {useEffect, useRef, useState} from "react";
 import {Box3, MeshStandardMaterial, Vector3} from "three";
 import * as THREE from "three";
+import {useMediaQuery} from "react-responsive";
 
 type TMyText3DProps = {
     text: string,
@@ -18,11 +19,10 @@ export function MyText3D(props : TMyText3DProps) {
     const [box, setBox] = useState<{ size: number[]; center: number[] } | null>(null);
     const initialPosition = useRef(new Vector3(props.position[0], props.position[1], props.position[2]));
     const targetPosition = useRef(new Vector3(props.position[0], props.position[1], props.position[2]));
-
+    const isMobile = useMediaQuery({query: '(max-width: 768px)'});
 
     useEffect(() => {
         if (textRef.current) {
-            // باکس هندسه رو حساب می‌کنیم
             textRef.current.geometry.computeBoundingBox();
             const bbox : Box3 = textRef.current.geometry.boundingBox;
             // console.log(bbox)
@@ -32,9 +32,11 @@ export function MyText3D(props : TMyText3DProps) {
                 let boxSizes = bbox.getSize(size);
                 let boxCenter = bbox.getCenter(center);
 
+
                 setBox({
                     size: [boxSizes.x, boxSizes.y, boxSizes.z],
-                    center: [boxCenter.x, boxCenter.y - 20, boxCenter.z],
+                    // @ts-ignore
+                    center: [boxCenter.x, boxCenter.y - isMobile ? -4 : 20, boxCenter.z + isMobile ? -10 : 0],
                 });
             }
         }

@@ -12,87 +12,87 @@ import { useGLTF } from '@react-three/drei'
 import {LightRing} from "@/component/about/LightRing";
 
 
-export function CarM1(props) {
-    // const { nodes, materials } = useGLTF('/models/dodge/shit.glb')
-    // return (
-    //     <group {...props} dispose={null}>
-    //         <mesh geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} position={[0, 2.118, -0.04]} rotation={[-1.586, 0, 0]} scale={6.364} />
-    //         <mesh geometry={nodes.Object_5.geometry} material={materials.Carbone} position={[0, 2.092, 0.125]} rotation={[-1.586, 0, 0]} scale={6.215} />
-    //         <mesh geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} position={[0, 1.872, -0.049]} rotation={[-1.586, 0, 0]} scale={6.222} />
-    //         <mesh geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} position={[0, 1.881, 5.539]} rotation={[-1.586, 0, 0]} scale={2.093} />
-    //         <mesh geometry={nodes.Object_69.geometry} material={materials.PaletteMaterial004} position={[0, 2.195, -5.98]} rotation={[-1.586, 0, 0]} scale={2} />
-    //         <mesh geometry={nodes.Object_77.geometry} material={materials.PaletteMaterial005} position={[0, 2.188, -5.943]} rotation={[-1.586, 0, 0]} scale={1.969} />
-    //     </group>
-    // )
-    const { nodes, materials } = useGLTF('/models/dodge/output.glb',true,true)
+export default function CarM1(props) {
+    const { nodes, materials } = useGLTF('/models/dodge/optimized.glb',true,true)
     return (
-        <group {...props} >
-            <group rotation={[-1.586, 0, 0]}>
-                <group rotation={[Math.PI / 2, 0, 0]}>
-                    <group  rotation={[-Math.PI / 2, 0, 0]} scale={0.025}>
-                        <mesh castShadow={true} geometry={nodes.Object_4.geometry} material={materials.CARS} />
-                        <mesh castShadow={true} geometry={nodes.Object_5.geometry} material={materials.Carbone} />
-                    </group>
-                    <group  rotation={[-Math.PI / 2, 0, 0]} scale={0.025}>
-                        <mesh castShadow={true} geometry={nodes.Object_91.geometry} material={materials.GLASS} />
-                        <mesh castShadow={true} geometry={nodes.Object_92.geometry} material={materials.tire} />
-                        <mesh castShadow={true} geometry={nodes.Object_93.geometry} material={materials.material_16} />
-                        <mesh castShadow={true} geometry={nodes.Object_94.geometry} material={materials.brakedisk} />
-                        <mesh castShadow={true} geometry={nodes.Object_95.geometry} material={materials.rim_second} />
-                    </group>
-                    <mesh castShadow={true} geometry={nodes.Object_7.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_9.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_11.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_13.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_15.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_17.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_19.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_21.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_23.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_25.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_27.geometry} material={materials.mirror} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_29.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_31.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_33.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_35.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_37.geometry} material={materials.redglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_39.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_41.geometry} material={materials.redglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_43.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_45.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_47.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_49.geometry} material={materials.orangeglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_51.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_53.geometry} material={materials.lightglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_55.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_57.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_59.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_61.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_63.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_65.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_67.geometry} material={materials.carpaint_second} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_69.geometry} material={materials.GLSS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_71.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_73.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh geometry={nodes.Object_75.geometry} material={materials.GLSS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_77.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_79.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_81.geometry} material={materials.mattemetal} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_83.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_85.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_87.geometry} material={materials.interior} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_89.geometry} material={materials.interior} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_97.geometry} material={materials.CARS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_99.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_101.geometry} material={materials.CARS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_103.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_105.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
-                    <mesh castShadow={true} geometry={nodes.Object_107.geometry} material={materials.Carbone} position={[0, 1.814, 5.454]} scale={[1.37, 0.148, 0.024]} />
-                </group>
-            </group>
+        <group {...props}>
+            <mesh castShadow={true} geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow={true} geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow={true} geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow={true} geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow={true} geometry={nodes.Object_69.geometry} material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow={true} geometry={nodes.Object_77.geometry} material={materials.PaletteMaterial005} rotation={[-1.586, 0, 0]} scale={0.025} />
         </group>
     )
+    // const { nodes, materials } = useGLTF('/models/dodge/output.glb',true,true)
+    // return (
+    //     <group {...props} >
+    //         <group rotation={[-1.586, 0, 0]}>
+    //             <group rotation={[Math.PI / 2, 0, 0]}>
+    //                 <group  rotation={[-Math.PI / 2, 0, 0]} scale={0.025}>
+    //                     <mesh castShadow={true} geometry={nodes.Object_4.geometry} material={materials.CARS} />
+    //                     <mesh castShadow={true} geometry={nodes.Object_5.geometry} material={materials.Carbone} />
+    //                 </group>
+    //                 <group  rotation={[-Math.PI / 2, 0, 0]} scale={0.025}>
+    //                     <mesh castShadow={true} geometry={nodes.Object_91.geometry} material={materials.GLASS} />
+    //                     <mesh castShadow={true} geometry={nodes.Object_92.geometry} material={materials.tire} />
+    //                     <mesh castShadow={true} geometry={nodes.Object_93.geometry} material={materials.material_16} />
+    //                     <mesh castShadow={true} geometry={nodes.Object_94.geometry} material={materials.brakedisk} />
+    //                     <mesh castShadow={true} geometry={nodes.Object_95.geometry} material={materials.rim_second} />
+    //                 </group>
+    //                 <mesh castShadow={true} geometry={nodes.Object_7.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_9.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_11.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_13.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_15.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_17.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_19.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_21.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_23.geometry} material={materials.material} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_25.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_27.geometry} material={materials.mirror} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_29.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_31.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_33.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_35.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_37.geometry} material={materials.redglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_39.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_41.geometry} material={materials.redglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_43.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_45.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_47.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_49.geometry} material={materials.orangeglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_51.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_53.geometry} material={materials.lightglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_55.geometry} material={materials.GLASS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_57.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_59.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_61.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_63.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_65.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_67.geometry} material={materials.carpaint_second} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_69.geometry} material={materials.GLSS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_71.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_73.geometry} material={materials.clearglass} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh geometry={nodes.Object_75.geometry} material={materials.GLSS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_77.geometry} material={materials['Material.001']} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_79.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_81.geometry} material={materials.mattemetal} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_83.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_85.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_87.geometry} material={materials.interior} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_89.geometry} material={materials.interior} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_97.geometry} material={materials.CARS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_99.geometry} material={materials.black} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_101.geometry} material={materials.CARS} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_103.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_105.geometry} material={materials.Carbone} rotation={[-Math.PI / 2, 0, 0]} scale={0.025} />
+    //                 <mesh castShadow={true} geometry={nodes.Object_107.geometry} material={materials.Carbone} position={[0, 1.814, 5.454]} scale={[1.37, 0.148, 0.024]} />
+    //             </group>
+    //         </group>
+    //     </group>
+    // )
 }
 
-useGLTF.preload('/models/dodge/output.glb',true,true)
-// useGLTF.preload('/models/dodge/shit.glb')
+// useGLTF.preload('/models/dodge/output.glb',true,true)
+useGLTF.preload('/models/dodge/optimized.glb',true,true)

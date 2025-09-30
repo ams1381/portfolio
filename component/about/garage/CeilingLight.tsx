@@ -30,7 +30,7 @@ export function GarageCeilingLight(props: any) {
                 ref={lightRef}
                 decay={props.pointLightDecay ?? 1.5}
                 color={ "#ffffff"}
-                // castShadow={true}
+                castShadow={props.casShadow ?? false}
 
             />
         </group>

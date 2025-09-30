@@ -17,7 +17,7 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
         config: { mass: 1, tension: 200, friction: 25 , duration : 400  },
         scale: activeView === "workExperience" ? 1 : 0,
     });
-
+    const isSmallMobile = useMediaQuery({query: '(max-width: 480px)'});
 
 
     return <a.group position={[-633.6,139.74,349.5]} scale={springs.scale}>
@@ -33,20 +33,20 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
                       onClick={() => setActiveView('initial')}
-                      position={[-150,0,0]}
+                      position={[isSmallMobile? 140 : -150,isSmallMobile ? -150 :0,isSmallMobile ? -50 :0]}
                       font="./fonts/Audiowide-Regular.ttf">
                     {`<- Back`}
                 </Text>
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
-                      position={[-150,-60,0]}
+                      position={[isSmallMobile ? 140 : -150,isSmallMobile ? -180 : -60,isSmallMobile ? -50 :0]}
                       onClick={() => setActiveView('skills')}
                       font="./fonts/Audiowide-Regular.ttf">
                     Skills
                 </Text>
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
-                      position={[-150,-30,0]}
+                      position={[isSmallMobile ? 140 : -150,isSmallMobile ? -170 : -30,isSmallMobile ? -100 :0]}
                       onClick={() => setActiveView('education')}
                       font="./fonts/Audiowide-Regular.ttf">
                     Education
