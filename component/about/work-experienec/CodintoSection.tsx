@@ -22,7 +22,7 @@ const CodintoSection = () => {
                 {/*            scale={0.8} />*/}
                 {/* radiusTop, radiusBottom, height, radialSegments */}
                 <primitive object={geometry} attach="geometry" />
-                <meshStandardMaterial map={texture} transparent/>
+                <meshStandardMaterial  map={texture} transparent/>
 
             </mesh>
             <Text fontSize={isMobile ? 8 : 11}

@@ -32,13 +32,15 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
             <a.group >
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
+                      fillOpacity={0.8}
                       onClick={() => setActiveView('initial')}
                       position={[isSmallMobile? 140 : -150,isSmallMobile ? -150 :0,isSmallMobile ? -50 :0]}
                       font="./fonts/Audiowide-Regular.ttf">
                     {`<- Back`}
                 </Text>
-                <Text color={'#fff'} fontSize={16}
+                <Text color={'#ffffff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
+                      fillOpacity={0.8}
                       position={[isSmallMobile ? 140 : -150,isSmallMobile ? -180 : -60,isSmallMobile ? -50 :0]}
                       onClick={() => setActiveView('skills')}
                       font="./fonts/Audiowide-Regular.ttf">
@@ -46,6 +48,7 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
                 </Text>
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
+                      fillOpacity={0.8}
                       position={[isSmallMobile ? 140 : -150,isSmallMobile ? -170 : -30,isSmallMobile ? -100 :0]}
                       onClick={() => setActiveView('education')}
                       font="./fonts/Audiowide-Regular.ttf">

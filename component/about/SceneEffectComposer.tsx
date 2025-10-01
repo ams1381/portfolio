@@ -3,7 +3,7 @@ import {Bloom, EffectComposer, Noise, Vignette} from "@react-three/postprocessin
 
 export function PostFX({ isMobile } : {isMobile : boolean}) {
     const effects = useMemo(() => (
-        <EffectComposer enabled={!isMobile} multisampling={isMobile ? 0 : undefined}>
+        <EffectComposer multisampling={isMobile ? 0 : undefined}>
             <Bloom
                 intensity={isMobile ? 0.09 : 0.1}
                 luminanceThreshold={0.2}
