@@ -7,23 +7,24 @@ Source: https://sketchfab.com/3d-models/dodge-challenger-srt-demon-sdc-54d229c2c
 Title: Dodge Challenger SRT DEMON SDC
 */
 
-import React from 'react'
+import React, {useMemo} from 'react'
 import { useGLTF } from '@react-three/drei'
-import {LightRing} from "@/component/about/LightRing";
+import {OptimizedMesh} from "@/component/OptimizedMesh";
 
 
 export default function CarM1(props) {
     const { nodes, materials } = useGLTF('/models/dodge/optimized.glb',true,true)
-    return (
+    const meshes = useMemo(() => (
         <group {...props}>
-            <mesh castShadow={true} geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow={true} geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow={true} geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow={true} geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow={true} geometry={nodes.Object_69.geometry} material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow={true} geometry={nodes.Object_77.geometry} material={materials.PaletteMaterial005} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <OptimizedMesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <OptimizedMesh castShadow geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <OptimizedMesh castShadow geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <OptimizedMesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <OptimizedMesh castShadow geometry={nodes.Object_69.geometry} material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />
         </group>
-    )
+    ), [nodes, materials, props]);
+
+    return meshes;
     // const { nodes, materials } = useGLTF('/models/dodge/output.glb',true,true)
     // return (
     //     <group {...props} >

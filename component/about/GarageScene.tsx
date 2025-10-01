@@ -15,6 +15,8 @@ import { useWindowSize } from "@uidotdev/usehooks";
 import {WorkExperience} from "@/component/about/work-experienec/WorkExperience";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "react-responsive";
+import {PostFX} from "@/component/about/SceneEffectComposer";
+// import SceneEffectComposer from "@/component/about/SceneEffectComposer";
 const EducationSection = dynamic(() => import("@/component/about/education/Education"),{ssr : false})
 const GarageModel = dynamic(() => import("@/component/about/Garage"),{ssr : false})
 
@@ -27,7 +29,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
         <>
             <Canvas shadows={isMobile ?  undefined :'basic'}
                     resize={{ debounce: 200 }}
-                    dpr={[1, 1.5]}
+                    dpr={1}
                     gl={{ antialias: false, powerPreference: "high-performance" }}
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 2000}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
@@ -43,21 +45,8 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                     position={[0, -46, 0]}/>
                 <LightsComponent/>
                 {/*<CameraMover/>*/}
-
-                <EffectComposer multisampling={isMobile ? 0 : undefined}>
-                    {/*{ !isMobile ? <DepthOfField*/}
-                    {/*    focusDistance={activeView === 'education' ? 0.01 : 10}*/}
-                    {/*    focalLength={0.52}    // طول لنز (هرچی بیشتر باشه، عمق میدان کمتر میشه)*/}
-                    {/*    bokehScale={activeView === 'education' ? 0.2 : 0}        // شدت بوکه (نقاط تار پشت صحنه)*/}
-                    {/*    height={480}          // کیفیت*/}
-                    {/*/> : <></>}*/}
-                    <Bloom intensity={isMobile ? 0.1 : 0.2}      // strength of bloom
-                        luminanceThreshold={0.2} // only glow emissive/bright materials
-                        mipmapBlur={!isMobile}             // smoother glow
-                    />
-                    {!isMobile ? <Noise opacity={0.025} /> : <></>}
-                    <Vignette eskil={false} offset={0.1} darkness={isMobile ? 0.05 : 0.07} />
-                </EffectComposer>
+                <PostFX isMobile={isMobile} />
+                {/*<SceneEffectComposer  />*/}
 
                 {/*<OrbitControls enablePan={true}*/}
                 {/*    // maxDistance={6}*/}
