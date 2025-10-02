@@ -32,9 +32,9 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
         <>
             <Canvas shadows={'soft'}
                     resize={{ debounce: 200 }}
-                    // dpr={[1, 1.5]}
+                    dpr={[1, 1.5]}
                     gl={{powerPreference: "high-performance" }}
-                    camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 2000}}
+                    camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 1500}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
                 <Environment files={'/models/dodge/envi.hdr'}/>
@@ -47,7 +47,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                     setActiveView={setActiveView}
                     activeView={activeView}
                     position={[0, -46, 0]}/>
-                <ambientLight intensity={isMobile ? 0.4 : 0.34}
+                <ambientLight intensity={isMobile ? 0.4 : 1.44}
                               position={[0, 900, 0]}
                               // ref={lightRef}
                               color={'#ffffff'}/>
@@ -56,7 +56,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                     color={'#fff'}
                     position={[ -595.6, 45.74, -660.5 ]} />
                 <CameraMover/>
-                <PostFX isMobile={isMobile} />
+                {/*<PostFX isMobile={isMobile} />*/}
                 {/*<SceneEffectComposer  />*/}
                 {/*<OrbitControls/>*/}
                 {/*{ isMobile ? <OrbitControls*/}

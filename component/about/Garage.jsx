@@ -45,7 +45,7 @@ export default function GarageModel(props) {
             {/*    castShadow /> : <></>}*/}
             <pointLight color={'#ffffff'}
                         intensity={21}
-                        casShadow
+                        // casShadow
                         decay={0.8}
                         position={[250,90,0]} />
             <GarageCeilingLight key={1}
