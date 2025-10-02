@@ -30,9 +30,11 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
         {
             // @ts-ignore
             <a.group >
-                <Text color={'#fff'} fontSize={16}
+                <Text color={'#ffffff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
-                      fillOpacity={0.8}
+                      fillOpacity={0.9}
+                      onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
+                      onPointerLeave={(e) => document.body.style.cursor = 'auto'}
                       onClick={() => setActiveView('initial')}
                       position={[isSmallMobile? 140 : -150,isSmallMobile ? -150 :0,isSmallMobile ? -50 :0]}
                       font="./fonts/Audiowide-Regular.ttf">
@@ -40,7 +42,9 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
                 </Text>
                 <Text color={'#ffffff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
-                      fillOpacity={0.8}
+                      fillOpacity={0.9}
+                      onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
+                      onPointerLeave={(e) => document.body.style.cursor = 'auto'}
                       position={[isSmallMobile ? 140 : -150,isSmallMobile ? -180 : -60,isSmallMobile ? -50 :0]}
                       onClick={() => setActiveView('skills')}
                       font="./fonts/Audiowide-Regular.ttf">
@@ -48,16 +52,18 @@ export const WorkExperience = ({activeView,setActiveView} : {activeView : TAbout
                 </Text>
                 <Text color={'#fff'} fontSize={16}
                       rotation={[0,Math.PI,0]}
-                      fillOpacity={0.8}
+                      fillOpacity={0.9}
+                      onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
+                      onPointerLeave={(e) => document.body.style.cursor = 'auto'}
                       position={[isSmallMobile ? 140 : -150,isSmallMobile ? -170 : -30,isSmallMobile ? -100 :0]}
                       onClick={() => setActiveView('education')}
                       font="./fonts/Audiowide-Regular.ttf">
                     Education
                 </Text>
                 <a.group >
-                    <CodintoSection />
-                    <IranCounterSection />
                     <SafeBrokerSection />
+                    <IranCounterSection />
+                    <CodintoSection />
                 </a.group>
             </a.group>
         }

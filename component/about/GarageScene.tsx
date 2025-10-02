@@ -1,6 +1,6 @@
 'use client'
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment} from "@react-three/drei";
+import {Environment, OrbitControls, useTexture} from "@react-three/drei";
 import React, {useRef, useState} from "react";
 import * as THREE from "three";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
@@ -10,6 +10,7 @@ import {WorkExperience} from "@/component/about/work-experienec/WorkExperience";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "react-responsive";
 import {IronManModel} from "@/component/about/skills/IronmanModel";
+import {PostFX} from "@/component/about/SceneEffectComposer";
 
 const EducationSection = dynamic(() => import("@/component/about/education/Education"),{ssr : false})
 const GarageModel = dynamic(() => import("@/component/about/Garage"),{ssr : false})
@@ -25,30 +26,32 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
         <>
             <Canvas shadows={'soft'}
                     resize={{ debounce: 200 }}
-                    dpr={[1, 1.5]}
+                    dpr={isMobile ? 1 : [1,1.15]}
                     gl={{powerPreference: "high-performance" }}
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 1500}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
                 <Environment files={'/models/dodge/envi.hdr'}/>
                 <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
-                { activeView === 'education' ? <EducationSection activeView={activeView} setActiveView={setActiveView}/> : <></>}
-                <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510,-50,-1000]} />
+                <EducationSection activeView={activeView} setActiveView={setActiveView}/>
+                { activeView === 'skills' ?
+                    <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510, -50, -1000]}/> : <></>}
                 {/*<CanvasLoader setReadyToLoad={setReadyToLoad}/>*/}
                 <CameraInitializer activeView={activeView} />
                 <GarageModel
                     setActiveView={setActiveView}
                     activeView={activeView}
                     position={[0, -46, 0]}/>
-                <ambientLight intensity={isMobile ? 0.4 : 1.44}
+                <ambientLight intensity={activeView === 'education' ? 0.1 : 0.4}
                               position={[0, 900, 0]}
                               // ref={lightRef}
                               color={'#ffffff'}/>
                 {/*<directionalLight*/}
                 {/*    intensity={0.5}*/}
                 {/*    color={'#fff'}*/}
-                {/*    position={[ -595.6, 45.74, -660.5 ]} />*/}
+                {/*    position={[ -595.6, 120.74, -660.5 ]} />*/}
                 <CameraMover/>
+
                 {/*<PostFX isMobile={isMobile} />*/}
                 {/*<SceneEffectComposer  />*/}
                 {/*<OrbitControls/>*/}
@@ -80,7 +83,7 @@ const CameraMover = () => {
     let v = new THREE.Vector3()
     useFrame(() => {
         if (isLerping.current) {
-            camera.position.lerp(v.set(camera.position.x + mouse.x , camera.position.y - mouse.y / 2, camera.position.z + 0.09), 0.09);
+            camera.position.lerp(v.set(camera.position.x + mouse.x * 1.2 , camera.position.y - mouse.y , camera.position.z + 0.09), 0.12);
         }
     });
 

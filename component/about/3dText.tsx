@@ -72,6 +72,8 @@ export function MyText3D(props : TMyText3DProps) {
                 position={props.position as any}
                 ref={textRef}
                 height={0.2} // Thickness
+                onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
+                onPointerLeave={(e) => document.body.style.cursor = 'auto'}
                 curveSegments={12}
                 bevelEnabled
                 receiveShadow={true}

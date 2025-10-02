@@ -5,7 +5,19 @@ import {TAboutMeActiveView} from "@/types";
 import * as gsap from "gsap";
 import {useMediaQuery} from "react-responsive";
 import {useProgress} from "@react-three/drei";
-
+// {
+//     "x": -430.3505468079077,
+//     "y": 22.163217778332307,
+//     "z": -33.2690725155351
+// }
+//
+// {
+//     "isEuler": true,
+//     "_x": 0.007477764261570695,
+//     "_y": 0.03619280405759103,
+//     "_z": -0.00027058721110696175,
+//     "_order": "XYZ"
+// }
 export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView }) => {
     const {camera, mouse} = useThree();
     const targetQuat = useRef(new THREE.Quaternion());
@@ -14,23 +26,26 @@ export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView
     const v = new THREE.Vector3();
     const { progress } = useProgress();
     useFrame(() => {
+        // console.log(camera.position,camera.rotation);
         // return
         switch (activeView) {
             case 'education' :
                 if(isMobile) {
-                    v.set(-327.5, 9.82, -65.51);
+                    v.set(-430.35, 22.163, -33.26);
                     targetQuat.current.setFromEuler(
-                        new THREE.Euler(0.026, 0.399,  -0.010, "XYZ")
+                        new THREE.Euler(0.0074, 0.0361,  -0.0002, "XYZ")
                     );
                 } else {
-                    v.set(-397.6, 4.74, -144.5);
+                    v.set(-437.48, 19.89, -107.8);
                     targetQuat.current.setFromEuler(
-                        new THREE.Euler(-0.006, 0.33, 0.002, "XYZ")
+                        new THREE.Euler(-0.14, 0.054, 0, "XYZ")
                     );
                 }
-
+                const mid = new THREE.Vector3().addVectors(camera.position, v).multiplyScalar(0.5);
+                mid.y += 5; // lift up mid point for an arc
                 camera.quaternion.slerp(targetQuat.current, 0.1);
-                camera.position.lerp(v, 0.1);
+                camera.position.lerpVectors(camera.position, mid, 0.1);
+                // camera.position.lerp(v, 0.1);
                 break;
             case 'skills' :
                 if(isSmallMobile) {

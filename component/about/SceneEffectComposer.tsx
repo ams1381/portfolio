@@ -10,7 +10,7 @@ export function PostFX({ isMobile } : {isMobile : boolean}) {
             {/*    mipmapBlur={!isMobile}*/}
             {/*/>*/}
             {/*{!isMobile ? <Noise opacity={0.035} /> : <></>}*/}
-            <Vignette  offset={0.6} darkness={isMobile ? 0.05 : 0.07} />
+            <Vignette  offset={0.6} darkness={isMobile ? 0.05 : 0.67} />
         </EffectComposer>
     ), [isMobile]);
 

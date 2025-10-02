@@ -7,20 +7,41 @@ Source: https://sketchfab.com/3d-models/dodge-challenger-srt-demon-sdc-54d229c2c
 Title: Dodge Challenger SRT DEMON SDC
 */
 
-import React, {useMemo} from 'react'
-import { useGLTF } from '@react-three/drei'
+import React, {useMemo, useRef} from 'react'
+import {useGLTF, useHelper} from '@react-three/drei'
 import {OptimizedMesh} from "@/component/OptimizedMesh";
+import {PointLightHelper} from "three";
+import {ChallengerLEDSegment, LightRing} from "@/component/about/car/LightRing";
 
 
 export default function CarM1(props) {
     const { nodes, materials } = useGLTF('/models/dodge/optimized.glb',true,true)
+    const lightRef = useRef(null);
+    useHelper(lightRef,PointLightHelper,1)
     const meshes = useMemo(() => (
         <group {...props}>
             <OptimizedMesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
             <OptimizedMesh castShadow geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
             <OptimizedMesh castShadow geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
             <OptimizedMesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <OptimizedMesh castShadow geometry={nodes.Object_69.geometry} material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />
+            {/*<OptimizedMesh  geometry={nodes.Object_69.geometry}*/}
+            {/*                material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />*/}
+            <OptimizedMesh
+                geometry={nodes.Object_69.geometry}
+                rotation={[-1.586, 0, 0]}
+                scale={0.025}>
+                <meshStandardMaterial color={"#ff0000"}
+                                      emissive={"#c00000"}
+                                      emissiveIntensity={1.5}
+                                      roughness={1.4} metalness={0.6} />
+            </OptimizedMesh>
+            {/*<pointLight color={'red'}*/}
+            {/*            intensity={15}*/}
+            {/*            position={[0,4,-5.9]}*/}
+            {/*            decay={0.9} />*/}
+            <LightRing position={[-1.89,1.87,5.5]} scale={0.16} />
+            <LightRing position={[1.89,1.87,5.5]} scale={0.16} />
+            {/*<ChallengerLEDSegment position={[-1.2,2.2,-6]} />*/}
         </group>
     ), [nodes, materials, props]);
 

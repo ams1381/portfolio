@@ -26,20 +26,6 @@ export const ProjectItem = (props : IProjectItemProps) => {
     const [hovered, setHovered] = useState<boolean>(true);
 
     const onClickHandler = (href : string) => {
-        // setSelected(prevState => !prevState);
-        // props.setScrollEnabled(prevState => !prevState);
-        // if(selected) {
-        //     setTextOpacity(0.7)
-        // } else
-        //     setTextOpacity(1);
-        // setSelected(prevState => !prevState);
-
-        // props.setScrollEnabled(prevState => !prevState);
-        // setTargetPos(new THREE.Vector3(
-        //     props.position[0] + 1,       // keep original x
-        //     props.position[1] + 1,   // move up
-        //     props.position[2] - 2    // go deeper (negative z)
-        // ));
         let LinkElement = document.createElement('a');
         LinkElement.className = 'hover:text-[red] transition-all'
         Object.assign(LinkElement, {
