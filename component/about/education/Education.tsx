@@ -23,7 +23,7 @@ const EducationSection = ({setActiveView,activeView}: { setActiveView: any,activ
     return (
         <a.group scale={springs.scale} position={springs.position as any}>
             <pointLight
-                intensity={isMobile ? 8 : 35}
+                intensity={activeView === 'education' ? isMobile ? 8 : 12 : 0}
                 color={"#ffffff"}
                 distance={25}
                 decay={0.8}

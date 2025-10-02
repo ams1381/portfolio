@@ -1,23 +1,16 @@
 'use client'
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment, OrbitControls, useHelper} from "@react-three/drei";
-import React, {Suspense, useRef, useState} from "react";
+import {Environment} from "@react-three/drei";
+import React, {useRef, useState} from "react";
 import * as THREE from "three";
-import {DirectionalLightHelper} from "three";
-// import {GarageModel} from "@/component/about/Garage";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
-import {CanvasLoader} from "@/component/CanvasLoader";
-import {useControls} from "leva";
-import {Bloom, DepthOfField, EffectComposer, Noise, Vignette} from "@react-three/postprocessing";
 import {TAboutMeActiveView} from "@/types";
 import { useWindowSize } from "@uidotdev/usehooks";
-// import {EducationSection} from "@/component/about/education/Education";
 import {WorkExperience} from "@/component/about/work-experienec/WorkExperience";
 import dynamic from "next/dynamic";
 import {useMediaQuery} from "react-responsive";
-import {PostFX} from "@/component/about/SceneEffectComposer";
 import {IronManModel} from "@/component/about/skills/IronmanModel";
-// import SceneEffectComposer from "@/component/about/SceneEffectComposer";
+
 const EducationSection = dynamic(() => import("@/component/about/education/Education"),{ssr : false})
 const GarageModel = dynamic(() => import("@/component/about/Garage"),{ssr : false})
 
@@ -39,7 +32,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
 
                 <Environment files={'/models/dodge/envi.hdr'}/>
                 <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
-                <EducationSection activeView={activeView} setActiveView={setActiveView}/>
+                { activeView === 'education' ? <EducationSection activeView={activeView} setActiveView={setActiveView}/> : <></>}
                 <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510,-50,-1000]} />
                 {/*<CanvasLoader setReadyToLoad={setReadyToLoad}/>*/}
                 <CameraInitializer activeView={activeView} />
@@ -51,10 +44,10 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                               position={[0, 900, 0]}
                               // ref={lightRef}
                               color={'#ffffff'}/>
-                <directionalLight
-                    intensity={activeView === 'education' ? 0.5 : 0}
-                    color={'#fff'}
-                    position={[ -595.6, 45.74, -660.5 ]} />
+                {/*<directionalLight*/}
+                {/*    intensity={0.5}*/}
+                {/*    color={'#fff'}*/}
+                {/*    position={[ -595.6, 45.74, -660.5 ]} />*/}
                 <CameraMover/>
                 {/*<PostFX isMobile={isMobile} />*/}
                 {/*<SceneEffectComposer  />*/}

@@ -22,7 +22,7 @@ export default function GarageModel(props) {
             />
             <SceneController activeView={props.activeView} setActiveView={props.setActiveView}/>
             <pointLight
-                intensity={40}
+                intensity={4}
                 scale={1}
                 decay={0.8}
                 position={props.activeView === 'education' ? [ -500.6, 222.74, -360.5 ] :
@@ -52,21 +52,20 @@ export default function GarageModel(props) {
                                 helperLightColor={'red'}
                                 pointLightDecay={1}
                                 casShadow={true}
-                                scale={props.activeView === 'education' || props.activeView === 'skills' ? 0 : 1}
+                                scale={1}
                                 position={[-472, 227, -125]}/>
             <GarageCeilingLight key={2}
                                 helperLightColor={'blue'}
                                 pointLightDecay={1}
                                 casShadow={true}
-                                scale={props.activeView === 'education' || props.activeView === 'skills' ? 0 : 1}
+                                scale={1}
                                 position={[-472, 229, 90]}/>
             <GarageCeilingLight key={3}
                                 helperLightColor={'green'}
                                 pointLightDecay={1}
                                 casShadow={true}
-                                scale={props.activeView === 'skills' ? 0 : 1}
+                                scale={1}
                                 position={[-471, 224, -335]}/>
-
             <GarageCeilingLight key={4}
                                 helperLightColor={'brown'}
                                 pointLightDecay={1}
@@ -75,25 +74,24 @@ export default function GarageModel(props) {
             <GarageCeilingLight key={5}
                                 helperLightColor={'yellow'}
                                 pointLightDecay={1}
-                                scale={props.activeView === 'education' || props.activeView === 'skills' ? 1 : 0}
+                                scale={1}
                                 position={[-472, 235, -780]}/>
             <GarageCeilingLight key={5}
                                 helperLightColor={'yellow'}
                                 pointLightDecay={1}
-                                pointLightIntensity={props.activeView === 'education' || props.activeView === 'skills' ? 70 : 1}
+                                pointLightIntensity={1}
                                 scale={props.activeView === 'education' || props.activeView === 'skills' ? 1 : 0}
                                 position={[-472, 235, -965]}/>
             <GarageCeilingLight key={5}
                                 helperLightColor={'yellow'}
                                 pointLightDecay={1}
-                                pointLightIntensity={props.activeView === 'education' || props.activeView === 'skills' ? 70 : 1}
+                                pointLightIntensity={1}
                                 scale={props.activeView === 'education' || props.activeView === 'skills' ? 1 : 0}
                                 position={[-472, 235, -965]}/>
             <GarageCeilingLight key={5}
                                 helperLightColor={'yellow'}
                                 pointLightDecay={1}
-                                pointLightIntensity={props.activeView === 'education' || props.activeView === 'skills' ? 70 : 1}
-                                scale={props.activeView === 'education' || props.activeView === 'skills' ? 1 : 0}
+                                scale={1}
                                 position={[-472, 235, -1146]}/>
             {/*<mesh  geometry={nodes.Object_2.geometry} material={materials.Demirler} rotation={[-Math.PI / 2, 0, 0]} />*/}
             <OptimizedMesh geometry={nodes.Object_3.geometry}
