@@ -14,8 +14,6 @@ export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView
     const v = new THREE.Vector3();
     // const { progress } = useProgress();
     useFrame(() => {
-        // console.log(camera.position,camera.rotation);
-        // return
         switch (activeView) {
             case 'education' :
                 if(isMobile) {

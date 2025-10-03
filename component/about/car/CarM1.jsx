@@ -9,24 +9,23 @@ Title: Dodge Challenger SRT DEMON SDC
 
 import React, {useMemo, useRef} from 'react'
 import {useGLTF, useHelper} from '@react-three/drei'
-import {OptimizedMesh} from "@/component/OptimizedMesh";
 import {PointLightHelper} from "three";
 import {ChallengerLEDSegment, LightRing} from "@/component/about/car/LightRing";
 
 
 export default function CarM1(props) {
-    const { nodes, materials } = useGLTF('/models/dodge/optimized.glb',true,true)
+    const { nodes, materials } = useGLTF('/models/dodge/optimized.glb')
     const lightRef = useRef(null);
     useHelper(lightRef,PointLightHelper,1)
     const meshes = useMemo(() => (
         <group {...props}>
-            <OptimizedMesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <OptimizedMesh castShadow geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <OptimizedMesh castShadow geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <OptimizedMesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
-            {/*<OptimizedMesh  geometry={nodes.Object_69.geometry}*/}
+            <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
+            <mesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
+            {/*<mesh  geometry={nodes.Object_69.geometry}*/}
             {/*                material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />*/}
-            <OptimizedMesh
+            <mesh
                 geometry={nodes.Object_69.geometry}
                 rotation={[-1.586, 0, 0]}
                 scale={0.025}>
@@ -34,7 +33,7 @@ export default function CarM1(props) {
                                       emissive={"#c00000"}
                                       emissiveIntensity={1.5}
                                       roughness={1.4} metalness={0.6} />
-            </OptimizedMesh>
+            </mesh>
             {/*<pointLight color={'red'}*/}
             {/*            intensity={15}*/}
             {/*            position={[0,4,-5.9]}*/}
@@ -48,5 +47,5 @@ export default function CarM1(props) {
     return meshes;
 }
 
-// useGLTF.preload('/models/dodge/output.glb',true,true)
-useGLTF.preload('/models/dodge/optimized.glb',true,true)
+// useGLTF.preload('/models/dodge/output.gl)
+useGLTF.preload('/models/dodge/optimized.glb')
