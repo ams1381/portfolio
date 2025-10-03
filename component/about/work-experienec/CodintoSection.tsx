@@ -40,14 +40,14 @@ const CodintoSection = () => {
             </mesh>
             <Text fontSize={isMobile ? 8 : 11}
                   rotation={[0,Math.PI,0]}
-                  position={[isMobile ? 171 :  -75,35,-1]}
+                  position={[isMobile ? -60 :  -75,35,-1]}
                   color={"#5e53c7"}
                   font="./fonts/Audiowide-Regular.ttf">
                 Codinto
             </Text>
             <Text fontSize={isMobile ? 6 : 8}
                   rotation={[0,Math.PI,0]}
-                  position={[isMobile ? 165 : -83,isMobile ? 42 : 21,-1]}
+                  position={[isMobile ? -66 : -83,isMobile ? 22 : 21,-1]}
                   fillOpacity={0.95}
                   color={"#ffffff"}
                   font="./fonts/Audiowide-Regular.ttf">
@@ -58,7 +58,7 @@ const CodintoSection = () => {
                   fillOpacity={0.95}
                   color={"#ffffff"}
                   maxWidth={isMobile ? 130 : 235}
-                  position={[isMobile ? 124 : -170,-9,-1]}
+                  position={[isMobile ? -108 : -170,-9,-1]}
 
                   font="./fonts/Audiowide-Regular.ttf">
                 As a front - end developer I was responsible for creating advanced web applications using tools like Next JS and React JS.

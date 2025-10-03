@@ -13,7 +13,7 @@ const SafeBrokerSection = dynamic(() => import("@/component/about/work-experiene
 
 export const WorkExperience = ({activeView,setActiveView} : {activeView : TAboutMeActiveView,setActiveView : any}) => {
     const springs : any = useSpring({
-        opacity: activeView === "education" ? 1 : 0,
+        opacity: activeView === "workExperience" ? 1 : 0,
         config: { mass: 1, tension: 200, friction: 25 , duration : 400  },
         scale: activeView === "workExperience" ? 1 : 0,
     });

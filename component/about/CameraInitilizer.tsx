@@ -4,27 +4,15 @@ import * as THREE from 'three';
 import {TAboutMeActiveView} from "@/types";
 import * as gsap from "gsap";
 import {useMediaQuery} from "react-responsive";
-import {useProgress} from "@react-three/drei";
-// {
-//     "x": -430.3505468079077,
-//     "y": 22.163217778332307,
-//     "z": -33.2690725155351
-// }
-//
-// {
-//     "isEuler": true,
-//     "_x": 0.007477764261570695,
-//     "_y": 0.03619280405759103,
-//     "_z": -0.00027058721110696175,
-//     "_order": "XYZ"
-// }
+
+
 export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView }) => {
     const {camera, mouse} = useThree();
     const targetQuat = useRef(new THREE.Quaternion());
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const isSmallMobile = useMediaQuery({query: '(max-width: 480px)'});
     const v = new THREE.Vector3();
-    const { progress } = useProgress();
+    // const { progress } = useProgress();
     useFrame(() => {
         // console.log(camera.position,camera.rotation);
         // return
@@ -49,14 +37,14 @@ export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView
                 break;
             case 'skills' :
                 if(isSmallMobile) {
-                    v.set(-299.203, 4.981, -91.53);
+                    v.set(85.39, 91.47, 186.25);
                     targetQuat.current.setFromEuler(
-                        new THREE.Euler(0.145, 0.521,  -0.072, "XYZ")
+                        new THREE.Euler(-0.388, -1.29,  -0.375, "XYZ")
                     );
                 }  else {
-                    v.set(-360, 61.26, -600.77);
+                    v.set(209.579, 115.185, 104.54);
                     targetQuat.current.setFromEuler(
-                        new THREE.Euler(-0.12, 0.27, 0.035, "XYZ")
+                        new THREE.Euler(-0.672, -1.252, -0.647, "XYZ")
                     );
                 }
 

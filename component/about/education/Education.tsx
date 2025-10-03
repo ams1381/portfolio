@@ -35,7 +35,7 @@ const EducationSection = ({setActiveView,activeView}: { setActiveView: any,activ
             <HighSchoolLogo />
             {
                 // @ts-ignore
-                <a.group opacity={springs.opacity as any} position={[-65,-15,40]} >
+                <a.group opacity={springs.opacity as any} position={isMobile ? [-60,10,40] : [-65,-15,40]} >
 
                     <EducationText
                         text={"<- Back"}

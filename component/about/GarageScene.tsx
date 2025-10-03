@@ -1,19 +1,19 @@
 'use client'
+
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment, OrbitControls, useTexture} from "@react-three/drei";
+import {Environment, OrbitControls} from "@react-three/drei";
 import React, {useRef, useState} from "react";
 import * as THREE from "three";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
 import {TAboutMeActiveView} from "@/types";
 import { useWindowSize } from "@uidotdev/usehooks";
 import {WorkExperience} from "@/component/about/work-experienec/WorkExperience";
-import dynamic from "next/dynamic";
 import {useMediaQuery} from "react-responsive";
 import {IronManModel} from "@/component/about/skills/IronmanModel";
-import {PostFX} from "@/component/about/SceneEffectComposer";
+import EducationSection from "@/component/about/education/Education";
+import GarageModel from "@/component/about/Garage";
+import {SkillSection} from "@/component/about/skills/SkillSection";
 
-const EducationSection = dynamic(() => import("@/component/about/education/Education"),{ssr : false})
-const GarageModel = dynamic(() => import("@/component/about/Garage"),{ssr : false})
 
 // scale={72} position={[-500,0,-150]} rotation={[0,100,0]}
 export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
@@ -32,10 +32,11 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
                 <Environment files={'/models/dodge/envi.hdr'}/>
+                <SkillSection setActiveView={setActiveView} activeView={activeView} />
                 <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
                 <EducationSection activeView={activeView} setActiveView={setActiveView}/>
-                { activeView === 'skills' ?
-                    <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510, -50, -1000]}/> : <></>}
+                {/*{ activeView === 'skills' ?*/}
+                {/*    <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510, -50, -1000]}/> : <></>}*/}
                 {/*<CanvasLoader setReadyToLoad={setReadyToLoad}/>*/}
                 <CameraInitializer activeView={activeView} />
                 <GarageModel
@@ -52,8 +53,6 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                 {/*    position={[ -595.6, 120.74, -660.5 ]} />*/}
                 <CameraMover/>
 
-                {/*<PostFX isMobile={isMobile} />*/}
-                {/*<SceneEffectComposer  />*/}
                 {/*<OrbitControls/>*/}
                 {/*{ isMobile ? <OrbitControls*/}
                 {/*    // position={[-582.61, 26.13,-796.97]}*/}
