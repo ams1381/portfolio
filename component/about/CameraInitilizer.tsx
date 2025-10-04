@@ -35,9 +35,9 @@ export const CameraInitializer = ({activeView}: { activeView: TAboutMeActiveView
                 break;
             case 'skills' :
                 if(isSmallMobile) {
-                    v.set(85.39, 91.47, 186.25);
+                    v.set(85.39, 126.066, 47.716);
                     targetQuat.current.setFromEuler(
-                        new THREE.Euler(-0.388, -1.29,  -0.375, "XYZ")
+                        new THREE.Euler(-1.734, -1.321,  -1.739, "XYZ")
                     );
                 }  else {
                     v.set(209.579, 115.185, 104.54);

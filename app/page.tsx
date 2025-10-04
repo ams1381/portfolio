@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect, useRef, useState} from "react";
-import {PreLoader} from "@/component/layout/PreLoader";
+import PreLoader from "@/component/layout/PreLoader";
 import {Header} from "@/component/layout/Header";
 import {Footer} from "@/component/layout/Footer";
 import dynamic from "next/dynamic";

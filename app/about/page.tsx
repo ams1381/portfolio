@@ -4,7 +4,7 @@ import {SkillsList} from "@/data/skills";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import React, {Suspense, useState} from "react";
-import {PreLoader} from "@/component/layout/PreLoader";
+import PreLoader from "@/component/layout/PreLoader";
 const BackScene : any = dynamic(() => import('@/component/about/BackScene'), {
     ssr: false,
 })

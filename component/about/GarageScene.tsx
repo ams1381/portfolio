@@ -27,7 +27,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
             <Canvas shadows={'soft'}
                     resize={{ debounce: 200 }}
                     dpr={isMobile ? 1 : [1,1.15]}
-                    gl={{powerPreference: "high-performance" }}
+                    gl={{powerPreference: "high-performance" ,antialias : !isMobile}}
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 1500}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 

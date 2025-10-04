@@ -2,7 +2,7 @@
 import dynamic from "next/dynamic";
 import {Canvas} from "@react-three/fiber";
 import React, {useEffect, useRef, useState} from "react";
-import {PreLoader} from "@/component/layout/PreLoader";
+import PreLoader from "@/component/layout/PreLoader";
 
 const ProjectsShader : any = dynamic(() => import('@/component/projects/ProjectsShader'), {
     ssr: false,

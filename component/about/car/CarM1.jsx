@@ -14,7 +14,7 @@ import {ChallengerLEDSegment, LightRing} from "@/component/about/car/LightRing";
 
 
 export default function CarM1(props) {
-    const { nodes, materials } = useGLTF('/models/dodge/optimized.glb')
+    const { nodes, materials } = useGLTF('/models/dodge/Untitled.glb')
     const lightRef = useRef(null);
     useHelper(lightRef,PointLightHelper,1)
     const meshes = useMemo(() => (
@@ -48,4 +48,4 @@ export default function CarM1(props) {
 }
 
 // useGLTF.preload('/models/dodge/output.gl)
-useGLTF.preload('/models/dodge/optimized.glb')
+useGLTF.preload('/models/dodge/Untitled.glb')
