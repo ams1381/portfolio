@@ -51,7 +51,7 @@ export const ProjectItem = (props : IProjectItemProps) => {
         <Shader
             image={props.src}
             position={[x,y,z] as Vector3}
-            planeArgs={[0.2, 0.2, 8, 8]}
+            planeArgs={[0.3, 0.3, 8, 8]}
             planeRotation={[0, 0, 0]}
             wireframe={false}
             pointer={false}

@@ -79,7 +79,7 @@ const ProjectsShader: any = ({setReadyToLoad}: { setReadyToLoad: any  }) => {
             />
 
             <ScrollControls
-                pages={7.3}
+                pages={6.3}
                 distance={1}
                 damping={0.3}
 

@@ -27,7 +27,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
             <Canvas shadows={'soft'}
                     resize={{ debounce: 200 }}
                     dpr={isMobile ? 1 : [1,1.15]}
-                    gl={{powerPreference: "high-performance" ,antialias : !isMobile}}
+                    gl={{powerPreference: "high-performance" }}
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 1500}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
@@ -43,7 +43,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                     setActiveView={setActiveView}
                     activeView={activeView}
                     position={[0, -46, 0]}/>
-                <ambientLight intensity={activeView === 'education' ? 0.1 : 0.4}
+                <ambientLight intensity={0.4}
                               position={[0, 900, 0]}
                               // ref={lightRef}
                               color={'#ffffff'}/>

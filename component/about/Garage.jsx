@@ -14,8 +14,7 @@ const CarM1 = dynamic(() =>
 export default function GarageModel(props) {
     const {nodes, materials} = useGLTF('/models/garage/output.glb', true, true);
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
-    const lightRef = useRef(null);
-    useHelper(lightRef,PointLightHelper,10)
+
     return (
         <group {...props} casShadow>
             <mesh position={[0,0,-1]}>
@@ -28,13 +27,12 @@ export default function GarageModel(props) {
             />
             <SceneController activeView={props.activeView} setActiveView={props.setActiveView}/>
             <pointLight
-                intensity={props.activeView === 'education' ? 10 : 30}
+                intensity={props.activeView === 'education' ? 20 : 30}
                 scale={1}
                 decay={0.8}
-                ref={lightRef}
                 position={props.activeView === 'education' ? [ -500.6, 222.74, -360.5 ] :
                     props.activeView === 'initial' ? [-472, 222, -590] : [-510,90,-700]}
-                color={"#ffd2d2"}
+                color={"#ffffff"}
                 castShadow />
             <pointLight color={'#eeeeee'}
                         intensity={10}
