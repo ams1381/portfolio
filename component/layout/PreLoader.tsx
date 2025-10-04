@@ -17,4 +17,4 @@ const PreLoader = () => {
     </div>
 }
 
-export default memo(PreLoader);
+export default (PreLoader);
