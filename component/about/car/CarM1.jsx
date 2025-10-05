@@ -15,8 +15,6 @@ import {ChallengerLEDSegment, LightRing} from "@/component/about/car/LightRing";
 
 export default function CarM1(props) {
     const { nodes, materials } = useGLTF('/models/dodge/Untitled.glb')
-    const lightRef = useRef(null);
-    useHelper(lightRef,PointLightHelper,1)
     const meshes = useMemo(() => (
         <group {...props}>
             <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />

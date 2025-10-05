@@ -1,7 +1,7 @@
 'use client'
 
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment, OrbitControls} from "@react-three/drei";
+import {Environment, OrbitControls, useHelper} from "@react-three/drei";
 import React, {useRef, useState} from "react";
 import * as THREE from "three";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
@@ -12,6 +12,7 @@ import {useMediaQuery} from "react-responsive";
 import EducationSection from "@/component/about/education/Education";
 import GarageModel from "@/component/about/Garage";
 import {SkillSection} from "@/component/about/skills/SkillSection";
+import {DirectionalLightHelper} from "three";
 
 
 // scale={72} position={[-500,0,-150]} rotation={[0,100,0]}
@@ -20,6 +21,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
     const {height} = useWindowSize();
 
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
+
 
     return (
         <>
@@ -46,10 +48,7 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                               position={[0, 900, 0]}
                               // ref={lightRef}
                               color={'#ffffff'}/>
-                {/*<directionalLight*/}
-                {/*    intensity={0.5}*/}
-                {/*    color={'#fff'}*/}
-                {/*    position={[ -595.6, 120.74, -660.5 ]} />*/}
+
                 <CameraMover/>
 
                 {/*<OrbitControls/>*/}
