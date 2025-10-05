@@ -9,7 +9,6 @@ import {TAboutMeActiveView} from "@/types";
 import { useWindowSize } from "@uidotdev/usehooks";
 import {WorkExperience} from "@/component/about/work-experienec/WorkExperience";
 import {useMediaQuery} from "react-responsive";
-import {IronManModel} from "@/component/about/skills/IronmanModel";
 import EducationSection from "@/component/about/education/Education";
 import GarageModel from "@/component/about/Garage";
 import {SkillSection} from "@/component/about/skills/SkillSection";

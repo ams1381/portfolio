@@ -22,18 +22,19 @@ export default function CarM1(props) {
             <mesh castShadow geometry={nodes.Object_4.geometry} material={materials.PaletteMaterial001} rotation={[-1.586, 0, 0]} scale={0.025} />
             <mesh castShadow geometry={nodes.Object_5.geometry} material={materials.Carbone} rotation={[-1.586, 0, 0]} scale={0.025} />
             <mesh castShadow geometry={nodes.Object_7.geometry} material={materials.PaletteMaterial002} rotation={[-1.586, 0, 0]} scale={0.025} />
-            <mesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
-            {/*<mesh  geometry={nodes.Object_69.geometry}*/}
-            {/*                material={materials.PaletteMaterial004} rotation={[-1.586, 0, 0]} scale={0.025} />*/}
-            <mesh
-                geometry={nodes.Object_69.geometry}
-                rotation={[-1.586, 0, 0]}
-                scale={0.025}>
-                <meshStandardMaterial color={"#ff0000"}
-                                      emissive={"#c00000"}
-                                      emissiveIntensity={1.5}
-                                      roughness={1.4} metalness={0.6} />
-            </mesh>
+            {props.activeView === 'education' ? <></> :
+                <>
+                    <mesh castShadow geometry={nodes.Object_53.geometry} material={materials.PaletteMaterial003} rotation={[-1.586, 0, 0]} scale={0.025} />
+                    <mesh
+                        geometry={nodes.Object_69.geometry}
+                        rotation={[-1.586, 0, 0]}
+                        scale={0.025}>
+                        <meshStandardMaterial color={"#ff0000"}
+                                              emissive={"#c00000"}
+                                              emissiveIntensity={1.5}
+                                              roughness={1.4} metalness={0.6} />
+                    </mesh>
+                </>}
             {/*<pointLight color={'red'}*/}
             {/*            intensity={15}*/}
             {/*            position={[0,4,-5.9]}*/}
