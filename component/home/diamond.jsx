@@ -11,7 +11,7 @@ export function Diamond(props) {
     const group = useRef()
 
     // Load the diamond model (geometry + materials) from GLTF
-    const { nodes, materials } = useGLTF('/models/diamond/diamond1.gltf');
+    const { nodes, materials } = useGLTF('./models/diamond/diamond1.gltf');
 
     // Store environment map (HDR texture)
     const [envMap, setEnvMap] = useState(null);
@@ -36,7 +36,7 @@ export function Diamond(props) {
 
     // Load HDR environment map for reflections/refractions
     useEffect(() => {
-        const newTexture = new RGBELoader().load('/models/diamond/env.hdr', (texture) => {
+        const newTexture = new RGBELoader().load('./models/diamond/env.hdr', (texture) => {
             texture.mapping = THREE.EquirectangularReflectionMapping; // makes HDR usable as env map
             texture.encoding = THREE.sRGBEncoding; // proper color space
             texture.anisotropy = 6; // improves clarity at oblique angles (costly)

@@ -30,7 +30,7 @@ const LandingScene = memo(({setReadyToLoad, pageStatus}) => {
             {/*<pointLight position={[-1, 2, 4.8]} intensity={3}  distance={10} color={'rgba(255,0,0,0.71)'}  />*/}
             {/*<pointLight position={[1, 1, 4]} intensity={10} distance={20} color={'rgb(255,255,255)'} />*/}
             {/*    { pageStatus === 'projects' && <pointLight position={[1, 1, 2.9]} intensity={3} distance={20} color={'rgba(241,243,255,0.83)'} />}*/}
-            <Environment files={'/models/diamond/env.hdr'} />
+            <Environment files={'./models/diamond/env.hdr'} />
             <DiamondModel pageStatus={pageStatus}/>
             {!isMobile && <Title pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</Title>}
             {!isMobile && <TitleL pageStatus={pageStatus}>{`AMIR MOHAMMAD`}</TitleL>}
