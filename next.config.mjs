@@ -3,6 +3,11 @@
 
 const nextConfig = {
     output : 'export' ,
+    basePath: "/portfolio",
+    assetPrefix: "/portfolio/",
+    images: {
+        unoptimized: true,
+    },
     webpack: (config, { isServer }) => {
         config.module.rules.push({
             test: /\.(glsl|vs|fs|vert|frag)$/,
