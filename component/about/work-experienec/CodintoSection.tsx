@@ -25,8 +25,8 @@ const CodintoSection = () => {
         <group position={[230, -130, -0.4]}>
             <mesh scale={15} position={[0, 2, -0.4]}
                   onClick={onClickHandler}
-                  onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
-                  onPointerLeave={(e) => document.body.style.cursor = 'auto'}
+                  onPointerEnter={() => document.body.style.cursor = 'pointer'}
+                  onPointerLeave={() => document.body.style.cursor = 'auto'}
                   rotation={[3.25, -1.56, 1.69]}>
                 {/*<pointLight intensity={10}*/}
                 {/*            position={[0,-2,0]}*/}

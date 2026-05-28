@@ -37,8 +37,8 @@ export default function CarM1(props) {
             {/*            intensity={15}*/}
             {/*            position={[0,4,-5.9]}*/}
             {/*            decay={0.9} />*/}
-            <LightRing position={[-1.89,1.87,5.5]} scale={0.16} />
-            <LightRing position={[1.89,1.87,5.5]} scale={0.16} />
+            <LightRing position={[-1.89,1.87,5.5]} intensity={2} color={'red'} scale={0.16} />
+            <LightRing position={[1.89,1.87,5.5]} intensity={2} color={'red'} scale={0.16} />
             {/*<ChallengerLEDSegment position={[-1.2,2.2,-6]} />*/}
         </group>
     ), [nodes, materials, props]);

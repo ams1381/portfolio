@@ -13,6 +13,7 @@ import EducationSection from "@/component/about/education/Education";
 import GarageModel from "@/component/about/Garage";
 import {SkillSection} from "@/component/about/skills/SkillSection";
 import {DirectionalLightHelper} from "three";
+import {PostFX} from "@/component/about/SceneEffectComposer";
 
 
 // scale={72} position={[-500,0,-150]} rotation={[0,100,0]}
@@ -50,7 +51,6 @@ export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
                               color={'#ffffff'}/>
 
                 <CameraMover/>
-
                 {/*<OrbitControls/>*/}
                 {/*{ isMobile ? <OrbitControls*/}
                 {/*    // position={[-582.61, 26.13,-796.97]}*/}

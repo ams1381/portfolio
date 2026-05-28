@@ -26,8 +26,9 @@ const SafeBrokerSection = () => {
 
     return <group position={[230, 20, -0.4]}>
         <mesh scale={15} position={[0,4,0]}
-              onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
-              onPointerLeave={(e) => document.body.style.cursor = 'auto'}
+              onClick={onClickHandler}
+              onPointerEnter={() => document.body.style.cursor = 'pointer'}
+              onPointerLeave={() => document.body.style.cursor = 'auto'}
               rotation={[3.25, -1.56, 1.69]}>
             {/*<pointLight intensity={10}*/}
             {/*            position={[0,-2,0]}*/}

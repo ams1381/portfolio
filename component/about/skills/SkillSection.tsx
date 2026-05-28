@@ -49,7 +49,9 @@ export const SkillSection = ({activeView, setActiveView}: { activeView: TAboutMe
         <pointLight color={'#fff'}
                     position={[-264, 7, 185]}
                     decay={1}
-                    intensity={activeView === 'skills' ? 60 : 0}/>
+                    intensity={60}
+                    // intensity={activeView === 'skills' ? 60 : 0}
+        />
         {SkillsList.map((item, i) => (
             <SkillsItem key={i} {...item}  />
         ))}

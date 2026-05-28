@@ -30,8 +30,8 @@ const IranCounterSection = () => {
                     color={'#dee9ff'}
                     scale={0.8} />
         <mesh scale={15} onClick={onClickHandler}
-              onPointerEnter={(e) => document.body.style.cursor = 'pointer'}
-              onPointerLeave={(e) => document.body.style.cursor = 'auto'}
+              onPointerEnter={() => document.body.style.cursor = 'pointer'}
+              onPointerLeave={() => document.body.style.cursor = 'auto'}
               position={[230,-54,0]}>
             <primitive object={geometry} attach="geometry" />
             <meshBasicMaterial map={texture} transparent />

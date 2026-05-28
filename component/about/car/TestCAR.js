@@ -41,8 +41,8 @@ export function TestCar(props) {
             {/*                          roughness={1.4} metalness={0.6} />*/}
             {/*</mesh>*/}
             <mesh castShadow geometry={nodes.Object_42.geometry} material={materials.Tire}/>
-            <LightRing position={[-0.75, 0.56, 2.28]} intensity={50} scale={0.07}/>
-            <LightRing position={[0.75, 0.56, 2.28]} intensity={50} scale={0.07}/>
+            <LightRing position={[-0.75, 0.56, 2.28]} intensity={2} scale={0.07}/>
+            <LightRing position={[0.75, 0.56, 2.28]} intensity={2} scale={0.07}/>
             <pointLight color={'#dc0000'}
                         position={[0.5, 0.75, -2.6]}
                         intensity={props.activeView === 'initial' ? 4 : 0} decay={0.65}/>
