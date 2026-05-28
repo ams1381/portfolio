@@ -1,6 +1,5 @@
 'use client'
-import React, {SetStateAction} from "react";
-import {TPageStatus} from "@/app/page";
+import React from "react";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
 

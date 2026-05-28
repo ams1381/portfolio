@@ -1,7 +1,7 @@
 'use client'
 
 import {Canvas, useFrame, useThree} from "@react-three/fiber";
-import {Environment, OrbitControls, useHelper} from "@react-three/drei";
+import {Environment} from "@react-three/drei";
 import React, {useRef, useState} from "react";
 import * as THREE from "three";
 import {CameraInitializer} from "@/component/about/CameraInitilizer";
@@ -12,17 +12,12 @@ import {useMediaQuery} from "react-responsive";
 import EducationSection from "@/component/about/education/Education";
 import GarageModel from "@/component/about/Garage";
 import {SkillSection} from "@/component/about/skills/SkillSection";
-import {DirectionalLightHelper} from "three";
-import {PostFX} from "@/component/about/SceneEffectComposer";
 
-
-// scale={72} position={[-500,0,-150]} rotation={[0,100,0]}
-export default function GarageScene({setReadyToLoad}: { setReadyToLoad: any }) {
+export default function GarageScene() {
     const [activeView,setActiveView] = useState<TAboutMeActiveView>('initial');
     const {height} = useWindowSize();
 
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
-
 
     return (
         <>

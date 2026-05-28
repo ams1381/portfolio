@@ -1,17 +1,18 @@
 'use client'
 import * as THREE from 'three'
 import React, { useRef, useState, useEffect } from 'react'
-import { useFrame } from '@react-three/fiber'
+import {MeshProps, useFrame} from '@react-three/fiber'
 import { useMediaQuery } from 'react-responsive'
 import {useGLTF, CubeCamera, MeshRefractionMaterial, Caustics} from '@react-three/drei'
 import { RGBELoader } from 'three-stdlib'
 import { getDeviceCapability } from "@/utils/functions";
+import {Group, Object3DEventMap} from "three";
 
-export function Diamond(props) {
-    const group = useRef()
+export function DiamondModal(props : MeshProps) {
+    const group = useRef<Group<Object3DEventMap> | null>(null)
 
     // Load the diamond model (geometry + materials) from GLTF
-    const { nodes, materials } = useGLTF('./models/diamond/diamond1.gltf');
+    const { nodes, materials } : any = useGLTF('./models/diamond/diamond1.gltf');
 
     // Store environment map (HDR texture)
     const [envMap, setEnvMap] = useState(null);
@@ -36,8 +37,9 @@ export function Diamond(props) {
 
     // Load HDR environment map for reflections/refractions
     useEffect(() => {
-        const newTexture = new RGBELoader().load('./models/diamond/env.hdr', (texture) => {
+        const newTexture = new RGBELoader().load('./models/diamond/env.hdr', (texture : any) => {
             texture.mapping = THREE.EquirectangularReflectionMapping; // makes HDR usable as env map
+            // @ts-ignore
             texture.encoding = THREE.sRGBEncoding; // proper color space
             texture.anisotropy = 6; // improves clarity at oblique angles (costly)
             texture.exposure = 9.0; // boosts brightness
@@ -57,6 +59,7 @@ export function Diamond(props) {
 
     // Rotate the diamond smoothly based on pointer movement
     useFrame(({ pointer }) => {
+        if(!group.current) return
         group.current.rotation.y = THREE.MathUtils.lerp(
             group.current.rotation.y,
             pointer.x * (Math.PI / 16),
@@ -101,6 +104,7 @@ export function Diamond(props) {
                                         aberrationStrength={isMobile ? 0.1 : 0.25} // chromatic aberration
                                         bounces={isMobile ? 1.5 : bounces} // refraction depth, GPU heavy
                                         fresnel={isMobile ? 0.4 : 0.7} // reflection intensity at edges
+                                        //@ts-ignore
                                         envMapIntensity={isMobile ? 1 : 2} // env map brightness
                                         fastChroma={true} // performance optimization
                                         envMap={texture} // reflections from cube camera

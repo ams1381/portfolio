@@ -1,9 +1,8 @@
 import Shader from "@/component/projects/Shader";
 import {Vector3} from "@react-three/fiber";
 import React, {SetStateAction, useRef, useState} from "react";
-import * as THREE from "three";
-import {ProjectTitle} from "@/component/projects/projectItem/projectTitle";
-import {ProjectIndex} from "@/component/projects/projectItem/ProjectIndex";
+import {ProjectTitle} from "@/component/projects/project-item/projectTitle";
+import {ProjectIndex} from "@/component/projects/project-item/ProjectIndex";
 
 interface IProjectItemProps {
     url : string ,
@@ -19,8 +18,6 @@ interface IProjectItemProps {
 export const ProjectItem = (props : IProjectItemProps) => {
     const [ textOpacity , setTextOpacity ] = useState(0.5);
     let [ x , y , z ] = props.position;
-    const titleRef = useRef<any>();
-    const [targetPos, setTargetPos] = useState(new THREE.Vector3(...props.position));
     const groupRef = useRef<any>();
     const [selected, setSelected] = useState<boolean>(false);
     const [hovered, setHovered] = useState<boolean>(true);

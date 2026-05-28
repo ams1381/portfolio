@@ -10,7 +10,7 @@ import * as THREE from "three";
 import {PointLightHelper} from "three";
 
 export function TestCar(props) {
-    const {nodes, materials} = useGLTF('/models/carModel.glb');
+    const {nodes, materials} = useGLTF('./models/carModel.glb');
     const lightREf = useRef();
     const backLightMaterial = new THREE.MeshStandardMaterial({
         color: '#bd0000',

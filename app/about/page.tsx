@@ -3,20 +3,17 @@ import Image from "next/image";
 import {SkillsList} from "@/data/skills";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import React, {Suspense, useState} from "react";
-import PreLoader from "@/component/layout/PreLoader";
-const BackScene : any = dynamic(() => import('@/component/about/BackScene'), {
+import React, {Suspense} from "react";
+
+const BackScene: any = dynamic(() => import('@/component/about/BackScene'), {
     ssr: false,
 })
-// const GarageScene: any = dynamic(() => import('@/component/about/GarageScene'), {
-//     ssr: false,
-// })
-const AboutMePage = () => {
-    const [readyToLoad, setReadyToLoad] = useState(false);
 
-    return <div className={'w-full bg-[#ededed] dark:bg-[transparent] h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
+const AboutMePage = () => {
+    return <div
+        className={'w-full bg-[#ededed] dark:bg-[transparent] h-[calc(100%-65px)] absolute flex flex-col gap-2 z-[20] text-center justify-center items-center'}>
         <Suspense fallback={<h2>Loading bitch</h2>}>
-            <BackScene />
+            <BackScene/>
         </Suspense>
 
         <div style={{animation: 'showUp 0.5s ease-out', animationFillMode: 'forwards'}}
@@ -42,7 +39,6 @@ const AboutMePage = () => {
                                        width={30}
                                        height={30}
                                        className={`z-[1] skillImage transition-all hover:drop-shadow-[0px_0px_4px_#919191]`}/>
-                                {/*<p className={'-ms-48 duration-300 transition-all group-hover:ms-0'}>{Item.title}</p>*/}
                             </div>)
                     }
                 </div>

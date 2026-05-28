@@ -10,7 +10,7 @@ import {DirectionalLightHelper} from "three";
 
 
 export default function GarageModel(props) {
-    const {nodes, materials} = useGLTF('/models/garage/output.glb', true, true);
+    const {nodes, materials} = useGLTF('./models/garage/output.glb', true, true);
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
 
 

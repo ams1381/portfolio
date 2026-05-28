@@ -12,7 +12,7 @@ const PreLoader = () => {
                 <li></li>
                 <li></li>
             </ul>
-            {/*<div className="textCon">Diamond PreLoader</div>*/}
+            {/*<div className="textCon">DiamondModal PreLoader</div>*/}
         </div>
     </div>
 }

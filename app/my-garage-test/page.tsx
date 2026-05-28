@@ -2,7 +2,7 @@
 
 
 
-import React, {Suspense, useState} from "react";
+import React, {useState} from "react";
 import PreLoader from "@/component/layout/PreLoader";
 import dynamic from "next/dynamic";
 import { BufferGeometry } from 'three';

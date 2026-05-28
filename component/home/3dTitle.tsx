@@ -3,7 +3,7 @@ import {Text} from "@react-three/drei";
 import React, {useRef} from "react";
 import {Vector3} from "three";
 
-export const Title = ({ children , pageStatus } : any) => {
+export const Title = ({ children } : any) => {
     const { width } = useThree((state) => state.viewport);
     const textRef : any = useRef();
     let isDarkTheme = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
