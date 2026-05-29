@@ -4,7 +4,7 @@ import {LightRing} from "@/component/about/car/LightRing";
 import {GroupProps} from "@react-three/fiber";
 import {TAboutMeActiveView} from "@/types";
 
-export default function CarM1(props : GroupProps & {activeView: TAboutMeActiveView}) {
+export default function CarModelTest(props : GroupProps & {activeView?: TAboutMeActiveView}) {
     const { nodes, materials } : any = useGLTF('./models/dodge/Untitled.glb')
     return useMemo(() => (
         <group {...props}>

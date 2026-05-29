@@ -1,13 +1,12 @@
 'use client'
 
 
-import {TestCar} from "@/component/about/car/CarModel";
 import React from "react";
 import {Canvas} from "@react-three/fiber";
 import {useMediaQuery} from "react-responsive";
 import {useWindowSize} from "@uidotdev/usehooks";
 import {OrbitControls, ScrollControls} from "@react-three/drei";
-import CarM1 from "@/component/about/car/CarModelTest";
+import CarModelTest from "@/component/about/car/CarModelTest";
 import {CameraRig} from "@/component/test/CameraRig";
 
 export const TestScene = () => {
@@ -22,7 +21,7 @@ export const TestScene = () => {
                    className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
         <ScrollControls  pages={5}>
             <CameraRig />
-            <CarM1
+            <CarModelTest
                 scale={1}
                 position={[0,0,0]}
             />
