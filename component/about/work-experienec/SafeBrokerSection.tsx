@@ -9,7 +9,6 @@ import * as THREE from "three";
 import {useMediaQuery} from "react-responsive";
 
 const SafeBrokerSection = () => {
-    // const texture = useLoader(TextureLoader, "/images/safebroker.png") // path to your png
     const texture = useTexture("./images/safebroker.png");
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const geometry = useMemo(() => new THREE.CylinderGeometry(isMobile ? 1.8 : 2.2, isMobile ? 1.8 : 2.2, 0, 32), []);

@@ -67,7 +67,7 @@ export function MyText3D(props : TMyText3DProps) {
     return (
         <group onClick={props.onClick}>
             <Text3D
-                font="/fonts/Audiowide-Regular.json" // Path to font file
+                font="./fonts/Audiowide-Regular.json" // Path to font file
                 size={props.size ?? 25}
                 position={props.position as any}
                 ref={textRef}
