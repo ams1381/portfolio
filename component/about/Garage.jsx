@@ -4,10 +4,8 @@ import {SceneController} from "@/component/about/SceneController";
 import dynamic from "next/dynamic";
 import {OptimizedMesh} from "@/component/OptimizedMesh";
 import {useMediaQuery} from "react-responsive";
-import CarM1 from "@/component/about/car/CarM1";
-import {TestCar} from "@/component/about/car/TestCAR";
-import {DirectionalLightHelper} from "three";
-
+import CarM1 from "@/component/about/car/CarModelTest";
+import {CarModel} from "@/component/about/car/CarModel";
 
 export default function GarageModel(props) {
     const {nodes, materials} = useGLTF('./models/garage/output.glb', true, true);
@@ -17,12 +15,12 @@ export default function GarageModel(props) {
     return (
         <group {...props} casShadow>
 
-            <TestCar activeView={props.activeView} scale={68.5} position={[-440, 8, -420]} />
-            {/*<CarM1*/}
-            {/*    scale={26.5}*/}
-            {/*    activeView={props.activeView}*/}
-            {/*    position={[-440, 0, -420]}*/}
-            {/*/>*/}
+            {/*<CarModel activeView={props.activeView} scale={68.5} position={[-440, 8, -420]} />*/}
+            <CarM1
+                scale={26.5}
+                activeView={props.activeView}
+                position={[-440, 0, -420]}
+            />
             <SceneController activeView={props.activeView} setActiveView={props.setActiveView}/>
             <pointLight
                 intensity={props.activeView === 'education' ? 20 : 30}

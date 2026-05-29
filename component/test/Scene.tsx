@@ -1,13 +1,13 @@
 'use client'
 
 
-import {TestCar} from "@/component/about/car/TestCAR";
+import {TestCar} from "@/component/about/car/CarModel";
 import React from "react";
 import {Canvas} from "@react-three/fiber";
 import {useMediaQuery} from "react-responsive";
 import {useWindowSize} from "@uidotdev/usehooks";
 import {OrbitControls, ScrollControls} from "@react-three/drei";
-import CarM1 from "@/component/about/car/CarM1";
+import CarM1 from "@/component/about/car/CarModelTest";
 import {CameraRig} from "@/component/test/CameraRig";
 
 export const TestScene = () => {
