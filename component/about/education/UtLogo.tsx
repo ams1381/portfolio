@@ -4,11 +4,9 @@ import {TAboutMeActiveView} from "@/types";
 import {useMediaQuery} from "react-responsive";
 import React from "react";
 import {Text} from "@react-three/drei";
-// {"position":[23,-13,-4]}
-//{"position":[-4,-58,-81]}
-// {"rotation":[-1,3,4.8]}
+
 export function UniversitySection({activeView} : {activeView : TAboutMeActiveView}) {
-    const texture = useLoader(TextureLoader, "/images/ut logo.png") ;// path to your png
+    const texture = useLoader(TextureLoader, "./images/ut logo.png") ;// path to your png
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const isSmallMobile = useMediaQuery({query: '(max-width: 480px)'});
 

@@ -8,7 +8,7 @@ import * as THREE from 'three'
 import {useMediaQuery} from "react-responsive";
 
 const IranCounterSection = () => {
-    const texture = useTexture("/images/irancounter.png");
+    const texture = useTexture("./images/irancounter.png");
 
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const geometry = useMemo(() => new THREE.BoxGeometry(isMobile ? 4 : 5 , isMobile ? 4 : 5 , 0), []);
@@ -63,7 +63,7 @@ const IranCounterSection = () => {
         </Text>
     </group>
 }
-useTexture.preload("/images/irancounter.png");
+useTexture.preload("./images/irancounter.png");
 export default IranCounterSection;
 // I specialized in enhancing website performance through a strategic focus on
 // SEO, server-side rendering (SSR), and overall web optimization

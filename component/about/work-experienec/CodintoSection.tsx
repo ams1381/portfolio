@@ -7,7 +7,7 @@ import * as THREE from 'three'
 import {useMediaQuery} from "react-responsive";
 
 const CodintoSection = () => {
-    const texture = useTexture("/images/codinto.png");
+    const texture = useTexture("./images/codinto.png");
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const geometry = useMemo(() => new THREE.CylinderGeometry(isMobile ? 1.8 : 2.2, isMobile ? 1.8 : 2.2, 0, 32), []);
 
@@ -69,6 +69,6 @@ const CodintoSection = () => {
 
     )
 }
-useTexture.preload("/images/codinto.png");
+useTexture.preload("./images/codinto.png");
 
 export default CodintoSection;

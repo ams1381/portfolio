@@ -48,4 +48,4 @@ export default function GarageModel(props) {
     )
 }
 
-useGLTF.preload('/models/garage/output.glb', true, true)
+useGLTF.preload('./models/garage/output.glb', true, true)

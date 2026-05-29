@@ -8,7 +8,7 @@ import {Text} from "@react-three/drei";
 import React from "react";
 
 export const HighSchoolLogo = () => {
-    const texture = useLoader(TextureLoader, "/images/logo_fin5.png") // path to your png
+    const texture = useLoader(TextureLoader, "./images/logo_fin5.png") // path to your png
     const isMobile = useMediaQuery({query: '(max-width: 768px)'});
     const isSmallMobile = useMediaQuery({query: '(max-width: 480px)'});
     const onClickHandler = () => {
