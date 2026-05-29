@@ -28,13 +28,11 @@ export default function GarageScene() {
                     camera={{position: [-90, 30, -500], fov: 60, near: 0.1, far: 1500}}
                     className={'h-full relative'} style={{height: height ? height - 70 : 900}}>
 
-                <Environment files={'/models/dodge/envi.hdr'}/>
+                <Environment files={'./models/dodge/envi.hdr'}/>
                 <SkillSection setActiveView={setActiveView} activeView={activeView} />
                 <WorkExperience setActiveView={setActiveView} activeView={activeView}/>
                 <EducationSection activeView={activeView} setActiveView={setActiveView}/>
-                {/*{ activeView === 'skills' ?*/}
-                {/*    <IronManModel setActiveView={setActiveView} scale={0.09} position={[-510, -50, -1000]}/> : <></>}*/}
-                {/*<CanvasLoader setReadyToLoad={setReadyToLoad}/>*/}
+
                 <CameraInitializer activeView={activeView} />
                 <GarageModel
                     setActiveView={setActiveView}
@@ -46,24 +44,6 @@ export default function GarageScene() {
                               color={'#ffffff'}/>
 
                 <CameraMover/>
-                {/*<OrbitControls/>*/}
-                {/*{ isMobile ? <OrbitControls*/}
-                {/*    // position={[-582.61, 26.13,-796.97]}*/}
-                {/*    // rotation={[3.066, -0.44, 3.10]}*/}
-
-                {/*    // maxDistance={6}*/}
-                {/*    // enableRotate={false}*/}
-                {/*    // position={[-582.61, 26.13,-796.97]}*/}
-                {/*    // autoRotate={false}*/}
-                {/*    enablePan={false}*/}
-                {/*    enableZoom={false}*/}
-                {/*    // maxZoom={7}*/}
-                {/*    maxPolarAngle={Math.PI /2}*/}
-
-                {/*    // minPolarAngle={Math.PI / 6}*/}
-                {/*    //             enableZoom={true}*/}
-                {/*                // enableRotate={true}*/}
-                {/*/> : <></>}*/}
             </Canvas>
         </>
 
