@@ -21,7 +21,7 @@ export const Header = () => {
                 </li>
             </Link>
             <Link href={'/about'}>
-                <li className={`${pathname === '/about' ? 'text-header-text-hover' : 
+                <li className={`${pathname === '/old-about' ? 'text-header-text-hover' : 
                     'hover:text-[var(--header-text-hover)] text-header-text'}
                  text-md md:text-lg hover:drop-shadow-[1px 2px 8px #ffffff78] text-center hover-effect`}>
                     About Me

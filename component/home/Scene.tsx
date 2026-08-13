@@ -22,7 +22,7 @@ const LandingScene = memo(({setReadyToLoad} : {setReadyToLoad : any}) => {
         <CameraComponent />
         <Suspense>
             <CanvasLoader setReadyToLoad={setReadyToLoad}/>
-            <color attach='background' args={isDarkTheme ? ['#020009'] : ['#f3f3f3']} />
+            <color attach='background' args={isDarkTheme ? ['#000000'] : ['#f3f3f3']} />
             <fog attach='fog' args={[0x050505, 0, 28]}/>
 
             <Environment files={'./models/diamond/env.hdr'} />
